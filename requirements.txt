@@ -1,0 +1,10 @@
+lm_eval==0.4.13
+transformers==5.17.0
+torch==2.14.0
+datasets==5.0.1
+evaluate==0.4.6
+accelerate==1.15.0
+llama_cpp_python==0.2.84
+requests==2.34.2
+tqdm==4.70.1
+numpy==2.5.3
