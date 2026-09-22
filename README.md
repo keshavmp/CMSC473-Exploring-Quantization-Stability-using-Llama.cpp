@@ -1,56 +1,106 @@
-# CMSC473-Exploring-Quantization-Stability-using-Llama.cpp
-How stable is LLM quantization sensitivity across workloads, calibration data, context lengths, and hardware, and can llama.cpp’s importance-matrix statistics predict this sensitivity well enough to guide efficient weight and KV-cache precision choices?
+# Quantization Stability with llama.cpp
+
+This project evaluates how GGUF quantization affects Llama 3.2 1B performance.
+
+Pipeline:
+
+```text
+GGUF Model → llama-server → lm-eval → Results
+```
 
 ## Setup
 
-```powershell
-pip install -r requirements.txt
-winget install llama.cpp
+Clone the repo:
+
+```bash
+git clone https://github.com/keshavmp/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp.git
+cd CMSC473-Exploring-Quantization-Stability-using-Llama.cpp
 ```
 
-### Important: Replace lm-eval `gguf.py`
+### Windows
 
-The installed `lm-eval` GGUF backend is currently incompatible with the version of `llama-server`.
-
-This repo contains the updated `gguf.py`. After installing requirements, overwrite the installed version:
+Run:
 
 ```powershell
-$GGUF_PATH = python -c "import lm_eval.models.gguf as g; print(g.__file__)"
-Copy-Item ".\gguf.py" $GGUF_PATH -Force
+Set-ExecutionPolicy -Scope Process Bypass
+.\setup.ps1
 ```
 
-This must be done after installing/updating `lm-eval`.
+Activate the environment later with:
 
-## Run
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-Download the GGUF models with:
+### macOS
+
+Make the setup script executable and run it:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Activate the environment later with:
+
+```bash
+source .venv/bin/activate
+```
+
+The setup scripts:
+
+* create `.venv`
+* install Python dependencies
+* install/check llama.cpp
+* overwrite the installed `lm_eval/models/gguf.py` with the patched `gguf.py` included in this repo
+
+> If `lm-eval` is reinstalled or upgraded, run the setup script again so the patched `gguf.py` is copied back.
+
+## Download Models
+
+```bash
+python download_models.py
+```
+
+Models are stored locally in:
 
 ```text
-download_models.ipynb
+models/
 ```
 
-Select the model in:
+GGUF model files are not committed to Git.
 
-```text
-llm_server.ps1
-```
+## Run a Model
 
-Start the server:
+Choose the model by editing the `MODEL` line in the server script.
+
+### Windows
 
 ```powershell
 .\llm_server.ps1
 ```
 
-Then in another terminal:
+### macOS / Linux
 
-```powershell
+```bash
+chmod +x llm_server.sh
+./llm_server.sh
+```
+
+Leave the server running.
+
+## Evaluate
+
+Open another terminal, activate `.venv`, then run:
+
+```bash
 python evaluate.py
 ```
 
-Results are saved to `results/`.
+The evaluator automatically gets the model name from the running llama-server.
 
-## Notes
+Results are saved in:
 
-* We use standalone `llama.cpp`, not `llama-cpp-python`.
-* `.gguf` model files go in `models/` and should not be committed.
-* The model only needs to be changed in `llm_server.ps1`.
+```text
+results/
+```
