@@ -1,60 +1,45 @@
 # Quantization Stability with llama.cpp
 
-This project evaluates how GGUF quantization affects Llama 3.2 1B performance.
-
-Pipeline:
-
-```text
-GGUF Model → llama-server → lm-eval → Results
-```
 
 ## Setup
 
-Clone the repo:
-
-```bash
-git clone https://github.com/keshavmp/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp.git
-cd CMSC473-Exploring-Quantization-Stability-using-Llama.cpp
-```
-
 ### Windows
 
-Run:
-
 ```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\setup.ps1
-```
-
-Activate the environment later with:
-
-```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+winget install llama.cpp
 ```
 
 ### macOS
 
-Make the setup script executable and run it:
-
 ```bash
-chmod +x setup.sh
-./setup.sh
-```
-
-Activate the environment later with:
-
-```bash
+python3 -m venv .venv
 source .venv/bin/activate
+pip install -r requirements.txt
+brew install llama.cpp
 ```
 
-The setup scripts:
+## Important: Patch lm-eval
 
-* create `.venv`
-* install Python dependencies
-* install/check llama.cpp
-* overwrite the installed `lm_eval/models/gguf.py` with the patched `gguf.py` included in this repo
+After installing dependencies, replace the installed lm-eval GGUF backend with the `gguf.py` included in this repo.
 
-> If `lm-eval` is reinstalled or upgraded, run the setup script again so the patched `gguf.py` is copied back.
+Windows:
+
+```powershell
+$GGUF_PATH = python -c "import lm_eval.models.gguf as g; print(g.__file__)"
+Copy-Item ".\gguf.py" $GGUF_PATH -Force
+```
+
+macOS:
+
+```bash
+GGUF_PATH=$(python -c "import lm_eval.models.gguf as g; print(g.__file__)")
+cp gguf.py "$GGUF_PATH"
+```
+
+If `lm-eval` is reinstalled or upgraded, run this step again.
 
 ## Download Models
 
@@ -62,17 +47,17 @@ The setup scripts:
 python download_models.py
 ```
 
-Models are stored locally in:
+Models are saved in:
 
 ```text
 models/
 ```
 
-GGUF model files are not committed to Git.
+GGUF files are not committed to Git.
 
 ## Run a Model
 
-Choose the model by editing the `MODEL` line in the server script.
+Choose the model inside the server script.
 
 ### Windows
 
@@ -80,7 +65,7 @@ Choose the model by editing the `MODEL` line in the server script.
 .\llm_server.ps1
 ```
 
-### macOS / Linux
+### macOS
 
 ```bash
 chmod +x llm_server.sh
@@ -91,13 +76,11 @@ Leave the server running.
 
 ## Evaluate
 
-Open another terminal, activate `.venv`, then run:
+Open another terminal, activate the virtual environment, then run:
 
 ```bash
 python evaluate.py
 ```
-
-The evaluator automatically gets the model name from the running llama-server.
 
 Results are saved in:
 
