@@ -1,0 +1,24 @@
+{
+  "gsm8k": {
+    "name": "gsm8k",
+    "alias": "gsm8k",
+    "sample_len": 50,
+    "exact_match,strict-match": 0.0,
+    "exact_match_stderr,strict-match": 0.0,
+    "exact_match,flexible-extract": 0.18,
+    "exact_match_stderr,flexible-extract": 0.054883922035138706
+  },
+  "ifeval": {
+    "name": "ifeval",
+    "alias": "ifeval",
+    "sample_len": 50,
+    "prompt_level_strict_acc,none": 0.32,
+    "prompt_level_strict_acc_stderr,none": 0.06663945022680343,
+    "inst_level_strict_acc,none": 0.4605263157894737,
+    "inst_level_strict_acc_stderr,none": "N/A",
+    "prompt_level_loose_acc,none": 0.36,
+    "prompt_level_loose_acc_stderr,none": 0.06857142857142857,
+    "inst_level_loose_acc,none": 0.4868421052631579,
+    "inst_level_loose_acc_stderr,none": "N/A"
+  }
+}

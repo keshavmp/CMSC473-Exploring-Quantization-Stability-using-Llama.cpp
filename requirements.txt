@@ -8,3 +8,5 @@ llama_cpp_python==0.2.84
 requests==2.34.2
 tqdm==4.70.1
 numpy==2.5.3
+langdetect
+immutabledict

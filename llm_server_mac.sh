@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Serve a GGUF from this repo's models/ folder. Paths anchor to this script.
+set -euo pipefail
 
-MODEL="models/llama-2-7b-chat.Q4_K_M.gguf"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MODEL="$DIR/${1:-models/Llama-3.2-1B-Instruct-BF16.gguf}"
+SERVER="${LLAMA_SERVER:-llama-server}"
 
-SERVER="../llama.cpp/build/bin/llama-server"
+[[ -f "$MODEL" ]] || { echo "Model not found: $MODEL" >&2; exit 1; }
+command -v "$SERVER" >/dev/null || { echo "llama-server not on PATH" >&2; exit 1; }
 
-"$SERVER" \
-    -m "$MODEL" \
-    --port 8080 \
-    --n-gpu-layers 0 \
-    --cache-type-k f16 \
-    --cache-type-v f16
+exec "$SERVER" -m "$MODEL" --port "${2:-8080}" --n-gpu-layers 0 --cache-type-k f16 --cache-type-v f16

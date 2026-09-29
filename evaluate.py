@@ -6,8 +6,10 @@ from pathlib import Path
 BASE_URL = "http://127.0.0.1:8080"
 
 TASKS = [
-    "hellaswag",
-    "arc_easy",
+    "gsm8k",
+    "ifeval",
+    # "humaneval" temporarily disabled:
+    # Re-enable once the torch install is repaired.
 ]
 
 # Get Current Model

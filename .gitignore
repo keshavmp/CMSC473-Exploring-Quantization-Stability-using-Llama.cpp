@@ -1,0 +1,24 @@
+# Virtual environment
+Capstone Project/
+.venv/
+venv/
+
+# Hugging Face models
+models/*
+!models/.gitkeep
+*.gguf
+
+# Secrets
+secrets.json
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.vscode/
+.DS_Store

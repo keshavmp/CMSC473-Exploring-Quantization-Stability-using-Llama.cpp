@@ -1,0 +1,20 @@
+{
+  "hellaswag": {
+    "name": "hellaswag",
+    "alias": "hellaswag",
+    "sample_len": 50,
+    "acc,none": 0.28,
+    "acc_stderr,none": 0.06414269805898185,
+    "acc_norm,none": 0.22,
+    "acc_norm_stderr,none": 0.059178043363451366
+  },
+  "arc_easy": {
+    "name": "arc_easy",
+    "alias": "arc_easy",
+    "sample_len": 50,
+    "acc,none": 0.32,
+    "acc_stderr,none": 0.06663945022680343,
+    "acc_norm,none": 0.34,
+    "acc_norm_stderr,none": 0.0676726816132972
+  }
+}
