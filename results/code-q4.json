@@ -1,0 +1,31 @@
+{
+  "gsm8k": {
+    "name": "gsm8k",
+    "alias": "gsm8k",
+    "sample_len": 50,
+    "exact_match,strict-match": 0.22,
+    "exact_match_stderr,strict-match": 0.05917804336345138,
+    "exact_match,flexible-extract": 0.24,
+    "exact_match_stderr,flexible-extract": 0.0610118757258932
+  },
+  "ifeval": {
+    "name": "ifeval",
+    "alias": "ifeval",
+    "sample_len": 50,
+    "prompt_level_strict_acc,none": 0.34,
+    "prompt_level_strict_acc_stderr,none": 0.0676726816132972,
+    "inst_level_strict_acc,none": 0.4868421052631579,
+    "inst_level_strict_acc_stderr,none": "N/A",
+    "prompt_level_loose_acc,none": 0.42,
+    "prompt_level_loose_acc_stderr,none": 0.07050835816716038,
+    "inst_level_loose_acc,none": 0.5526315789473685,
+    "inst_level_loose_acc_stderr,none": "N/A"
+  },
+  "mmlu_college_computer_science": {
+    "name": "mmlu_college_computer_science",
+    "alias": "college_computer_science",
+    "sample_len": 50,
+    "acc,none": 0.32,
+    "acc_stderr,none": 0.06663945022680343
+  }
+}

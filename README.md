@@ -1,13 +1,21 @@
 # Quantization Stability with llama.cpp
 
+Compare how different quantizations of the same Llama checkpoint hold up on
+three tasks - GSM8K, IFEval, and MMLU (college computer science) - when served
+with llama.cpp.
+
 ## Project layout
 
 All generated files live in this repository, never in the parent folder:
 
 ```text
 <repo>/
-├── models/     # GGUF checkpoints (git-ignored)
-└── results/    # one JSON report per model
+├── data/               # calibration files for llama-imatrix (git-ignored)
+├── models/             # GGUF checkpoints (git-ignored)
+├── results/            # one JSON report per run + summary.csv / summary.png
+├── src/                # config, server, quantize, evaluate, report, ...
+├── tests/              # pytest unit tests
+└── run_evaluation.py   # main entry point
 ```
 
 Every script resolves these folders from its own location, and refuses to run
@@ -36,82 +44,103 @@ brew install llama.cpp
 
 ## Important: Patch lm-eval
 
-After installing dependencies, replace the installed lm-eval GGUF backend with the `gguf.py` included in this repo.
+After installing dependencies, replace the installed lm-eval GGUF backend with the `src/gguf.py` included in this repo.
 
 Windows:
 
 ```powershell
 $GGUF_PATH = python -c "import lm_eval.models.gguf as g; print(g.__file__)"
-Copy-Item ".\gguf.py" $GGUF_PATH -Force
+Copy-Item ".\src\gguf.py" $GGUF_PATH -Force
 ```
 
 macOS:
 
 ```bash
 GGUF_PATH=$(python -c "import lm_eval.models.gguf as g; print(g.__file__)")
-cp gguf.py "$GGUF_PATH"
+cp src/gguf.py "$GGUF_PATH"
 ```
 
 If `lm-eval` is reinstalled or upgraded, run this step again.
 
 ## Download Models
 
-```bash
-python download_models.py
-```
-
 Models are saved to the repo's `models/` folder, which is created if missing.
 GGUF files are not committed to Git.
 
-## Run a Model
+Either place a GGUF there yourself as `models/<name>.gguf`, or set `hf_repo`
+and `hf_filename` on the `Config` in `run_evaluation.py` - the server
+downloads the file automatically the first time it is needed.
 
-Pass the GGUF to serve. Relative paths resolve against this repo, not your
-current directory. Both scripts default to the BF16 checkpoint.
+## Run an Evaluation
 
-### Windows
+Edit `run_evaluation.py`: one `Config` per run, each starting from `BASE` and
+overriding only what differs.
 
-```powershell
-.\llm_server.ps1
-.\llm_server.ps1 -Model "models\Llama-3.2-1B-Instruct-Q4_K_M.gguf"
+```python
+BASE = Config()
+
+CONFIGS = [
+    BASE.with_overrides(name="chat-q4", num_examples=50),
+    BASE.with_overrides(name="uniform-q4", num_examples=50),
+]
 ```
 
-If `llama-server` is not on your PATH, point at it explicitly:
-
-```powershell
-.\llm_server.ps1 -Server "C:\tools\llama.cpp\llama-server.exe"
-```
-
-### macOS
+Then:
 
 ```bash
-chmod +x llm_server_mac.sh
-./llm_server_mac.sh
-./llm_server_mac.sh models/Llama-3.2-1B-Instruct-Q4_K_M.gguf
+python run_evaluation.py
 ```
 
-Leave the server running.
+Each run starts llama-server, evaluates the three tasks, and stops the server.
+Every run `<name>` writes:
+
+- `results/<name>.json` - task metrics
+- `results/<name>_samples.json` - per-question records
+- `results/<name>-server.log` - server log (git-ignored)
+
+To serve a model yourself instead, leave this running in its own terminal:
+
+```powershell
+llama-server -m models\Llama-3.2-1B-Instruct-BF16.gguf --port 8080
+```
 
 ## Quantize
 
-Edit `CONFIG` in `quantize_model.py` (source, output, recipe, tensor
-overrides), then:
+Edit the `quantize_model(...)` call at the bottom of `src/quantize.py`, then:
 
 ```bash
-python quantize_model.py
+python src/quantize.py
 ```
 
 The destination folder is created automatically. Always generate every
-quantized variant from the same BF16 source, and never reuse the source
-filename as the output - the script refuses to do so.
+quantized variant from the same BF16 source.
 
-## Evaluate
-
-Open another terminal, activate the virtual environment, then run:
+Optional - build the calibration data and importance matrices used by
+imatrix-guided quantization:
 
 ```bash
-python evaluate.py
+python src/imatrix.py
 ```
 
-Results are saved to the repo's `results/` folder as
-`results/<model-name>.json`, where `<model-name>` is the served GGUF's
-filename without its extension.
+## Compare Results
+
+After one or more evaluations, compare every run side by side:
+
+```bash
+python src/report.py                     # every results/*.json
+python src/report.py chat-q4 uniform-q4  # only these runs, in this order
+```
+
+This prints one row per run and one column per task, and saves
+`results/summary.csv` and `results/summary.png` (grouped bar chart).
+New result files and new tasks are picked up automatically - no edits needed.
+
+## Tests
+
+```bash
+python -m pytest tests -q
+```
+
+Unit tests for the main functions in `src/`. They need no GPU, server, or
+network access - subprocess calls, HTTP, and lm-eval are mocked.
+

@@ -1,20 +1,31 @@
 {
-  "hellaswag": {
-    "name": "hellaswag",
-    "alias": "hellaswag",
-    "sample_len": 50,
-    "acc,none": 0.28,
-    "acc_stderr,none": 0.06414269805898185,
-    "acc_norm,none": 0.22,
-    "acc_norm_stderr,none": 0.059178043363451366
+  "gsm8k": {
+    "name": "gsm8k",
+    "alias": "gsm8k",
+    "sample_len": 5,
+    "exact_match,strict-match": 0.2,
+    "exact_match_stderr,strict-match": 0.2,
+    "exact_match,flexible-extract": 0.2,
+    "exact_match_stderr,flexible-extract": 0.2
   },
-  "arc_easy": {
-    "name": "arc_easy",
-    "alias": "arc_easy",
-    "sample_len": 50,
-    "acc,none": 0.32,
-    "acc_stderr,none": 0.06663945022680343,
-    "acc_norm,none": 0.34,
-    "acc_norm_stderr,none": 0.0676726816132972
+  "ifeval": {
+    "name": "ifeval",
+    "alias": "ifeval",
+    "sample_len": 5,
+    "prompt_level_strict_acc,none": 0.6,
+    "prompt_level_strict_acc_stderr,none": 0.24494897427831783,
+    "inst_level_strict_acc,none": 0.625,
+    "inst_level_strict_acc_stderr,none": "N/A",
+    "prompt_level_loose_acc,none": 0.6,
+    "prompt_level_loose_acc_stderr,none": 0.24494897427831783,
+    "inst_level_loose_acc,none": 0.625,
+    "inst_level_loose_acc_stderr,none": "N/A"
+  },
+  "mmlu_college_computer_science": {
+    "name": "mmlu_college_computer_science",
+    "alias": "college_computer_science",
+    "sample_len": 5,
+    "acc,none": 0.0,
+    "acc_stderr,none": 0.0
   }
 }

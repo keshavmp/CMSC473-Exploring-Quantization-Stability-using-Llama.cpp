@@ -7,10 +7,17 @@ import psutil
 import threading
 from pathlib import Path
 
-MODEL = "models/Llama-3.2-1B-Instruct-Q2_K.gguf"
-SERVER = "../llama.cpp/build/bin/llama-server"
+try:
+    from src.config import Config
+except ModuleNotFoundError:  # running directly: python src/run_kv_cache_experiments.py
+    from config import Config
 
-BASE_URL = "http://127.0.0.1:8080"
+cfg = Config()
+
+MODEL = str(cfg.models_dir / "Llama-3.2-1B-Instruct-Q2_K.gguf")
+SERVER = str(cfg.llama_server)
+
+BASE_URL = cfg.base_url
 
 
 # ============================================================
@@ -32,7 +39,7 @@ gpu_layers = "0"
 server_command = [
     SERVER,
     "-m", MODEL,
-    "--port", "8080",
+    "--port", str(cfg.port),
     "--ctx-size", context_limit,
     "--n-gpu-layers", gpu_layers,
     "--cache-type-k", k_type,
@@ -126,7 +133,7 @@ try:
         num_fewshot=0,
         limit=50,
         batch_size=1,
-        torch_random_seed=None,
+        torch_random_seed=config.SEED,
     )
 
     memory = {
@@ -229,11 +236,11 @@ try:
     # 9. SAVE RESULT
     # ========================================================
 
-    Path("results").mkdir(exist_ok=True)
+    cfg.results_dir.mkdir(parents=True, exist_ok=True)
 
-    filename = (
-        f"results/"
-        f"{k_type}_{v_type}_{task_name}_{context_limit}.json"
+    filename = str(
+        cfg.results_dir
+        / f"{k_type}_{v_type}_{task_name}_{context_limit}.json"
     )
 
     with open(filename, "w") as f:

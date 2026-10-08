@@ -16,6 +16,12 @@ secrets.json
 __pycache__/
 *.pyc
 
+# Generated experiment artifacts (large / regenerable)
+data/
+results/*-server.log
+results/llama-server.log
+results/*_samples.json
+
 # Jupyter
 .ipynb_checkpoints/
 
