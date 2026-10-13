@@ -18,7 +18,7 @@ class Config:
     """All settings for one evaluation run."""
 
     # --- Identity ---------------------------------------------------------
-    # Used for result and log filenames so runs never overwrite each other.
+    # Each name gets its own results folder; use unique names for new settings.
     # The served model defaults to models/<name>.gguf (see resolve_model_file).
     name: str = "uniform-q4"
 
@@ -58,6 +58,17 @@ class Config:
     num_fewshot: int = 5
     batch_size: int = 1
 
+    # --- KL divergence (optional, evaluated after the server stops) --------
+    kl_enabled: bool = False
+    llama_perplexity: Path = LLAMA_BUILD_DIR / "llama-perplexity.exe"
+    kl_text_dir: Path | None = None  # None -> held-out chat/math/code text
+    kl_context_size: int = 512
+    kl_chunks: int = 2              # bounded reference size per domain
+
+    def __post_init__(self) -> None:
+        if not self.name or self.name in (".", "..") or any(char in self.name for char in "/\\:"):
+            raise ValueError("Config name must be a single folder name")
+
     # --- Derived paths ----------------------------------------------------
     @property
     def models_dir(self) -> Path:
@@ -68,20 +79,24 @@ class Config:
         return self.project_root / "results"
 
     @property
+    def run_dir(self) -> Path:
+        return self.results_dir / self.name
+
+    @property
     def base_url(self) -> str:
         return f"http://{self.host}:{self.port}"
 
     @property
     def log_file(self) -> Path:
-        return self.results_dir / f"{self.name}-server.log"
+        return self.run_dir / "server.log"
 
     @property
     def results_file(self) -> Path:
-        return self.results_dir / f"{self.name}.json"
+        return self.run_dir / "metrics.json"
 
     @property
     def samples_file(self) -> Path:
-        return self.results_dir / f"{self.name}_samples.json"
+        return self.run_dir / "samples.json"
 
     # --- Helpers ----------------------------------------------------------
     def resolve_model_file(self) -> Path:

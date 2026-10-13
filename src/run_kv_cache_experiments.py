@@ -30,6 +30,9 @@ context_limit = "4096"
 task_name = "arc_easy"
 tasks = ["arc_easy"]
 gpu_layers = "0"
+cfg = cfg.with_overrides(
+    name=f"{Path(MODEL).stem}-k-{k_type}-v-{v_type}-ctx-{context_limit}-{task_name}"
+)
 
 
 # ============================================================
@@ -133,7 +136,7 @@ try:
         num_fewshot=0,
         limit=50,
         batch_size=1,
-        torch_random_seed=config.SEED,
+        torch_random_seed=None,
     )
 
     memory = {
@@ -236,12 +239,9 @@ try:
     # 9. SAVE RESULT
     # ========================================================
 
-    cfg.results_dir.mkdir(parents=True, exist_ok=True)
+    cfg.run_dir.mkdir(parents=True, exist_ok=True)
 
-    filename = str(
-        cfg.results_dir
-        / f"{k_type}_{v_type}_{task_name}_{context_limit}.json"
-    )
+    filename = str(cfg.results_file)
 
     with open(filename, "w") as f:
         json.dump(result, f, indent=2)

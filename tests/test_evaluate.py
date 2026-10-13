@@ -17,10 +17,10 @@ def test_evaluate_model_writes_results_and_samples(mock_eval, tmp_path):
 
     output = evaluate_model(cfg, limit=3)
 
-    assert output == tmp_path / "results" / "demo.json"
+    assert output == tmp_path / "results" / "demo" / "metrics.json"
     assert json.loads(output.read_text(encoding="utf-8")) == FAKE_RESULTS["results"]
 
-    samples = tmp_path / "results" / "demo_samples.json"
+    samples = tmp_path / "results" / "demo" / "samples.json"
     assert json.loads(samples.read_text(encoding="utf-8")) == FAKE_RESULTS["samples"]
 
     assert mock_eval.call_args.kwargs["limit"] == 3
