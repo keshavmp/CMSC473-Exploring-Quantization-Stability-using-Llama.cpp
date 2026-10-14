@@ -14,15 +14,9 @@ BASE = Config(
 )
 
 MODELS = [
-    "Llama-3.2-1B-Instruct-BF16",
-    "uniform-q4",
-    "chat-q4",
-    "math-q4",
-    "code-q4",
-    "q4-attn-out-q8",
-    "q4-attn-qkv-q8",
-    "q4-ffn-up-gate-q8",
-    "q4-ffn-down-q8",
+    "chat-q4-nonPure",
+    "math-q4-nonPure",
+    "code-q4-nonPure",
 ]
 
 CONFIGS = [

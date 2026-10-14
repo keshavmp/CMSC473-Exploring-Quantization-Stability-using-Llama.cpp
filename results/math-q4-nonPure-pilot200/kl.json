@@ -1,0 +1,34 @@
+{
+  "baseline": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\models\\Llama-3.2-1B-Instruct-BF16.gguf",
+  "direction": "BF16 || evaluated model",
+  "units": "nats",
+  "domains": {
+    "chat": {
+      "mean": 0.034083,
+      "median": 0.014954,
+      "p95": 0.122917,
+      "uncertainty": 0.002807,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\data\\kl\\chat.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\results\\_kl_reference\\590d203949a52493\\reference.kld"
+    },
+    "code": {
+      "mean": 0.034521,
+      "median": 0.013003,
+      "p95": 0.122633,
+      "uncertainty": 0.003038,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\data\\kl\\code.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\results\\_kl_reference\\137d5c72e95614ff\\reference.kld"
+    },
+    "math": {
+      "mean": 0.027287,
+      "median": 0.011482,
+      "p95": 0.091953,
+      "uncertainty": 0.002527,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\data\\kl\\math.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\results\\_kl_reference\\fcfe8440f5cf31ab\\reference.kld"
+    }
+  }
+}
