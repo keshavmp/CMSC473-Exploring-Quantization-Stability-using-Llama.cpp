@@ -1,0 +1,43 @@
+{
+  "model": "/Users/keshavnarasimhan/Documents/CMSC473/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/models/Llama-3.2-1B-Instruct-Q2_K.gguf",
+  "weight_quant": "Q2_K",
+  "k_type": "q8_0",
+  "v_type": "q8_0",
+  "context_limit": 4096,
+  "tasks": [
+    "ifeval"
+  ],
+  "backend": "cpu",
+  "sample_limit": 15,
+  "quality": {
+    "ifeval": {
+      "name": "ifeval",
+      "alias": "ifeval",
+      "sample_len": 15,
+      "prompt_level_strict_acc,none": 0.26666666666666666,
+      "prompt_level_strict_acc_stderr,none": 0.11818736805705578,
+      "inst_level_strict_acc,none": 0.391304347826087,
+      "inst_level_strict_acc_stderr,none": "N/A",
+      "prompt_level_loose_acc,none": 0.26666666666666666,
+      "prompt_level_loose_acc_stderr,none": 0.11818736805705578,
+      "inst_level_loose_acc,none": 0.391304347826087,
+      "inst_level_loose_acc_stderr,none": "N/A"
+    }
+  },
+  "performance": {
+    "prompt_tokens": 632.0,
+    "generation_tokens": 19200.0,
+    "prompt_seconds": 13.2115,
+    "generation_seconds_raw_unvalidated": 966.398,
+    "prompt_tokens_per_second": 47.83711160731181,
+    "generation_tokens_per_second": null,
+    "max_observed_sequence_length": 1356.0,
+    "evaluation_wall_seconds": 996.6820095409639
+  },
+  "memory": {
+    "baseline_rss_mb": 985.515625,
+    "peak_rss_mb": 1081.03125,
+    "peak_rss_delta_mb": 95.515625,
+    "measurement_note": "RSS measures total llama-server process memory, not KV-cache-only memory."
+  }
+}

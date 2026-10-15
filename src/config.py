@@ -10,7 +10,15 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-LLAMA_BUILD_DIR = Path(r"C:\llama.cpp\build\bin\Release")
+
+
+## LLAMA Build and LLAMa Server for windows and mac
+if __import__("platform").system() == "Windows":
+    LLAMA_BUILD_DIR = Path(r"C:\llama.cpp\build\bin\Release")
+    LLAMA_SERVER_NAME = "llama-server.exe"
+else:
+    LLAMA_BUILD_DIR = PROJECT_ROOT.parent / "llama.cpp" / "build" / "bin"
+    LLAMA_SERVER_NAME = "llama-server"
 
 
 @dataclass
@@ -26,7 +34,7 @@ class Config:
     project_root: Path = PROJECT_ROOT
 
     # --- llama.cpp binaries ----------------------------------------------
-    llama_server: Path = LLAMA_BUILD_DIR / "llama-server.exe"   # CUDA build (GPU)
+    llama_server: Path = LLAMA_BUILD_DIR / LLAMA_SERVER_NAME   # CUDA build (GPU)
     llama_imatrix: Path = LLAMA_BUILD_DIR / "llama-imatrix.exe"
     quantize_tool: Path = LLAMA_BUILD_DIR / "llama-quantize.exe"
 

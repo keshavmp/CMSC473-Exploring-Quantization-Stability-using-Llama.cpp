@@ -1,0 +1,39 @@
+{
+  "model": "/Users/keshavnarasimhan/Documents/CMSC473/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/models/Llama-3.2-1B-Instruct-Q2_K.gguf",
+  "weight_quant": "Q2_K",
+  "k_type": "f16",
+  "v_type": "q8_0",
+  "context_limit": 4096,
+  "tasks": [
+    "gsm8k"
+  ],
+  "backend": "cpu",
+  "sample_limit": 15,
+  "quality": {
+    "gsm8k": {
+      "name": "gsm8k",
+      "alias": "gsm8k",
+      "sample_len": 15,
+      "exact_match,strict-match": 0.0,
+      "exact_match_stderr,strict-match": 0.0,
+      "exact_match,flexible-extract": 0.0,
+      "exact_match_stderr,flexible-extract": 0.0
+    }
+  },
+  "performance": {
+    "prompt_tokens": 943.0,
+    "generation_tokens": 5787.0,
+    "prompt_seconds": 11.2571,
+    "generation_seconds_raw_unvalidated": 835.614,
+    "prompt_tokens_per_second": 83.76935445185705,
+    "generation_tokens_per_second": null,
+    "max_observed_sequence_length": 624.0,
+    "evaluation_wall_seconds": 241.68349616695195
+  },
+  "memory": {
+    "baseline_rss_mb": 1028.90625,
+    "peak_rss_mb": 1257.375,
+    "peak_rss_delta_mb": 228.46875,
+    "measurement_note": "RSS measures total llama-server process memory, not KV-cache-only memory."
+  }
+}

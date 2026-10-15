@@ -1,0 +1,39 @@
+{
+  "model": "/Users/keshavnarasimhan/Documents/CMSC473/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/models/Llama-3.2-1B-Instruct-Q2_K.gguf",
+  "weight_quant": "Q2_K",
+  "k_type": "f16",
+  "v_type": "q8_0",
+  "context_limit": 4096,
+  "tasks": [
+    "arc_easy"
+  ],
+  "backend": "cpu",
+  "sample_limit": 50,
+  "quality": {
+    "arc_easy": {
+      "name": "arc_easy",
+      "alias": "arc_easy",
+      "sample_len": 50,
+      "acc,none": 0.54,
+      "acc_stderr,none": 0.07119963311072636,
+      "acc_norm,none": 0.48,
+      "acc_norm_stderr,none": 0.0713714056959817
+    }
+  },
+  "performance": {
+    "prompt_tokens": 10178.0,
+    "generation_tokens": 974.0,
+    "prompt_seconds": 246.02,
+    "generation_seconds_raw_unvalidated": 0.000974,
+    "prompt_tokens_per_second": 41.37062027477441,
+    "generation_tokens_per_second": null,
+    "max_observed_sequence_length": 73.0,
+    "evaluation_wall_seconds": 263.5388559169951
+  },
+  "memory": {
+    "baseline_rss_mb": 1022.78125,
+    "peak_rss_mb": 1183.65625,
+    "peak_rss_delta_mb": 160.875,
+    "measurement_note": "RSS measures total llama-server process memory, not KV-cache-only memory."
+  }
+}
