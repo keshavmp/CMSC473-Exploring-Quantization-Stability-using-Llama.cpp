@@ -1,24 +1,37 @@
 import os
+import time
 os.environ["HF_ALLOW_CODE_EVAL"] = "1"
 
 from src.config import Config
 from src.experiment import run_experiments
 
 
-# Main File for Experiments
-#
-# Edit CONFIGS below: one entry per evaluation run. Every entry starts from
-# BASE (defaults live in src/config.py) and only overrides what differs.
-# Runs execute one after another; each writes results/<name>.json,
-# results/<name>_samples.json, and results/<name>-server.log.
+BASE = Config(
+    num_examples=200,
+    num_fewshot=5,
+    context_size=2048,
+    kl_enabled=True,
+)
 
-BASE = Config()
+MODELS = [
+    "chat-q4-nonPure",
+    "math-q4-nonPure",
+    "code-q4-nonPure",
+]
 
 CONFIGS = [
-    BASE.with_overrides(name="math-q4",num_examples=50),
-    BASE.with_overrides(name="code-q4",num_examples=50),
+    BASE.with_overrides(
+        name=f"{model}-pilot200",
+        model_file=BASE.models_dir / f"{model}.gguf",
+    )
+    for model in MODELS
 ]
 
 
 if __name__ == "__main__":
+    start_time = time.time()
+    print(f"Running {len(CONFIGS)} experiments...")
     run_experiments(CONFIGS)
+    elapsed_time = time.time() - start_time
+    print(f"All experiments completed in {elapsed_time:.2f} seconds.")
+    print(f"Avg time per experiment: {elapsed_time / len(CONFIGS):.2f} seconds.")

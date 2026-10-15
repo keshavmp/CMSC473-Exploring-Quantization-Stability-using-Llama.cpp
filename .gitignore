@@ -18,9 +18,12 @@ __pycache__/
 
 # Generated experiment artifacts (large / regenerable)
 data/
+results/**/*.log
 results/*-server.log
 results/llama-server.log
 results/*_samples.json
+results/*/samples.json
+results/_kl_reference/
 
 # Jupyter
 .ipynb_checkpoints/

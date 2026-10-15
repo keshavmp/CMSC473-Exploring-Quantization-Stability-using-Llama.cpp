@@ -28,7 +28,7 @@ def evaluate_model(config: Config, limit: int | None = None) -> Path:
         verbosity="INFO",
     )
 
-    config.results_dir.mkdir(parents=True, exist_ok=True)
+    config.run_dir.mkdir(parents=True, exist_ok=True)
     with open(config.results_file, "w", encoding="utf-8") as file:
         json.dump(results["results"], file, indent=2)
 

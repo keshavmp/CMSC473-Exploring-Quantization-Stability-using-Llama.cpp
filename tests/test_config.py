@@ -6,9 +6,9 @@ from src.config import Config
 def test_result_paths_follow_the_run_name():
     cfg = Config(name="chat-q4")
 
-    assert cfg.results_file.name == "chat-q4.json"
-    assert cfg.samples_file.name == "chat-q4_samples.json"
-    assert cfg.log_file.name == "chat-q4-server.log"
+    assert cfg.results_file == cfg.results_dir / "chat-q4" / "metrics.json"
+    assert cfg.samples_file == cfg.run_dir / "samples.json"
+    assert cfg.log_file == cfg.run_dir / "server.log"
     assert cfg.base_url == "http://127.0.0.1:8080"
 
 
@@ -31,3 +31,10 @@ def test_with_overrides_returns_a_modified_copy():
     assert other.name == "chat-q4"
     assert other.num_examples == 50
     assert cfg.name == "uniform-q4"  # original is untouched
+
+
+def test_run_name_cannot_escape_results():
+    import pytest
+    for name in ("", "..", "../outside", "nested/run"):
+        with pytest.raises(ValueError, match="folder name"):
+            Config(name=name)
