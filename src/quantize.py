@@ -7,6 +7,14 @@ except ModuleNotFoundError:  # running directly: python src/quantize.py
     from config import Config
 
 
+# Supported sweep recipes. llama.cpp does not provide a Q7 quantization.
+# Preserve the project's Q4_K_M recipe; --pure disables its automatic mixtures.
+PURE_QUANT_TYPES = {
+    "q2": "Q2_K", "q3": "Q3_K_M", "q4": "Q4_K_M",
+    "q5": "Q5_K_M", "q6": "Q6_K", "q8": "Q8_0",
+}
+
+
 def quantize_model(
     quantize_tool: Path,
     source_model: Path,
@@ -55,27 +63,20 @@ def quantize_model(
 
 if __name__ == "__main__":
     cfg = Config()
-    # uniform Q4 baseline: no imatrix.
-if __name__ == "__main__":
-    cfg = Config()
-    quantize_model(cfg.quantize_tool, cfg.source_model, cfg.models_dir / "chat-q4-nonPure.gguf", "Q4_K_M", pure=False,imatrix_file='CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\models\imatrix\chat.imatrix.gguf')
-    quantize_model(cfg.quantize_tool, cfg.source_model, cfg.models_dir / "code-q4-nonPure.gguf", "Q4_K_M", pure=False,imatrix_file='CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\models\imatrix\code.imatrix.gguf')
-    quantize_model(cfg.quantize_tool, cfg.source_model, cfg.models_dir / "math-q4-nonPure.gguf", "Q4_K_M", pure=False,imatrix_file='CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\models\imatrix\math.imatrix.gguf')
-    # # All start as uniform Q4, then one tensor family goes to Q8.
-    # quantize_model(
-    #     cfg.quantize_tool, cfg.source_model, cfg.models_dir / "q4-attn-qkv-q8.gguf", "Q4_K_M",
-    #     tensor_types=["attn_q=q8_0", "attn_k=q8_0", "attn_v=q8_0"],
-    # )
-    # quantize_model(
-    #     cfg.quantize_tool, cfg.source_model, cfg.models_dir / "q4-attn-out-q8.gguf", "Q4_K_M",
-    #     tensor_types=["attn_output=q8_0"],
-    # )
-    # quantize_model(
-    #     cfg.quantize_tool, cfg.source_model, cfg.models_dir / "q4-ffn-up-gate-q8.gguf", "Q4_K_M",
-    #     tensor_types=["ffn_up=q8_0", "ffn_gate=q8_0"],
-    # )
-    # quantize_model(
-    #     cfg.quantize_tool, cfg.source_model, cfg.models_dir / "q4-ffn-down-q8.gguf", "Q4_K_M",
-    #     tensor_types=["ffn_down=q8_0"],
-    # )
 
+    # Edit these settings, then run: python src/quantize.py
+    # Always use the original BF16 source, never another quantized model.
+    SOURCE_MODEL = cfg.source_model
+    OUTPUT_MODEL = cfg.models_dir / "pure-q4.gguf"
+    QUANT_TYPE = "Q4_K_M"
+    PURE = True
+
+    # Recipes: q2=Q2_K, q3=Q3_K_M, q4=Q4_K_M,
+    #          q5=Q5_K_M, q6=Q6_K, q8=Q8_0. There is no Q7.
+    quantize_model(
+        cfg.quantize_tool,
+        SOURCE_MODEL,
+        OUTPUT_MODEL,
+        QUANT_TYPE,
+        pure=PURE,
+    )

@@ -11,7 +11,7 @@ from src.server import start_server, stop_server
 def run_experiment(config: Config) -> Path:
     """Start the server for one config, run the evaluation, stop the server."""
     config.run_dir.mkdir(parents=True, exist_ok=True)
-    for filename in ("metrics.json", "samples.json", "kl.json"):
+    for filename in ("metrics.json", "samples.json", "metadata.json", "kl.json"):
         (config.run_dir / filename).unlink(missing_ok=True)
     (config.run_dir / "config.json").write_text(
         json.dumps(asdict(config), indent=2, default=str), encoding="utf-8"

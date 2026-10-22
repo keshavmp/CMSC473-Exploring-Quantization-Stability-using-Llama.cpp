@@ -24,6 +24,13 @@ results/llama-server.log
 results/*_samples.json
 results/*/samples.json
 results/_kl_reference/
+results/**/_kl_reference/
+results/**/samples.json
+
+# Local KV-cache experiments (keep files on disk, outside version control)
+src/run_kv_cache_experiments.py
+src/report_kv_cache_workload.py
+results/**/task21_kv_workloads/
 
 # Jupyter
 .ipynb_checkpoints/

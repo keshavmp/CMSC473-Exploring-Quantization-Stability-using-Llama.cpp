@@ -1,7 +1,7 @@
 # Quantization Stability with llama.cpp
 
 Compare how different quantizations of the same Llama checkpoint hold up on
-three tasks - GSM8K, IFEval, and MMLU (college computer science) - when served
+three tasks - GSM8K, IFEval, and HellaSwag - when served
 with llama.cpp.
 
 ## Project layout
@@ -42,54 +42,77 @@ pip install -r requirements.txt
 brew install llama.cpp
 ```
 
-## Important: Patch lm-eval
+## GGUF backend
 
-After installing dependencies, replace the installed lm-eval GGUF backend with the `src/gguf.py` included in this repo.
+The evaluator loads `src/gguf.py` directly; no installed backend patch is needed.
+For llama-server builds without prompt logprobs, HellaSwag choices are scored
+one token at a time using pre-sampling probabilities. This is slower than the
+legacy echo API, but preserves actual answer likelihoods.
 
-Windows:
-
-```powershell
-$GGUF_PATH = python -c "import lm_eval.models.gguf as g; print(g.__file__)"
-Copy-Item ".\src\gguf.py" $GGUF_PATH -Force
-```
-
-macOS:
-
-```bash
-GGUF_PATH=$(python -c "import lm_eval.models.gguf as g; print(g.__file__)")
-cp src/gguf.py "$GGUF_PATH"
-```
-
-If `lm-eval` is reinstalled or upgraded, run this step again.
+Local evaluation uses four concurrent requests, persistent HTTP connections per
+worker, and four server slots with continuous batching. `request_workers` in
+`run_evaluation.py` controls concurrency; use 1 for sequential evaluation or 2
+if GPU memory is limited. Each slot retains `context_size` tokens (the server's
+total context allocation is multiplied by the worker count). Results remain in
+input order. Generation limits, question selection, and scoring are unchanged.
+Batching can introduce small numerical differences, so use the same worker
+count for every model in a comparison. Benchmark representative questions before
+choosing a worker count; speedup depends on the GPU and workload.
+The backend also skips subsequent echo probes once prompt logprobs are found
+to be unsupported. Request read timeout defaults to 300 seconds and server log
+verbosity to 3 (info); both can be adjusted in `Config`.
 
 ## Download Models
 
 Models are saved to the repo's `models/` folder, which is created if missing.
 GGUF files are not committed to Git.
 
-Either place a GGUF there yourself as `models/<name>.gguf`, or set `hf_repo`
-and `hf_filename` on the `Config` in `run_evaluation.py` - the server
-downloads the file automatically the first time it is needed.
+The BF16 source has a fixed local path:
+`models/Llama-3.2-1B-Instruct-BF16.gguf`. If it is missing, the evaluation
+script asks whether to download it from `unsloth/Llama-3.2-1B-Instruct-GGUF`.
+The repo and filename are set near the top of `run_evaluation.py`.
 
 ## Run an Evaluation
 
-Edit `run_evaluation.py`: one `Config` per run, each starting from `BASE` and
-overriding only what differs.
+Activate your Python environment, then run:
 
-```python
-BASE = Config(kl_enabled=True)
-
-CONFIGS = [
-    BASE.with_overrides(name="chat-q4", num_examples=50),
-    BASE.with_overrides(name="uniform-q4", num_examples=50),
-]
+```powershell
+python run_evaluation.py --limit 10  # first 10 questions per task, skips KL
+python run_evaluation.py             # use the configured task counts
 ```
 
-Then:
+Edit `BASE` and `CONFIGS` in `run_evaluation.py` to change the experiments.
+The BF16 reference and pure quantized variants are listed there. If a quantized
+model is missing, the script stops before evaluation and tells you to edit
+`src/quantize.py` and run it yourself. It never creates variants automatically.
+Model hashes, task settings, counts, and per-question samples are still saved.
 
-```bash
-python run_evaluation.py
-```
+There was no complete Q2–Q8 mapping in the repository. The supported sweep uses
+Q2=`Q2_K`, Q3=`Q3_K_M`, Q4=`Q4_K_M` (the existing recipe), Q5=`Q5_K_M`,
+Q6=`Q6_K`, and Q8=`Q8_0`. **Q7 is unavailable in the installed llama.cpp**;
+the runner reports this omission and does not substitute another type.
+`--pure` disables recipe mixtures; ineligible tensors may retain floating types.
+
+Per the updated sample policy, every model uses the same leading document IDs:
+GSM8K first **1,000** of 1,319 `test` examples, IFEval all
+(actual **541**, harness `test_split: train`), HellaSwag first **2,000** of
+10,042 labeled `validation` examples (the installed task has no test split).
+MBPP is excluded. Each evaluation records the resolved task configurations and
+actual sample counts in its metadata.
+
+The sweep keeps harness batch size 1, four concurrent HTTP requests,
+context 2048 per slot, zero shots
+(IFEval enforces zero shots), no chat template or extra system prompt, and
+greedy generation (`temperature=0`, `do_sample=False`). The inspected lm-eval
+0.4.13 API supports Python seed 0 and NumPy, Torch, and few-shot seeds 1234.
+Task stop sequences and generation lengths come from the installed YAMLs.
+Existing KL metrics remain enabled for the sweep and disabled for limited runs.
+
+Each model writes separate `metrics.json`, `samples.json`, `config.json`, and
+`metadata.json` under `results/<model>-sweep/` (limited runs add `-limitN`). Metadata
+retains harness task versions/configs, `n-samples`, unique evaluated document
+counts, selected IDs, model filename/hash, quantization type, pure setting, and evaluation settings.
+It fails clearly if logged unique sample counts differ from the selection.
 
 Each run starts llama-server, evaluates the three tasks, and stops the server.
 Every run `<name>` writes:
@@ -113,7 +136,17 @@ llama-server -m models\Llama-3.2-1B-Instruct-BF16.gguf --port 8080
 
 ## Quantize
 
-Edit the `quantize_model(...)` call at the bottom of `src/quantize.py`, then:
+Edit these settings at the bottom of `src/quantize.py`:
+
+```python
+SOURCE_MODEL = cfg.source_model
+OUTPUT_MODEL = cfg.models_dir / "pure-q4.gguf"
+QUANT_TYPE = "Q4_K_M"
+PURE = True
+```
+
+Change the output filename and recipe to create each variant in the mapping
+above. Every variant should use the same original BF16 source. Then run:
 
 ```bash
 python src/quantize.py

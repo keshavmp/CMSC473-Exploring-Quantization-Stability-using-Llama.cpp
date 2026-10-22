@@ -34,7 +34,7 @@ def test_builds_pure_command_with_imatrix(mock_run, tmp_path):
     imatrix.touch()
     output = tmp_path / "models" / "chat-q4.gguf"
 
-    quantize_model(tool, source, output, "Q4_K_M", imatrix_file=imatrix)
+    quantize_model(tool, source, output, "Q4_K_M", imatrix_file=imatrix, pure=True)
 
     command = mock_run.call_args.args[0]
     assert command[0] == str(tool)

@@ -1,0 +1,319 @@
+{
+  "gsm8k": [
+    {
+      "doc_id": 0,
+      "doc": {
+        "question": "Janet\u2019s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?",
+        "answer": "Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer\u2019s market.\n#### 18"
+      },
+      "target": "Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer\u2019s market.\n#### 18",
+      "arguments": [
+        [
+          "Question: Jen and Tyler are gymnasts practicing flips. Jen is practicing the triple-flip while Tyler is practicing the double-flip. Jen did sixteen triple-flips during practice. Tyler flipped in the air half the number of times Jen did. How many double-flips did Tyler do?\nAnswer: Jen did 16 triple-flips, so she did 16 * 3 = <<16*3=48>>48 flips.\nTyler did half the number of flips, so he did 48 / 2 = <<48/2=24>>24 flips.\nA double flip has two flips, so Tyler did 24 / 2 = <<24/2=12>>12 double-flips.\n#### 12\n\nQuestion: Four people in a law firm are planning a party. Mary will buy a platter of pasta for $20 and a loaf of bread for $2. Elle and Andrea will split the cost for buying 4 cans of soda which cost $1.50 each, and chicken wings for $10. Joe will buy a cake that costs $5. How much more will Mary spend than the rest of the firm put together?\nAnswer: Mary will spend $20 + $2 = $<<20+2=22>>22.\nElle and Andrea will spend $1.5 x 4 = $<<1.5*4=6>>6 for the soda.\nElle and Andrea will spend $6 + $10 = $<<6+10=16>>16 for the soda and chicken wings.\nElle, Andrea, and Joe together will spend $16 + $5 = $<<16+5=21>>21.\nSo, Mary will spend $22 - $21 = $<<22-21=1>>1 more than all of them combined.\n#### 1\n\nQuestion: A charcoal grill burns fifteen coals to ash every twenty minutes of grilling. The grill ran for long enough to burn three bags of coals. Each bag of coal contains 60 coals. How long did the grill run?\nAnswer: The grill burned 3 * 60 = <<3*60=180>>180 coals.\nIt takes 20 minutes to burn 15 coals, so the grill ran for 180 / 15 * 20 = <<180/15*20=240>>240 minutes.\n#### 240\n\nQuestion: A bear is preparing to hibernate for the winter and needs to gain 1000 pounds. At the end of summer, the bear feasts on berries and small woodland animals. During autumn, it devours acorns and salmon. It gained a fifth of the weight it needed from berries during summer, and during autumn, it gained twice that amount from acorns. Salmon made up half of the remaining weight it had needed to gain. How many pounds did it gain eating small animals?\nAnswer: The bear gained 1 / 5 * 1000 = <<1/5*1000=200>>200 pounds from berries.\nIt gained 2 * 200 = <<2*200=400>>400 pounds from acorns.\nIt still needed 1000 - 200 - 400 = <<1000-200-400=400>>400 pounds.\nThus, it gained 400 / 2 = <<400/2=200>>200 pounds from salmon.\nTherefore, the bear gained 400 - 200 = <<400-200=200>>200 pounds from small animals.\n#### 200\n\nQuestion: Brendan can cut 8 yards of grass per day, he bought a lawnmower and it helped him to cut more yards by Fifty percent per day. How many yards will Brendan be able to cut after a week?\nAnswer: The additional yard Brendan can cut after buying the lawnmower is 8 x 0.50 = <<8*0.50=4>>4 yards.\nSo, the total yards he can cut with the lawnmower is 8 + 4 = <<8+4=12>>12.\nTherefore, the total number of yards he can cut in a week is 12 x 7 = <<12*7=84>>84 yards.\n#### 84\n\nQuestion: Janet\u2019s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\nAnswer:",
+          {
+            "until": [
+              "Question:",
+              "</s>",
+              "<|im_end|>"
+            ],
+            "do_sample": false,
+            "temperature": 0
+          }
+        ]
+      ],
+      "resps": [
+        [
+          "Janet lays 16 - 3 = 13 eggs per day.\nShe eats 3 eggs for breakfast, so she has 13 - 3 = 10 eggs left for the day.\nShe bakes muffins for 4 eggs, so she has 10 - 4 = 6 eggs left.\nShe sells 6 eggs at the farmers' market for $2 each, so she makes 6 x 2 = $<<6*2=12>>12 per day.\n#### 12"
+        ]
+      ],
+      "filtered_resps": [
+        "12"
+      ],
+      "filter": "strict-match",
+      "metrics": [
+        "exact_match"
+      ],
+      "doc_hash": "986c19252f3c7f6eaeff2229e9a5777f96a85c0ceea931a92d2289084dfd518c",
+      "prompt_hash": "32680f263ba83280e98a8a24ceefed10a722a4cdcd9f4d78e93c45d43143ca66",
+      "target_hash": "623a0fbdf774fcb55e485a3e6b012e6c3965616af5b8eb9b9aebd2f6712be2eb",
+      "exact_match": 0.0
+    },
+    {
+      "doc_id": 0,
+      "doc": {
+        "question": "Janet\u2019s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?",
+        "answer": "Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer\u2019s market.\n#### 18"
+      },
+      "target": "Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer\u2019s market.\n#### 18",
+      "arguments": [
+        [
+          "Question: Jen and Tyler are gymnasts practicing flips. Jen is practicing the triple-flip while Tyler is practicing the double-flip. Jen did sixteen triple-flips during practice. Tyler flipped in the air half the number of times Jen did. How many double-flips did Tyler do?\nAnswer: Jen did 16 triple-flips, so she did 16 * 3 = <<16*3=48>>48 flips.\nTyler did half the number of flips, so he did 48 / 2 = <<48/2=24>>24 flips.\nA double flip has two flips, so Tyler did 24 / 2 = <<24/2=12>>12 double-flips.\n#### 12\n\nQuestion: Four people in a law firm are planning a party. Mary will buy a platter of pasta for $20 and a loaf of bread for $2. Elle and Andrea will split the cost for buying 4 cans of soda which cost $1.50 each, and chicken wings for $10. Joe will buy a cake that costs $5. How much more will Mary spend than the rest of the firm put together?\nAnswer: Mary will spend $20 + $2 = $<<20+2=22>>22.\nElle and Andrea will spend $1.5 x 4 = $<<1.5*4=6>>6 for the soda.\nElle and Andrea will spend $6 + $10 = $<<6+10=16>>16 for the soda and chicken wings.\nElle, Andrea, and Joe together will spend $16 + $5 = $<<16+5=21>>21.\nSo, Mary will spend $22 - $21 = $<<22-21=1>>1 more than all of them combined.\n#### 1\n\nQuestion: A charcoal grill burns fifteen coals to ash every twenty minutes of grilling. The grill ran for long enough to burn three bags of coals. Each bag of coal contains 60 coals. How long did the grill run?\nAnswer: The grill burned 3 * 60 = <<3*60=180>>180 coals.\nIt takes 20 minutes to burn 15 coals, so the grill ran for 180 / 15 * 20 = <<180/15*20=240>>240 minutes.\n#### 240\n\nQuestion: A bear is preparing to hibernate for the winter and needs to gain 1000 pounds. At the end of summer, the bear feasts on berries and small woodland animals. During autumn, it devours acorns and salmon. It gained a fifth of the weight it needed from berries during summer, and during autumn, it gained twice that amount from acorns. Salmon made up half of the remaining weight it had needed to gain. How many pounds did it gain eating small animals?\nAnswer: The bear gained 1 / 5 * 1000 = <<1/5*1000=200>>200 pounds from berries.\nIt gained 2 * 200 = <<2*200=400>>400 pounds from acorns.\nIt still needed 1000 - 200 - 400 = <<1000-200-400=400>>400 pounds.\nThus, it gained 400 / 2 = <<400/2=200>>200 pounds from salmon.\nTherefore, the bear gained 400 - 200 = <<400-200=200>>200 pounds from small animals.\n#### 200\n\nQuestion: Brendan can cut 8 yards of grass per day, he bought a lawnmower and it helped him to cut more yards by Fifty percent per day. How many yards will Brendan be able to cut after a week?\nAnswer: The additional yard Brendan can cut after buying the lawnmower is 8 x 0.50 = <<8*0.50=4>>4 yards.\nSo, the total yards he can cut with the lawnmower is 8 + 4 = <<8+4=12>>12.\nTherefore, the total number of yards he can cut in a week is 12 x 7 = <<12*7=84>>84 yards.\n#### 84\n\nQuestion: Janet\u2019s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\nAnswer:",
+          {
+            "until": [
+              "Question:",
+              "</s>",
+              "<|im_end|>"
+            ],
+            "do_sample": false,
+            "temperature": 0
+          }
+        ]
+      ],
+      "resps": [
+        [
+          "Janet lays 16 - 3 = 13 eggs per day.\nShe eats 3 eggs for breakfast, so she has 13 - 3 = 10 eggs left for the day.\nShe bakes muffins for 4 eggs, so she has 10 - 4 = 6 eggs left.\nShe sells 6 eggs at the farmers' market for $2 each, so she makes 6 x 2 = $<<6*2=12>>12 per day.\n#### 12"
+        ]
+      ],
+      "filtered_resps": [
+        "12"
+      ],
+      "filter": "flexible-extract",
+      "metrics": [
+        "exact_match"
+      ],
+      "doc_hash": "986c19252f3c7f6eaeff2229e9a5777f96a85c0ceea931a92d2289084dfd518c",
+      "prompt_hash": "32680f263ba83280e98a8a24ceefed10a722a4cdcd9f4d78e93c45d43143ca66",
+      "target_hash": "623a0fbdf774fcb55e485a3e6b012e6c3965616af5b8eb9b9aebd2f6712be2eb",
+      "exact_match": 0.0
+    }
+  ],
+  "ifeval": [
+    {
+      "doc_id": 0,
+      "doc": {
+        "key": 1000,
+        "prompt": "Write a 300+ word summary of the wikipedia page \"https://en.wikipedia.org/wiki/Raymond_III,_Count_of_Tripoli\". Do not use any commas and highlight at least 3 sections that has titles in markdown format, for example *highlighted section part 1*, *highlighted section part 2*, *highlighted section part 3*.",
+        "instruction_id_list": [
+          "punctuation:no_comma",
+          "detectable_format:number_highlighted_sections",
+          "length_constraints:number_words"
+        ],
+        "kwargs": [
+          {
+            "num_highlights": null,
+            "relation": null,
+            "num_words": null,
+            "num_placeholders": null,
+            "prompt_to_repeat": null,
+            "num_bullets": null,
+            "section_spliter": null,
+            "num_sections": null,
+            "capital_relation": null,
+            "capital_frequency": null,
+            "keywords": null,
+            "num_paragraphs": null,
+            "language": null,
+            "let_relation": null,
+            "letter": null,
+            "let_frequency": null,
+            "end_phrase": null,
+            "forbidden_words": null,
+            "keyword": null,
+            "frequency": null,
+            "num_sentences": null,
+            "postscript_marker": null,
+            "first_word": null,
+            "nth_paragraph": null
+          },
+          {
+            "num_highlights": 3,
+            "relation": null,
+            "num_words": null,
+            "num_placeholders": null,
+            "prompt_to_repeat": null,
+            "num_bullets": null,
+            "section_spliter": null,
+            "num_sections": null,
+            "capital_relation": null,
+            "capital_frequency": null,
+            "keywords": null,
+            "num_paragraphs": null,
+            "language": null,
+            "let_relation": null,
+            "letter": null,
+            "let_frequency": null,
+            "end_phrase": null,
+            "forbidden_words": null,
+            "keyword": null,
+            "frequency": null,
+            "num_sentences": null,
+            "postscript_marker": null,
+            "first_word": null,
+            "nth_paragraph": null
+          },
+          {
+            "num_highlights": null,
+            "relation": "at least",
+            "num_words": 300,
+            "num_placeholders": null,
+            "prompt_to_repeat": null,
+            "num_bullets": null,
+            "section_spliter": null,
+            "num_sections": null,
+            "capital_relation": null,
+            "capital_frequency": null,
+            "keywords": null,
+            "num_paragraphs": null,
+            "language": null,
+            "let_relation": null,
+            "letter": null,
+            "let_frequency": null,
+            "end_phrase": null,
+            "forbidden_words": null,
+            "keyword": null,
+            "frequency": null,
+            "num_sentences": null,
+            "postscript_marker": null,
+            "first_word": null,
+            "nth_paragraph": null
+          }
+        ]
+      },
+      "target": 0,
+      "arguments": [
+        [
+          "Write a 300+ word summary of the wikipedia page \"https://en.wikipedia.org/wiki/Raymond_III,_Count_of_Tripoli\". Do not use any commas and highlight at least 3 sections that has titles in markdown format, for example *highlighted section part 1*, *highlighted section part 2*, *highlighted section part 3*.",
+          {
+            "until": [],
+            "do_sample": false,
+            "temperature": 0,
+            "max_gen_toks": 1280
+          }
+        ]
+      ],
+      "resps": [
+        [
+          "Raymond III Count of Tripoli was a Norman nobleman who ruled Tripoli from 1192 to 1194. He was the son of Raymond II Count of Tripoli and his wife, Isabella of Courtenay. Raymond III was a member of the House of Anjou and was known for his military campaigns against the Ayyubid dynasty in the Levant. \n\nRaymond III was born in 1150 and was educated in the Latin language and the military arts. He was a skilled knight and a strong leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. \n\nRaymond III was a key figure in the Third Crusade and played a significant role in the siege of Acre in 1191. He was also a strong supporter of the Latin Church and was a key figure in the Crusader states. \n\nRaymond III died in 1194 and was succeeded by his son Raymond IV Count of Tripoli. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyub"
+        ]
+      ],
+      "filtered_resps": [
+        "Raymond III Count of Tripoli was a Norman nobleman who ruled Tripoli from 1192 to 1194. He was the son of Raymond II Count of Tripoli and his wife, Isabella of Courtenay. Raymond III was a member of the House of Anjou and was known for his military campaigns against the Ayyubid dynasty in the Levant. \n\nRaymond III was born in 1150 and was educated in the Latin language and the military arts. He was a skilled knight and a strong leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. \n\nRaymond III was a key figure in the Third Crusade and played a significant role in the siege of Acre in 1191. He was also a strong supporter of the Latin Church and was a key figure in the Crusader states. \n\nRaymond III died in 1194 and was succeeded by his son Raymond IV Count of Tripoli. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. He was a skilled commander who was able to outmaneuver his enemies and secure victories for the Crusaders. \n*Raymond III's relationship with the Latin Church was strong and he was a key figure in the Crusader states. He was a supporter of the Pope and was involved in several key events, including the Council of Clermont in 1190. \n*Raymond III's legacy is complex and multifaceted. He was a skilled military leader who was able to unite the various tribes of Tripoli and establish a strong military presence in the region. However, he was also a strong supporter of the Latin Church and was involved in several key events that had significant consequences for the Crusader states. \n\nRaymond III's life and legacy have been the subject of much debate and discussion among historians. His military campaigns against the Ayyubid dynasty were marked by his use of innovative tactics and his ability to adapt to changing circumstances. His relationship with the Latin Church was strong and he was a key figure in the Crusader states. However, his legacy is complex and multifaceted and has been the subject of much debate and discussion among historians. \n\n*Raymond III's military campaigns against the Ayyub"
+      ],
+      "filter": "none",
+      "metrics": [
+        "prompt_level_strict_acc",
+        "inst_level_strict_acc",
+        "prompt_level_loose_acc",
+        "inst_level_loose_acc"
+      ],
+      "doc_hash": "db22137ddf6291c2a4a753a9cbdf6d85b219ecfd83eaa52eb0fb6409256b0489",
+      "prompt_hash": "660ae519b1bfa04010ef6a0ae961f6c085f1db81ba10af17aad36e57a3afb3ad",
+      "target_hash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "prompt_level_strict_acc": false,
+      "inst_level_strict_acc": [
+        false,
+        false,
+        true
+      ],
+      "prompt_level_loose_acc": false,
+      "inst_level_loose_acc": [
+        false,
+        false,
+        true
+      ]
+    }
+  ],
+  "hellaswag": [
+    {
+      "doc_id": 0,
+      "doc": {
+        "ind": 24,
+        "activity_label": "Roof shingle removal",
+        "ctx_a": "A man is sitting on a roof.",
+        "ctx_b": "he",
+        "ctx": "A man is sitting on a roof. he",
+        "endings": [
+          "is using wrap to wrap a pair of skis.",
+          "is ripping level tiles off.",
+          "is holding a rubik's cube.",
+          "starts pulling up roofing on a roof."
+        ],
+        "source_id": "activitynet~v_-JhWjGDPHMY",
+        "split": "val",
+        "split_type": "indomain",
+        "label": "3",
+        "query": "Roof shingle removal: A man is sitting on a roof. He",
+        "choices": [
+          "is using wrap to wrap a pair of skis.",
+          "is ripping level tiles off.",
+          "is holding a rubik's cube.",
+          "starts pulling up roofing on a roof."
+        ],
+        "gold": 3
+      },
+      "target": 3,
+      "arguments": [
+        [
+          "Health: How to help loved ones with borderline personality disorder. Discuss your limits. When you are helping a loved one with bpd, you need to set up strict boundaries for your relationship. Your loved one will likely be going through an emotional rollercoaster at any point and can take it out on you. Have an honest discussion about what your personal limits are and what you won't take from your loved one. For example, tell your loved one, \" if you start verbally abusing me, i am going to walk away.\n\nBeer pong: A group is gathered around a picnic table. They are engaged in a game of beer pong.\n\nRock climbing: A woman puts a harness on. A man clips a rope to the front of the woman's harness. He ties the rope into a knot.\n\nDoing karate: A woman is wearing a white robe and a black belt. She does karate moves in her room. She kicks her legs up several times.\n\nHealth: How to leave an abusive relationship. Find a secure means of seeking help. Phone records and call logs can be checked. Computers' browser histories can be traced. You can try erasing your call log or internet cookies and history. Some browsers also allow you to set them to \" private \" mode.\n\nRoof shingle removal: A man is sitting on a roof. He",
+          " is using wrap to wrap a pair of skis."
+        ],
+        [
+          "Health: How to help loved ones with borderline personality disorder. Discuss your limits. When you are helping a loved one with bpd, you need to set up strict boundaries for your relationship. Your loved one will likely be going through an emotional rollercoaster at any point and can take it out on you. Have an honest discussion about what your personal limits are and what you won't take from your loved one. For example, tell your loved one, \" if you start verbally abusing me, i am going to walk away.\n\nBeer pong: A group is gathered around a picnic table. They are engaged in a game of beer pong.\n\nRock climbing: A woman puts a harness on. A man clips a rope to the front of the woman's harness. He ties the rope into a knot.\n\nDoing karate: A woman is wearing a white robe and a black belt. She does karate moves in her room. She kicks her legs up several times.\n\nHealth: How to leave an abusive relationship. Find a secure means of seeking help. Phone records and call logs can be checked. Computers' browser histories can be traced. You can try erasing your call log or internet cookies and history. Some browsers also allow you to set them to \" private \" mode.\n\nRoof shingle removal: A man is sitting on a roof. He",
+          " is ripping level tiles off."
+        ],
+        [
+          "Health: How to help loved ones with borderline personality disorder. Discuss your limits. When you are helping a loved one with bpd, you need to set up strict boundaries for your relationship. Your loved one will likely be going through an emotional rollercoaster at any point and can take it out on you. Have an honest discussion about what your personal limits are and what you won't take from your loved one. For example, tell your loved one, \" if you start verbally abusing me, i am going to walk away.\n\nBeer pong: A group is gathered around a picnic table. They are engaged in a game of beer pong.\n\nRock climbing: A woman puts a harness on. A man clips a rope to the front of the woman's harness. He ties the rope into a knot.\n\nDoing karate: A woman is wearing a white robe and a black belt. She does karate moves in her room. She kicks her legs up several times.\n\nHealth: How to leave an abusive relationship. Find a secure means of seeking help. Phone records and call logs can be checked. Computers' browser histories can be traced. You can try erasing your call log or internet cookies and history. Some browsers also allow you to set them to \" private \" mode.\n\nRoof shingle removal: A man is sitting on a roof. He",
+          " is holding a rubik's cube."
+        ],
+        [
+          "Health: How to help loved ones with borderline personality disorder. Discuss your limits. When you are helping a loved one with bpd, you need to set up strict boundaries for your relationship. Your loved one will likely be going through an emotional rollercoaster at any point and can take it out on you. Have an honest discussion about what your personal limits are and what you won't take from your loved one. For example, tell your loved one, \" if you start verbally abusing me, i am going to walk away.\n\nBeer pong: A group is gathered around a picnic table. They are engaged in a game of beer pong.\n\nRock climbing: A woman puts a harness on. A man clips a rope to the front of the woman's harness. He ties the rope into a knot.\n\nDoing karate: A woman is wearing a white robe and a black belt. She does karate moves in her room. She kicks her legs up several times.\n\nHealth: How to leave an abusive relationship. Find a secure means of seeking help. Phone records and call logs can be checked. Computers' browser histories can be traced. You can try erasing your call log or internet cookies and history. Some browsers also allow you to set them to \" private \" mode.\n\nRoof shingle removal: A man is sitting on a roof. He",
+          " starts pulling up roofing on a roof."
+        ]
+      ],
+      "resps": [
+        [
+          [
+            -47.90472431154922,
+            false
+          ]
+        ],
+        [
+          [
+            -30.718221783638,
+            false
+          ]
+        ],
+        [
+          [
+            -24.17144331522286,
+            false
+          ]
+        ],
+        [
+          [
+            -29.70110261440277,
+            false
+          ]
+        ]
+      ],
+      "filtered_resps": [
+        [
+          -47.90472431154922,
+          false
+        ],
+        [
+          -30.718221783638,
+          false
+        ],
+        [
+          -24.17144331522286,
+          false
+        ],
+        [
+          -29.70110261440277,
+          false
+        ]
+      ],
+      "filter": "none",
+      "metrics": [
+        "acc",
+        "acc_norm"
+      ],
+      "doc_hash": "5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1",
+      "prompt_hash": "03d8659468123815f445153c0687335426bdf0c36d44b324d2c80a002def3aba",
+      "target_hash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+      "acc": 0.0,
+      "acc_norm": 1.0
+    }
+  ]
+}
