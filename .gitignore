@@ -23,6 +23,7 @@ results/*-server.log
 results/llama-server.log
 results/*_samples.json
 results/*/samples.json
+results/Pilot_test/**
 results/_kl_reference/
 results/**/_kl_reference/
 results/**/samples.json
