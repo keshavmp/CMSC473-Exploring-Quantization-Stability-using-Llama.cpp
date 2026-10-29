@@ -1,0 +1,212 @@
+{
+  "started_at": "2026-10-27T23:04:12.574127-04:00",
+  "model": "/Users/keshavnarasimhan/Documents/CMSC473/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/models/Llama-3.2-1B-Instruct-Q2_K.gguf",
+  "task": "niah_single_1",
+  "weight_quant": "Q2_K",
+  "k_type": "q8_0",
+  "v_type": "q8_0",
+  "target_input_length": 16384,
+  "server_context_capacity": 16896,
+  "generation_reserve": 512,
+  "sample_limit": 50,
+  "gpu_layers_requested": 99,
+  "backend": "metal_offload_requested_verify_server_logs",
+  "baseline_server_rss_mb": 430.609375,
+  "peak_server_rss_mb": 1650.03125,
+  "server_rss_increase_mb": 1219.421875,
+  "elapsed_seconds": 2943.114029374905,
+  "evaluation_seconds": 2939.6623694590526,
+  "metrics_before": {
+    "llamacpp:prompt_tokens_total": 0.0,
+    "llamacpp:prompt_tokens_cached_total": 0.0,
+    "llamacpp:prompt_seconds_total": 0.0,
+    "llamacpp:tokens_predicted_total": 0.0,
+    "llamacpp:tokens_predicted_seconds_total": 0.0,
+    "llamacpp:n_decode_total": 0.0,
+    "llamacpp:n_tokens_max": 0.0,
+    "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+    "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+    "llamacpp:spec_decode_num_drafts_total": 0.0,
+    "llamacpp:prompt_tokens_seconds": 0.0,
+    "llamacpp:predicted_tokens_seconds": 0.0,
+    "llamacpp:requests_processing": 0.0,
+    "llamacpp:requests_deferred": 0.0,
+    "llamacpp:n_busy_slots_per_decode": 0.0
+  },
+  "metrics_after": {
+    "llamacpp:prompt_tokens_total": 462335.0,
+    "llamacpp:prompt_tokens_cached_total": 321532.0,
+    "llamacpp:prompt_seconds_total": 2680.87,
+    "llamacpp:tokens_predicted_total": 3955.0,
+    "llamacpp:tokens_predicted_seconds_total": 240.592,
+    "llamacpp:n_decode_total": 4156.0,
+    "llamacpp:n_tokens_max": 15814.0,
+    "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+    "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+    "llamacpp:spec_decode_num_drafts_total": 0.0,
+    "llamacpp:prompt_tokens_seconds": 172.457,
+    "llamacpp:predicted_tokens_seconds": 16.2308,
+    "llamacpp:requests_processing": 0.0,
+    "llamacpp:requests_deferred": 0.0,
+    "llamacpp:n_busy_slots_per_decode": 1.0
+  },
+  "metric_deltas": {
+    "llamacpp:spec_decode_num_drafts_total": 0.0,
+    "llamacpp:prompt_tokens_total": 462335.0,
+    "llamacpp:prompt_tokens_seconds": 172.457,
+    "llamacpp:prompt_seconds_total": 2680.87,
+    "llamacpp:n_tokens_max": 15814.0,
+    "llamacpp:tokens_predicted_seconds_total": 240.592,
+    "llamacpp:spec_decode_num_accepted_tokens_total": 0.0,
+    "llamacpp:spec_decode_num_draft_tokens_total": 0.0,
+    "llamacpp:requests_deferred": 0.0,
+    "llamacpp:requests_processing": 0.0,
+    "llamacpp:tokens_predicted_total": 3955.0,
+    "llamacpp:n_busy_slots_per_decode": 1.0,
+    "llamacpp:n_decode_total": 4156.0,
+    "llamacpp:predicted_tokens_seconds": 16.2308,
+    "llamacpp:prompt_tokens_cached_total": 321532.0
+  },
+  "evaluation": {
+    "results": {
+      "niah_single_1": {
+        "name": "niah_single_1",
+        "alias": "niah_single_1",
+        "sample_len": 50,
+        "4096,none": -1,
+        "4096_stderr,none": "N/A",
+        "16384,none": 0.98,
+        "16384_stderr,none": "N/A"
+      }
+    },
+    "group_subtasks": {},
+    "configs": {
+      "niah_single_1": {
+        "task": "niah_single_1",
+        "custom_dataset": "def niah_single_1(**kwargs):\n    seq_lengths = kwargs.pop(\"max_seq_lengths\", DEFAULT_SEQ_LENGTHS)\n    tokenizer = get_tokenizer(resolve_tokenizer_name(kwargs))\n    return download_dataset(\n        generate_samples(\n            get_haystack(type_haystack=\"repeat\"),\n            max_seq_length=seq,\n            template=TEMPLATE,\n            type_haystack=\"repeat\",\n            type_needle_k=\"words\",\n            type_needle_v=\"numbers\",\n            num_samples=500,\n            TOKENIZER=tokenizer,\n        )\n        for seq in seq_lengths\n    )\n",
+        "dataset_path": "",
+        "dataset_name": "",
+        "test_split": "test",
+        "doc_to_text": "{{input}}",
+        "doc_to_target": "{{outputs}}",
+        "unsafe_code": false,
+        "process_results": "def process_results(doc: dict, results: list[str]) -> dict[str, float]:\n    # hacky: set all other lengths to -1\n    metrics = {str(length): -1.0 for length in DEFAULT_SEQ_LENGTHS}\n    input_len = doc[\"max_length\"]\n    pred = postprocess_pred(results)\n    score = string_match_all(pred, [doc[\"outputs\"]])\n    metrics[str(input_len)] = score\n    return metrics\n",
+        "description": "",
+        "target_delimiter": " ",
+        "fewshot_delimiter": "\n\n",
+        "fewshot_config": {
+          "sampler": "default",
+          "split": null,
+          "process_docs": null,
+          "fewshot_indices": null,
+          "samples": null,
+          "doc_to_text": "{{input}}",
+          "doc_to_choice": null,
+          "doc_to_target": "{{outputs}}",
+          "gen_prefix": "{{gen_prefix}}",
+          "fewshot_delimiter": "\n\n",
+          "target_delimiter": " "
+        },
+        "num_fewshot": 0,
+        "metric_list": [
+          {
+            "metric": "4096",
+            "aggregation": "def aggregate_metrics(metrics: list[float]) -> float:\n    res = [x for x in metrics if x != -1]\n    if not res:\n        # we don't have any samples with this length\n        return -1\n    return sum(res) / len(res)\n",
+            "higher_is_better": true
+          },
+          {
+            "metric": "8192",
+            "aggregation": "def aggregate_metrics(metrics: list[float]) -> float:\n    res = [x for x in metrics if x != -1]\n    if not res:\n        # we don't have any samples with this length\n        return -1\n    return sum(res) / len(res)\n",
+            "higher_is_better": true
+          },
+          {
+            "metric": "16384",
+            "aggregation": "def aggregate_metrics(metrics: list[float]) -> float:\n    res = [x for x in metrics if x != -1]\n    if not res:\n        # we don't have any samples with this length\n        return -1\n    return sum(res) / len(res)\n",
+            "higher_is_better": true
+          },
+          {
+            "metric": "32768",
+            "aggregation": "def aggregate_metrics(metrics: list[float]) -> float:\n    res = [x for x in metrics if x != -1]\n    if not res:\n        # we don't have any samples with this length\n        return -1\n    return sum(res) / len(res)\n",
+            "higher_is_better": true
+          },
+          {
+            "metric": "65536",
+            "aggregation": "def aggregate_metrics(metrics: list[float]) -> float:\n    res = [x for x in metrics if x != -1]\n    if not res:\n        # we don't have any samples with this length\n        return -1\n    return sum(res) / len(res)\n",
+            "higher_is_better": true
+          },
+          {
+            "metric": "131072",
+            "aggregation": "def aggregate_metrics(metrics: list[float]) -> float:\n    res = [x for x in metrics if x != -1]\n    if not res:\n        # we don't have any samples with this length\n        return -1\n    return sum(res) / len(res)\n",
+            "higher_is_better": true
+          }
+        ],
+        "output_type": "generate_until",
+        "generation_kwargs": {
+          "do_sample": false,
+          "temperature": 0.0,
+          "max_gen_toks": 128,
+          "until": []
+        },
+        "repeats": 1,
+        "should_decontaminate": false,
+        "gen_prefix": "{{gen_prefix}}",
+        "metadata": {
+          "version": 1.0,
+          "base_url": "http://127.0.0.1:8080",
+          "timeout": 900,
+          "max_seq_lengths": [
+            16384
+          ],
+          "tokenizer": "Qwen/Qwen3-0.6B",
+          "config_source": "/Users/keshavnarasimhan/Documents/CMSC473/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/ruler/niah_single_1.yaml"
+        }
+      }
+    },
+    "versions": {
+      "niah_single_1": 1.0
+    },
+    "n-shot": {
+      "niah_single_1": 0
+    },
+    "higher_is_better": {
+      "niah_single_1": {
+        "4096": true,
+        "8192": true,
+        "16384": true,
+        "32768": true,
+        "65536": true,
+        "131072": true
+      }
+    },
+    "n-samples": {
+      "niah_single_1": {
+        "original": 500,
+        "effective": 50
+      }
+    },
+    "config": {
+      "model": "gguf",
+      "model_args": "base_url=http://127.0.0.1:8080,timeout=900,",
+      "batch_size": 1,
+      "batch_sizes": [],
+      "device": null,
+      "use_cache": null,
+      "limit": 50,
+      "bootstrap_iters": 100000,
+      "gen_kwargs": null,
+      "random_seed": 0,
+      "numpy_seed": 1234,
+      "torch_seed": 1234,
+      "fewshot_seed": 1234
+    },
+    "git_hash": "0b833ce",
+    "date": 1793156657.096915,
+    "pretty_env_info": "PyTorch version: 2.14.0\nIs debug build: False\nCUDA used to build PyTorch: None\nROCM used to build PyTorch: N/A\n\nOS: macOS 14.6.1 (arm64)\nGCC version: Could not collect\nClang version: 14.0.3 (clang-1403.0.22.14.1)\nCMake version: version 4.4.3\nLibc version: N/A\n\nPython version: 3.12.0 (v3.12.0:0fb18b02c8, Oct  2 2023, 09:45:56) [Clang 13.0.0 (clang-1300.0.29.30)] (64-bit runtime)\nPython platform: macOS-14.6.1-arm64-arm-64bit\nIs CUDA available: False\nCUDA runtime version: No CUDA\nCUDA_MODULE_LOADING set to: N/A\nGPU models and configuration: No CUDA\nNvidia driver version: No CUDA\ncuDNN version: No CUDA\nIs XPU available: False\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: False\nCaching allocator config: N/A\n\nCPU:\nApple M1\n\nVersions of relevant libraries:\n[pip3] numpy==2.5.3\n[pip3] torch==2.14.0\n[conda] numpy                       2.4.4            py313h4bb6f22_1\n[conda] numpy-base                  2.4.4            py313h23175f9_1",
+    "transformers_version": "5.17.0",
+    "lm_eval_version": "0.4.13",
+    "upper_git_hash": null
+  },
+  "sample_results_file": "results/samples/task15_niah_single_1_k-q8_0_v-q8_0_ctx-16384_gpu-99_20261027_235348.json",
+  "error": null,
+  "server_exit_code": 0
+}
