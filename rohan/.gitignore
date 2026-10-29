@@ -4,4 +4,3 @@ data/
 results/**/samples.json
 results/**/*.log
 results/**/_kl_reference/
-results/*-limit*/

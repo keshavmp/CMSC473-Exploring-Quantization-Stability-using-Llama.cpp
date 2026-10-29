@@ -29,8 +29,21 @@ These match `run_evaluation.py` except for the sample caps and the device:
 
 ## Setup (once)
 
+On this Intel Mac, `brew install llama.cpp` compiles LLVM, Rust and Node from
+source, which takes hours. Build llama.cpp itself instead, next to this repo
+(`../llama.cpp/build/bin`, where `src/config.py` looks on macOS):
+
 ```bash
-brew install llama.cpp
+git clone --depth 1 https://github.com/ggml-org/llama.cpp.git ../llama.cpp
+cmake -S ../llama.cpp -B ../llama.cpp/build -DGGML_METAL=OFF -DLLAMA_CURL=OFF \
+  -DLLAMA_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build ../llama.cpp/build -j 8 \
+  --target llama-server llama-quantize llama-perplexity llama-bench
+```
+
+Then set up Python:
+
+```bash
 /usr/local/bin/python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -r rohan/requirements-mac-intel.txt

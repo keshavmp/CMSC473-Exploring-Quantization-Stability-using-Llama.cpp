@@ -24,6 +24,10 @@ def test_family_configs_stay_under_rohan(family):
         assert config.kl_enabled
     assert all(config.pure_quantization for config in configs[1:])
     assert configs[0].hf_repo == sweep.FAMILIES[family]["hf_repo"]
+    model = sweep.FAMILIES[family]["model"]
+    assert [config.model_file.name for config in configs[1:]] == [
+        f"{model}-pure-{recipe}.gguf" for recipe in sweep.PURE_QUANT_TYPES.values()
+    ]
 
 
 def run_main(monkeypatch, *argv):
