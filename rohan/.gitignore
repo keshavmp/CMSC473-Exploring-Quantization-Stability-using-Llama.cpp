@@ -1,0 +1,7 @@
+# Large or regenerable files (the root .gitignore patterns are anchored at the repo root)
+models/
+data/
+results/**/samples.json
+results/**/*.log
+results/**/_kl_reference/
+results/*-limit*/
