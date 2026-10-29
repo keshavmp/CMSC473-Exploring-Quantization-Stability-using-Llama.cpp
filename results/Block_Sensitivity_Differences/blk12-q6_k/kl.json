@@ -1,0 +1,34 @@
+{
+  "baseline": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\models\\Llama-3.2-1B-Instruct-BF16.gguf",
+  "direction": "BF16 || evaluated model",
+  "units": "nats",
+  "domains": {
+    "chat": {
+      "mean": 0.000915,
+      "median": 0.000348,
+      "p95": 0.003016,
+      "uncertainty": 5.8e-05,
+      "tokens": 1020,
+      "text_file": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\data\\kl\\chat.txt",
+      "reference": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\results\\Block_Sensitivity_Differences\\_kl_reference\\5c2bbbbc30ad2ae9\\reference.kld"
+    },
+    "code": {
+      "mean": 0.000891,
+      "median": 0.000341,
+      "p95": 0.003531,
+      "uncertainty": 5.6e-05,
+      "tokens": 1020,
+      "text_file": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\data\\kl\\code.txt",
+      "reference": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\results\\Block_Sensitivity_Differences\\_kl_reference\\4830e5851cdad461\\reference.kld"
+    },
+    "math": {
+      "mean": 0.000655,
+      "median": 0.000243,
+      "p95": 0.002445,
+      "uncertainty": 4.4e-05,
+      "tokens": 1020,
+      "text_file": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\data\\kl\\math.txt",
+      "reference": "C:\\Users\\sneha\\CMSC473-Exploring-Quantization-Stability-using-Llama.cpp\\results\\Block_Sensitivity_Differences\\_kl_reference\\7c146c5905df3cb0\\reference.kld"
+    }
+  }
+}
