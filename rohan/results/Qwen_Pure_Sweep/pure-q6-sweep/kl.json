@@ -1,0 +1,34 @@
+{
+  "baseline": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/qwen/qwen2.5-1.5b-instruct-fp16.gguf",
+  "direction": "BF16 || evaluated model",
+  "units": "nats",
+  "domains": {
+    "chat": {
+      "mean": 0.003571,
+      "median": 0.001411,
+      "p95": 0.011265,
+      "uncertainty": 0.000383,
+      "tokens": 510,
+      "text_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/data/kl/chat.txt",
+      "reference": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/results/Qwen_Pure_Sweep/_kl_reference/0f98f78ee333c8e2/reference.kld"
+    },
+    "code": {
+      "mean": 0.002917,
+      "median": 0.001149,
+      "p95": 0.010045,
+      "uncertainty": 0.000215,
+      "tokens": 510,
+      "text_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/data/kl/code.txt",
+      "reference": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/results/Qwen_Pure_Sweep/_kl_reference/375663672084e03e/reference.kld"
+    },
+    "math": {
+      "mean": 0.002971,
+      "median": 7e-05,
+      "p95": 0.012583,
+      "uncertainty": 0.000681,
+      "tokens": 510,
+      "text_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/data/kl/math.txt",
+      "reference": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/results/Qwen_Pure_Sweep/_kl_reference/d8174dc1efc42fa9/reference.kld"
+    }
+  }
+}

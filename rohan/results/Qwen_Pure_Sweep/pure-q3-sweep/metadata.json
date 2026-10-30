@@ -1,0 +1,885 @@
+{
+  "group_subtasks": {},
+  "configs": {
+    "gsm8k": {
+      "task": "gsm8k",
+      "dataset_path": "openai/gsm8k",
+      "dataset_name": "main",
+      "training_split": "train",
+      "test_split": "test",
+      "fewshot_split": "train",
+      "doc_to_text": "Question: {{question}}\nAnswer:",
+      "doc_to_target": "{{answer}}",
+      "unsafe_code": false,
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": "train",
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "Question: {{question}}\nAnswer:",
+        "doc_to_choice": null,
+        "doc_to_target": "{{answer}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": false,
+          "regexes_to_ignore": [
+            ",",
+            "\\$",
+            "(?s).*#### ",
+            "\\.$"
+          ]
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0
+      },
+      "repeats": 1,
+      "filter_list": [
+        {
+          "name": "strict-match",
+          "filter": [
+            {
+              "function": "regex",
+              "regex_pattern": "#### (\\-?[0-9\\.\\,]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        },
+        {
+          "name": "flexible-extract",
+          "filter": [
+            {
+              "function": "regex",
+              "group_select": -1,
+              "regex_pattern": "(-?[$0-9.,]{2,})|(-?[0-9]+)"
+            },
+            {
+              "function": "take_first"
+            }
+          ]
+        }
+      ],
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 3.0,
+        "config_source": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/gsm8k/gsm8k.yaml"
+      }
+    },
+    "hellaswag": {
+      "task": "hellaswag",
+      "dataset_path": "Rowan/hellaswag",
+      "training_split": "train",
+      "validation_split": "validation",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        ctx = doc[\"ctx_a\"] + \" \" + doc[\"ctx_b\"].capitalize()\n        out_doc = {\n            \"query\": preprocess(doc[\"activity_label\"] + \": \" + ctx),\n            \"choices\": [preprocess(ending) for ending in doc[\"endings\"]],\n            \"gold\": int(doc[\"label\"]),\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "{{query}}",
+      "doc_to_target": "{{label}}",
+      "unsafe_code": false,
+      "doc_to_choice": "choices",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": "<function process_docs at 0x11e841a80>",
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "{{query}}",
+        "doc_to_choice": "choices",
+        "doc_to_target": "{{label}}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0,
+        "config_source": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/hellaswag/hellaswag.yaml"
+      }
+    },
+    "ifeval": {
+      "task": "ifeval",
+      "dataset_path": "google/IFEval",
+      "test_split": "train",
+      "doc_to_text": "prompt",
+      "doc_to_target": 0,
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    inp = InputExample(\n        key=doc[\"key\"],\n        instruction_id_list=doc[\"instruction_id_list\"],\n        prompt=doc[\"prompt\"],\n        kwargs=doc[\"kwargs\"],\n    )\n    response = results[0]\n\n    out_strict = test_instruction_following_strict(inp, response)\n    out_loose = test_instruction_following_loose(inp, response)\n\n    return {\n        \"prompt_level_strict_acc\": out_strict.follow_all_instructions,\n        \"inst_level_strict_acc\": out_strict.follow_instruction_list,\n        \"prompt_level_loose_acc\": out_loose.follow_all_instructions,\n        \"inst_level_loose_acc\": out_loose.follow_instruction_list,\n    }\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "prompt",
+        "doc_to_choice": null,
+        "doc_to_target": 0,
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "prompt_level_strict_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_strict_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        },
+        {
+          "metric": "prompt_level_loose_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_loose_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [],
+        "do_sample": false,
+        "temperature": 0,
+        "max_gen_toks": 1280
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 4.0,
+        "config_source": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/ifeval/ifeval.yaml"
+      }
+    }
+  },
+  "versions": {
+    "gsm8k": 3.0,
+    "hellaswag": 1.0,
+    "ifeval": 4.0
+  },
+  "n-shot": {
+    "gsm8k": 0,
+    "hellaswag": 0,
+    "ifeval": 0
+  },
+  "higher_is_better": {
+    "gsm8k": {
+      "exact_match": true
+    },
+    "hellaswag": {
+      "acc": true,
+      "acc_norm": true
+    },
+    "ifeval": {
+      "prompt_level_strict_acc": true,
+      "inst_level_strict_acc": true,
+      "prompt_level_loose_acc": true,
+      "inst_level_loose_acc": true
+    }
+  },
+  "n-samples": {
+    "gsm8k": {
+      "original": 1319,
+      "effective": 100
+    },
+    "ifeval": {
+      "original": 541,
+      "effective": 50
+    },
+    "hellaswag": {
+      "original": 10042,
+      "effective": 200
+    }
+  },
+  "config": {
+    "model": "GGUFLM",
+    "model_args": null,
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {
+      "temperature": 0,
+      "do_sample": false
+    },
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "4f4dde5",
+  "date": 1793351884.1980128,
+  "pretty_env_info": "PyTorch version: 2.2.2\nIs debug build: False\nCUDA used to build PyTorch: None\nROCM used to build PyTorch: N/A\n\nOS: macOS 15.7.3 (x86_64)\nGCC version: Could not collect\nClang version: 17.0.0 (clang-1700.0.13.5)\nCMake version: version 4.4.5\nLibc version: N/A\n\nPython version: 3.12.10 (main, Apr  8 2025, 11:35:47) [Clang 16.0.0 (clang-1600.0.26.6)] (64-bit runtime)\nPython platform: macOS-15.7.3-x86_64-i386-64bit\nIs CUDA available: False\nCUDA runtime version: No CUDA\nCUDA_MODULE_LOADING set to: N/A\nGPU models and configuration: No CUDA\nNvidia driver version: No CUDA\ncuDNN version: No CUDA\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\nIntel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz\n\nVersions of relevant libraries:\n[pip3] numpy==2.5.4\n[pip3] torch==2.2.2\n[conda] libtorch                         2.5.1                cpu_openblas_h87ba575_3\n[conda] nomkl                            3.0                  0\n[conda] numpy                            2.1.3                py313hc5c9681_0\n[conda] numpy-base                       2.1.3                py313h0dbffa8_0\n[conda] numpydoc                         1.2                  pyhd3eb1b0_0\n[conda] pytorch                          2.5.1                cpu_openblas_py313ha2d39c5_3\n[conda] torchvision                      0.2.0                pypi_0                        pypi",
+  "transformers_version": "5.17.0",
+  "lm_eval_version": "0.4.13",
+  "upper_git_hash": null,
+  "model_filename": "Qwen2.5-1.5B-Instruct-pure-Q3_K_M.gguf",
+  "model_sha256": "407e2c8ba6bcb8f6fa445a05b437b6d801703de4490d8e15b5311f1d0c3be59b",
+  "quantization_type": "Q3_K_M",
+  "pure_quantization": true,
+  "project_configuration": {
+    "name": "pure-q3-sweep",
+    "experiment": "Qwen_Pure_Sweep",
+    "project_root": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan",
+    "llama_server": "/Users/rohant/Documents/llama.cpp/build/bin/llama-server",
+    "llama_imatrix": "/Users/rohant/Documents/llama.cpp/build/bin/llama-imatrix.exe",
+    "quantize_tool": "/Users/rohant/Documents/llama.cpp/build/bin/llama-quantize",
+    "host": "127.0.0.1",
+    "port": 8080,
+    "context_size": 2048,
+    "gpu_layers": "0",
+    "server_start_timeout": 300,
+    "request_workers": 4,
+    "request_timeout": 900,
+    "server_log_verbosity": 3,
+    "model_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/qwen/Qwen2.5-1.5B-Instruct-pure-Q3_K_M.gguf",
+    "source_model": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/qwen/qwen2.5-1.5b-instruct-fp16.gguf",
+    "hf_repo": null,
+    "hf_filename": null,
+    "tasks": [
+      "gsm8k",
+      "ifeval",
+      "hellaswag"
+    ],
+    "num_examples": null,
+    "task_sample_caps": {
+      "gsm8k": 100,
+      "ifeval": 50,
+      "hellaswag": 200
+    },
+    "quantization_type": "Q3_K_M",
+    "pure_quantization": true,
+    "num_fewshot": 0,
+    "batch_size": 1,
+    "kl_enabled": true,
+    "llama_perplexity": "/Users/rohant/Documents/llama.cpp/build/bin/llama-perplexity",
+    "kl_text_dir": null,
+    "kl_context_size": 512,
+    "kl_chunks": 2
+  },
+  "resolved_tasks": {
+    "gsm8k": {
+      "split": "test",
+      "available": 1319,
+      "requested_cap": 100,
+      "selected": 100,
+      "subset": true,
+      "configuration": {
+        "task": "gsm8k",
+        "dataset_path": "openai/gsm8k",
+        "dataset_name": "main",
+        "training_split": "train",
+        "test_split": "test",
+        "fewshot_split": "train",
+        "doc_to_text": "Question: {{question}}\nAnswer:",
+        "doc_to_target": "{{answer}}",
+        "unsafe_code": false,
+        "description": "",
+        "target_delimiter": " ",
+        "fewshot_delimiter": "\n\n",
+        "fewshot_config": {
+          "sampler": "default",
+          "split": "train",
+          "process_docs": null,
+          "fewshot_indices": null,
+          "samples": null,
+          "doc_to_text": "Question: {{question}}\nAnswer:",
+          "doc_to_choice": null,
+          "doc_to_target": "{{answer}}",
+          "gen_prefix": null,
+          "fewshot_delimiter": "\n\n",
+          "target_delimiter": " "
+        },
+        "num_fewshot": 5,
+        "metric_list": [
+          {
+            "metric": "exact_match",
+            "aggregation": "mean",
+            "higher_is_better": true,
+            "ignore_case": true,
+            "ignore_punctuation": false,
+            "regexes_to_ignore": [
+              ",",
+              "\\$",
+              "(?s).*#### ",
+              "\\.$"
+            ]
+          }
+        ],
+        "output_type": "generate_until",
+        "generation_kwargs": {
+          "until": [
+            "Question:",
+            "</s>",
+            "<|im_end|>"
+          ],
+          "do_sample": false,
+          "temperature": 0.0
+        },
+        "repeats": 1,
+        "filter_list": [
+          {
+            "name": "strict-match",
+            "filter": [
+              {
+                "function": "regex",
+                "regex_pattern": "#### (\\-?[0-9\\.\\,]+)"
+              },
+              {
+                "function": "take_first"
+              }
+            ]
+          },
+          {
+            "name": "flexible-extract",
+            "filter": [
+              {
+                "function": "regex",
+                "group_select": -1,
+                "regex_pattern": "(-?[$0-9.,]{2,})|(-?[0-9]+)"
+              },
+              {
+                "function": "take_first"
+              }
+            ]
+          }
+        ],
+        "should_decontaminate": false,
+        "metadata": {
+          "version": 3.0,
+          "config_source": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/gsm8k/gsm8k.yaml"
+        }
+      }
+    },
+    "ifeval": {
+      "split": "train",
+      "available": 541,
+      "requested_cap": 50,
+      "selected": 50,
+      "subset": true,
+      "configuration": {
+        "task": "ifeval",
+        "dataset_path": "google/IFEval",
+        "test_split": "train",
+        "doc_to_text": "prompt",
+        "doc_to_target": 0,
+        "unsafe_code": false,
+        "process_results": "def process_results(doc, results):\n    inp = InputExample(\n        key=doc[\"key\"],\n        instruction_id_list=doc[\"instruction_id_list\"],\n        prompt=doc[\"prompt\"],\n        kwargs=doc[\"kwargs\"],\n    )\n    response = results[0]\n\n    out_strict = test_instruction_following_strict(inp, response)\n    out_loose = test_instruction_following_loose(inp, response)\n\n    return {\n        \"prompt_level_strict_acc\": out_strict.follow_all_instructions,\n        \"inst_level_strict_acc\": out_strict.follow_instruction_list,\n        \"prompt_level_loose_acc\": out_loose.follow_all_instructions,\n        \"inst_level_loose_acc\": out_loose.follow_instruction_list,\n    }\n",
+        "description": "",
+        "target_delimiter": " ",
+        "fewshot_delimiter": "\n\n",
+        "fewshot_config": {
+          "sampler": "default",
+          "split": null,
+          "process_docs": null,
+          "fewshot_indices": null,
+          "samples": null,
+          "doc_to_text": "prompt",
+          "doc_to_choice": null,
+          "doc_to_target": 0,
+          "gen_prefix": null,
+          "fewshot_delimiter": "\n\n",
+          "target_delimiter": " "
+        },
+        "num_fewshot": 0,
+        "metric_list": [
+          {
+            "metric": "prompt_level_strict_acc",
+            "aggregation": "mean",
+            "higher_is_better": true
+          },
+          {
+            "metric": "inst_level_strict_acc",
+            "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+            "higher_is_better": true
+          },
+          {
+            "metric": "prompt_level_loose_acc",
+            "aggregation": "mean",
+            "higher_is_better": true
+          },
+          {
+            "metric": "inst_level_loose_acc",
+            "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+            "higher_is_better": true
+          }
+        ],
+        "output_type": "generate_until",
+        "generation_kwargs": {
+          "until": [],
+          "do_sample": false,
+          "temperature": 0.0,
+          "max_gen_toks": 1280
+        },
+        "repeats": 1,
+        "should_decontaminate": false,
+        "metadata": {
+          "version": 4.0,
+          "config_source": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/ifeval/ifeval.yaml"
+        }
+      }
+    },
+    "hellaswag": {
+      "split": "validation",
+      "available": 10042,
+      "requested_cap": 200,
+      "selected": 200,
+      "subset": true,
+      "configuration": {
+        "task": "hellaswag",
+        "dataset_path": "Rowan/hellaswag",
+        "training_split": "train",
+        "validation_split": "validation",
+        "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        ctx = doc[\"ctx_a\"] + \" \" + doc[\"ctx_b\"].capitalize()\n        out_doc = {\n            \"query\": preprocess(doc[\"activity_label\"] + \": \" + ctx),\n            \"choices\": [preprocess(ending) for ending in doc[\"endings\"]],\n            \"gold\": int(doc[\"label\"]),\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+        "doc_to_text": "{{query}}",
+        "doc_to_target": "{{label}}",
+        "unsafe_code": false,
+        "doc_to_choice": "choices",
+        "description": "",
+        "target_delimiter": " ",
+        "fewshot_delimiter": "\n\n",
+        "fewshot_config": {
+          "sampler": "default",
+          "split": null,
+          "process_docs": "<function process_docs at 0x11e841a80>",
+          "fewshot_indices": null,
+          "samples": null,
+          "doc_to_text": "{{query}}",
+          "doc_to_choice": "choices",
+          "doc_to_target": "{{label}}",
+          "gen_prefix": null,
+          "fewshot_delimiter": "\n\n",
+          "target_delimiter": " "
+        },
+        "metric_list": [
+          {
+            "metric": "acc",
+            "aggregation": "mean",
+            "higher_is_better": true
+          },
+          {
+            "metric": "acc_norm",
+            "aggregation": "mean",
+            "higher_is_better": true
+          }
+        ],
+        "output_type": "multiple_choice",
+        "repeats": 1,
+        "should_decontaminate": false,
+        "metadata": {
+          "version": 1.0,
+          "config_source": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/.venv/lib/python3.12/site-packages/lm_eval/tasks/hellaswag/hellaswag.yaml"
+        }
+      }
+    }
+  },
+  "selected_doc_ids": {
+    "gsm8k": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99
+    ],
+    "ifeval": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "hellaswag": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199
+    ]
+  },
+  "actual_unique_samples": {
+    "gsm8k": 100,
+    "ifeval": 50,
+    "hellaswag": 200
+  }
+}
