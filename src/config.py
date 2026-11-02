@@ -29,6 +29,7 @@ class Config:
     # Each name gets its own results folder; use unique names for new settings.
     # The served model defaults to models/<name>.gguf (see resolve_model_file).
     name: str = "uniform-q4"
+    experiment: str | None = None  # optional parent folder for a complete sweep
 
     # --- Repo layout ------------------------------------------------------
     project_root: Path = PROJECT_ROOT
@@ -44,6 +45,9 @@ class Config:
     context_size: int = 2048
     gpu_layers: str = "all"
     server_start_timeout: int = 120    # seconds to wait for /health
+    request_workers: int = 4          # concurrent questions and server slots
+    request_timeout: float = 300      # read timeout, including queued generation
+    server_log_verbosity: int = 3      # info; omits debug prompt-cache dumps
 
     # --- Model ------------------------------------------------------------
     # None -> models/<name>.gguf
@@ -62,8 +66,11 @@ class Config:
             "mmlu_college_computer_science",
         ]
     )
-    num_examples: int = 300   # examples per task
-    num_fewshot: int = 5
+    num_examples: int | None = 300   # None evaluates all available examples
+    task_sample_caps: dict[str, int | None] = field(default_factory=dict)
+    quantization_type: str | None = None
+    pure_quantization: bool = False
+    num_fewshot: int = 0
     batch_size: int = 1
 
     # --- KL divergence (optional, evaluated after the server stops) --------
@@ -74,8 +81,17 @@ class Config:
     kl_chunks: int = 2              # bounded reference size per domain
 
     def __post_init__(self) -> None:
+        if self.request_workers < 1:
+            raise ValueError("request_workers must be positive")
+        if self.request_timeout <= 0:
+            raise ValueError("request_timeout must be positive")
         if not self.name or self.name in (".", "..") or any(char in self.name for char in "/\\:"):
             raise ValueError("Config name must be a single folder name")
+        if self.experiment is not None:
+            if (not self.experiment.strip() or self.experiment in (".", "..")
+                    or any(char in self.experiment for char in '/\\:<>"|?*')
+                    or self.experiment.endswith((".", " "))):
+                raise ValueError("Experiment must be a single folder name")
 
     # --- Derived paths ----------------------------------------------------
     @property
@@ -84,7 +100,8 @@ class Config:
 
     @property
     def results_dir(self) -> Path:
-        return self.project_root / "results"
+        root = self.project_root / "results"
+        return root / self.experiment if self.experiment is not None else root
 
     @property
     def run_dir(self) -> Path:

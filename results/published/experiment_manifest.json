@@ -1,0 +1,551 @@
+{
+  "model": "Llama-3.2-1B-Instruct",
+  "baseline": "BF16",
+  "reference_sha256": "f5d05e90d179fa27c01a049be1574a0201bdc09ba0b345eb85e1dbf3b87610f3",
+  "quantized_models": [
+    {
+      "name": "pure-q2",
+      "sha256": "5ee60ea57dfc1afc54f6eb44900c5000680253e2a26dc00bf4b9120757b43364"
+    },
+    {
+      "name": "pure-q3",
+      "sha256": "9612ae214697148d98741526556005c0633c41643458a8353f8273df53283630"
+    },
+    {
+      "name": "pure-q4",
+      "sha256": "1f654288f499293c7e5e750af3ed33b1a7270e2e9181945f1140103dcfd82ae5"
+    },
+    {
+      "name": "pure-q5",
+      "sha256": "16d004985014dee7c86ebfa4e044e81d228318d7126dd2c38e421a2b420b9c4b"
+    },
+    {
+      "name": "pure-q6",
+      "sha256": "e9fc358a9b80cb2c9995a766a96a0e897d8a6289a6c4263d8e17daa392fcad02"
+    },
+    {
+      "name": "pure-q8",
+      "sha256": "5cadbba719694451b37bcf883aede2f6ed24f585cac15b7e28dd0e568bba0476"
+    }
+  ],
+  "calibration": {
+    "chat": {
+      "sha256": "7248e7ef4f24a82ddcb16784819a697cb78c23ee3198cb6fae3a19c2aaf21b40",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": 699,
+      "chunk_size": 512
+    },
+    "math": {
+      "sha256": "65735af792e941e5e5771178fb066a376235bf522f6ccf2490cfabd9d260c76f",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": 97,
+      "chunk_size": 512
+    },
+    "code": {
+      "sha256": "cb577a9bfa1fc5367f6d58ce388e266f59f34ba63020e27eaf0a8591002ec48b",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": 49,
+      "chunk_size": 512
+    }
+  },
+  "collections": [
+    {
+      "model": "Llama-3.2-1B-Instruct-BF16",
+      "domain": "chat",
+      "model_sha256": "f5d05e90d179fa27c01a049be1574a0201bdc09ba0b345eb85e1dbf3b87610f3",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "7248e7ef4f24a82ddcb16784819a697cb78c23ee3198cb6fae3a19c2aaf21b40"
+    },
+    {
+      "model": "Llama-3.2-1B-Instruct-BF16",
+      "domain": "math",
+      "model_sha256": "f5d05e90d179fa27c01a049be1574a0201bdc09ba0b345eb85e1dbf3b87610f3",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "65735af792e941e5e5771178fb066a376235bf522f6ccf2490cfabd9d260c76f"
+    },
+    {
+      "model": "Llama-3.2-1B-Instruct-BF16",
+      "domain": "code",
+      "model_sha256": "f5d05e90d179fa27c01a049be1574a0201bdc09ba0b345eb85e1dbf3b87610f3",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "cb577a9bfa1fc5367f6d58ce388e266f59f34ba63020e27eaf0a8591002ec48b"
+    },
+    {
+      "model": "pure-q2",
+      "domain": "code",
+      "model_sha256": "5ee60ea57dfc1afc54f6eb44900c5000680253e2a26dc00bf4b9120757b43364",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "88cfed13c6bf2224aedbaa44e847d5280e66824ed2cc1939cec158ffe564a844"
+    },
+    {
+      "model": "pure-q2",
+      "domain": "math",
+      "model_sha256": "5ee60ea57dfc1afc54f6eb44900c5000680253e2a26dc00bf4b9120757b43364",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "937672eaecb8809a7e65f4f9d8e5fb4fa464ff2a218ff6dec176ccb39aebf0e8"
+    },
+    {
+      "model": "pure-q2",
+      "domain": "chat",
+      "model_sha256": "5ee60ea57dfc1afc54f6eb44900c5000680253e2a26dc00bf4b9120757b43364",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "447a152e3a348cadfbaabf827b25f8bc3e6e62651be3f05c7eb33ee22fca6d62"
+    },
+    {
+      "model": "pure-q3",
+      "domain": "code",
+      "model_sha256": "9612ae214697148d98741526556005c0633c41643458a8353f8273df53283630",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "a87f8a3e7e38b74c3f4d50875062a1b814399fe46790cbca4790f20ee482f05f"
+    },
+    {
+      "model": "pure-q3",
+      "domain": "math",
+      "model_sha256": "9612ae214697148d98741526556005c0633c41643458a8353f8273df53283630",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "d23130b323b8d097b305deb51b2472ced88fdb589d93b91d8a4c01ebe772f5e7"
+    },
+    {
+      "model": "pure-q3",
+      "domain": "chat",
+      "model_sha256": "9612ae214697148d98741526556005c0633c41643458a8353f8273df53283630",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "9b3d093102d5568f7894fadbf9d40b42a7bd2479ae81fd4c6c69db8d9e90639a"
+    },
+    {
+      "model": "pure-q4",
+      "domain": "chat",
+      "model_sha256": "1f654288f499293c7e5e750af3ed33b1a7270e2e9181945f1140103dcfd82ae5",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "a1ee20f054dc3a91afa374ee84bdf22fddfa8ee7e6706af3f30bd2c938565ecc"
+    },
+    {
+      "model": "pure-q4",
+      "domain": "math",
+      "model_sha256": "1f654288f499293c7e5e750af3ed33b1a7270e2e9181945f1140103dcfd82ae5",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "e10cd523f2358621fc22af30bed809a30c563f88a8f85aa54ba6861dff05fcd4"
+    },
+    {
+      "model": "pure-q4",
+      "domain": "code",
+      "model_sha256": "1f654288f499293c7e5e750af3ed33b1a7270e2e9181945f1140103dcfd82ae5",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "8415e8c97862b392b74c3c5accf5444c8cde225bfcfccc793242b9cd073948b0"
+    },
+    {
+      "model": "pure-q5",
+      "domain": "math",
+      "model_sha256": "16d004985014dee7c86ebfa4e044e81d228318d7126dd2c38e421a2b420b9c4b",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "5f9d675ea59b2dc6b4747582c535cfbaacb4295b194b942f09fe5fe879853ac9"
+    },
+    {
+      "model": "pure-q5",
+      "domain": "chat",
+      "model_sha256": "16d004985014dee7c86ebfa4e044e81d228318d7126dd2c38e421a2b420b9c4b",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "c08a0f2eaee77b8c45c4a3c68d4657dc06a39d08a6542b3d7a3c1f617d65a7db"
+    },
+    {
+      "model": "pure-q5",
+      "domain": "code",
+      "model_sha256": "16d004985014dee7c86ebfa4e044e81d228318d7126dd2c38e421a2b420b9c4b",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "b238c95e66cf63af98bde5ce0b91bd3074c35d8229c4a3f381eac2f96296920f"
+    },
+    {
+      "model": "pure-q6",
+      "domain": "math",
+      "model_sha256": "e9fc358a9b80cb2c9995a766a96a0e897d8a6289a6c4263d8e17daa392fcad02",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "ef0113ecd76cd8398feaf57dfb3f3121ee428d1fa5ba860310eb246e5554a90a"
+    },
+    {
+      "model": "pure-q6",
+      "domain": "code",
+      "model_sha256": "e9fc358a9b80cb2c9995a766a96a0e897d8a6289a6c4263d8e17daa392fcad02",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "8ab0a1cfa29fe9ebf3b9548224c80a6bfef4b9d9d2c5520fb9914fa77ee71628"
+    },
+    {
+      "model": "pure-q6",
+      "domain": "chat",
+      "model_sha256": "e9fc358a9b80cb2c9995a766a96a0e897d8a6289a6c4263d8e17daa392fcad02",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "11de37ef4a49109de6fe0f1ac49626de91850038846f37298ef159c1a588f034"
+    },
+    {
+      "model": "pure-q8",
+      "domain": "chat",
+      "model_sha256": "5cadbba719694451b37bcf883aede2f6ed24f585cac15b7e28dd0e568bba0476",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "d1fca0be65fc66dd2026eaa0b47351b5840a72eaf4b2927118cac2d2d927b0aa"
+    },
+    {
+      "model": "pure-q8",
+      "domain": "math",
+      "model_sha256": "5cadbba719694451b37bcf883aede2f6ed24f585cac15b7e28dd0e568bba0476",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "e909781a8b4188ce416d5a4c4975c905de4fee3f47d5b894549951750914f4eb"
+    },
+    {
+      "model": "pure-q8",
+      "domain": "code",
+      "model_sha256": "5cadbba719694451b37bcf883aede2f6ed24f585cac15b7e28dd0e568bba0476",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": -1,
+      "context": 512,
+      "gpu_layers": "99",
+      "parse_special": true,
+      "batch_size": 512,
+      "tool_version": [
+        "",
+        "version: 0.6.0-dev (build 11482, commit b86d2f075)\nbuilt with MSVC 19.50.35728.0 for x64\n"
+      ],
+      "tool_sha256": "58fe62a6ef15e72413beda048799aed9112774c456e38ccfdbf4d61ffcca28a8",
+      "matrix_sha256": "cec6ce3b3d5ee27cfb75880782014f74c92f1009f69d2f0ea86f3c4f1cd098f2"
+    }
+  ],
+  "evaluations": [
+    {
+      "precision": "BF16",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "BF16",
+      "pure_quantization": false,
+      "model_size_bytes": 2479595264,
+      "metrics_sha256": "c3b499a882610e6095488a16b60f450048fc2ef22b64e36c435a1c99405f896b",
+      "kl_sha256": "3a545b6e11da94b28ca249370b905fa79f50f88aafe301414eb37d55b04119a7"
+    },
+    {
+      "precision": "Q2",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "Q2_K",
+      "pure_quantization": true,
+      "model_size_bytes": 413581056,
+      "metrics_sha256": "1659911fa20ab306645bf1278f8424c60c5bea8e1c7a234d2ef21dd9f25da9ca",
+      "kl_sha256": "89426ae76fd393683c478dadbf19e4708ef81d1219fdbd8acc369074e64b680c"
+    },
+    {
+      "precision": "Q3",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "Q3_K_M",
+      "pure_quantization": true,
+      "model_size_bytes": 539086592,
+      "metrics_sha256": "ec7ca00a745069641fd4cfcb0c8b8a6f70bc7a08de1aa2abbf8b496784bd6c28",
+      "kl_sha256": "1b4acf23b7fbca863b724e35f6c914841460f7c7cab62f66592755c6e5b08c8f"
+    },
+    {
+      "precision": "Q4",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "Q4_K_M",
+      "pure_quantization": true,
+      "model_size_bytes": 703209216,
+      "metrics_sha256": "5ab284ec4ae3719e7ce791825f8499a35b7977bc1331f425c9f153dc6d34ebe5",
+      "kl_sha256": "a4e57628eb63cfd232d7d25d526b8c22d0172709978c7cc82be8c4f25adc24cd"
+    },
+    {
+      "precision": "Q5",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "Q5_K_M",
+      "pure_quantization": true,
+      "model_size_bytes": 857677568,
+      "metrics_sha256": "a0d0bf887647121651f0e23c4ebd00b2818bb4cb6d819c6eedd9179a3032ce2a",
+      "kl_sha256": "3c8c878ae7ba951397837aa7f11374851676bd0330544ac2c22dec0b88937afb"
+    },
+    {
+      "precision": "Q6",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "Q6_K",
+      "pure_quantization": true,
+      "model_size_bytes": 1021800192,
+      "metrics_sha256": "f1f2fd9cfa34ea881fa7aab45e451326a277b4eb6b18b0738adc0b7f9c67c2c1",
+      "kl_sha256": "68a8081f21b9d3b791d11f409756b0dc448a3bcf7b5e5267437107401c03fd65"
+    },
+    {
+      "precision": "Q8",
+      "context_size": 2048,
+      "request_workers": 4,
+      "batch_size": 1,
+      "num_fewshot": 0,
+      "quantization_type": "Q8_0",
+      "pure_quantization": true,
+      "model_size_bytes": 1321082624,
+      "metrics_sha256": "71782ee79bba2fb88ef11a33cf40f146676806f733499b0681370a50dc221f76",
+      "kl_sha256": "3652e20a7e0cf3ac2c300ead4ea7674c162bf0189818dc7877b1808f7b63acb6"
+    }
+  ],
+  "methods": {
+    "relative_error_pct": "100 * weighted_error / BF16 diagonal reference_energy",
+    "column_deviation_pct": "100 * (relative_error_pct / arithmetic mean over displayed column rows - 1)",
+    "precision_tables": "equal-domain average of tensor errors and references, then ratio of sums within unit",
+    "dataset_tables": "arithmetic mean of unit relative errors over Q2,Q3,Q4,Q5,Q6,Q8; BF16 excluded",
+    "dataset_normalization": "normalize after averaging precisions; compare rows within each dataset column",
+    "hellaswag": "Both acc and acc_norm retained; figures use acc_norm",
+    "kl": "KL(BF16 || quantized), nats; 510 scored tokens per domain"
+  },
+  "local_input_sha256": {
+    "precision_summary.csv": "6e9e1d8d19a8aefa6c87ab801702db50c28b26ff3590ff960a3cf96a826c0fb0",
+    "dataset_summary.csv": "cd325d41715557bfe5dee8a0ee79d094d1053a68c91cf13e16fd9ccbd6e66b4a",
+    "block_summary.csv": "2c546981fadea5247e96fe00164978153177e5005f013709107fa828f028e72c",
+    "tensor_type_summary.csv": "de84db7f730e2e0dbb2e7eb43c5e4fc6b9b434065c1f122304240b274b73869f",
+    "block_dataset_summary.csv": "a0a8107886730b2b418957f98d185fad988a3382f78addefc41bc19897ea43e7",
+    "tensor_type_dataset_summary.csv": "41635be8eec1ce3474dac4de424e523ccd8c61c782fbd65670a4d793a49e1a0d"
+  },
+  "tables": {
+    "precision_summary.csv": {
+      "rows": 7,
+      "sha256": "ee5845fa4e0b62501ad067fad0436816db5cce7385f4f2dc959154ebf11766e8"
+    },
+    "dataset_summary.csv": {
+      "rows": 18,
+      "sha256": "c748048ffa360e97719d00e75fcc4a46325edd6ad9c863364877c5867d09bc71"
+    },
+    "block_summary.csv": {
+      "rows": 96,
+      "sha256": "6da7f2d3ec77b21b10c5d5252310fce5064453bc8b4ecc6b31fdfe426f42b1ba"
+    },
+    "tensor_type_summary.csv": {
+      "rows": 42,
+      "sha256": "5f53cdd164538964b1be5158fddcf03b8c5522747de726aaa2bf2b12b6dd2382"
+    },
+    "block_dataset_summary.csv": {
+      "rows": 48,
+      "sha256": "aa65766ded86776a88732c255e70e45bdadbb1c4c4c3fe179a4225933d29f1c8"
+    },
+    "tensor_type_dataset_summary.csv": {
+      "rows": 21,
+      "sha256": "597d0dbc21fc098fba00d9ebd050436408ff56e20e7ed3d8e7e3bb070e05ef1b"
+    }
+  },
+  "figures": {
+    "01_precision_overview.png": "5a16bfd9c1b88d4eb58ef6ae2be358f2373efedeab0e4ac5b2cedf638c124b35",
+    "02_dataset_comparison.png": "adff2f1ac72c5d35070d424f324668eccd916a012aad73bbc898ce37058b7855",
+    "03_block_sensitivity.png": "249e0af8a71d2fb488b74408c4030be43bd22c28cb7d1ffa9cd4c85dcf535e73",
+    "03b_block_sensitivity_within_precision.png": "fd155287661395ad2876cfe1f82ff9c451825a0232b62d11a7a797c51835203c",
+    "04_tensor_comparison.png": "8e2f179eeb1bfed73aca88d86f781f1da48412d3c52366411a2eb413320e9b7d",
+    "04b_tensor_comparison_within_precision.png": "2e25bc2b26b9c2d328126d7c5ccb1f7c14560e1e2c1f0597d24a70af1db3fd73",
+    "05_blocks_by_dataset.png": "fea8a915ad3b5150dc25dfad6effbc50060c434a6d8896781df846424a9d79af",
+    "05_blocks_by_dataset_normalized.png": "ad462c0d4baf3c44c8455982ad737fe132ce38874bd720cfa5819f6d560e1d32",
+    "06_tensors_by_dataset.png": "fa18ff84e1aa051101961c84298afa734bc876c3e2a1ced4599fbf0244e057af",
+    "06_tensors_by_dataset_normalized.png": "c0a6ca3605aa881bfd31b71bfa87c01b2670648330d79d6d3e5c060b0887a8a1"
+  }
+}

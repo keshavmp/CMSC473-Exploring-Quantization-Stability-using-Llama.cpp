@@ -1,10 +1,10 @@
 import subprocess
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import pytest
 
 from src.config import Config
-from src.server import get_model_file, stop_server
+from src.server import get_model_file, start_server, stop_server
 
 
 def test_get_model_file_returns_the_local_gguf(tmp_path):
@@ -53,3 +53,24 @@ def test_stop_server_kills_a_process_that_wont_exit():
     stop_server(process, log)
 
     process.kill.assert_called_once()
+
+
+def test_server_allocates_context_for_each_worker(tmp_path):
+    model = tmp_path / "model.gguf"
+    model.touch()
+    config = Config(project_root=tmp_path, model_file=model,
+                    request_workers=4, context_size=2048)
+    with patch("src.server.subprocess.Popen") as popen, \
+         patch("src.server.requests.get") as get, \
+         patch("src.server.time.sleep"):
+        popen.return_value.poll.return_value = None
+        get.return_value.ok = True
+        process, log = start_server(config)
+        try:
+            command = popen.call_args.args[0]
+            assert command[command.index("--ctx-size") + 1] == "8192"
+            assert command[command.index("--parallel") + 1] == "4"
+            assert "--cont-batching" in command
+            assert command[command.index("-lv") + 1] == "3"
+        finally:
+            log.close()

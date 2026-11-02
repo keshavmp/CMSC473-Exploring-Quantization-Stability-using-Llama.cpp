@@ -50,9 +50,11 @@ def start_server(config: Config) -> tuple[subprocess.Popen, object]:
         str(config.llama_server),
         "--model", str(model_file),
         "--n-gpu-layers", config.gpu_layers,
-        "--ctx-size", str(config.context_size),
+        "--ctx-size", str(config.context_size * config.request_workers),
+        "--parallel", str(config.request_workers),
+        "--cont-batching",
         "--host", config.host,
-        "-lv", "4",
+        "-lv", str(config.server_log_verbosity),
         "--port", str(config.port),
     ]
 
@@ -87,8 +89,10 @@ def start_server(config: Config) -> tuple[subprocess.Popen, object]:
     match = re.search(r"offloaded (\d+)/(\d+) layers to GPU", startup_log)
     if match and int(match.group(1)) > 0:
         print(f"Server Running on GPU ({match.group(1)}/{match.group(2)} layers)")
-    else:
+    elif match:
         print("Server Running on Cpu")
+    else:
+        print("GPU offload was not reported in the startup log.")
 
     print(f"Server ready: {config.base_url}")
     return process, log

@@ -1,0 +1,33 @@
+{
+  "gsm8k": {
+    "name": "gsm8k",
+    "alias": "gsm8k",
+    "sample_len": 1000,
+    "exact_match,strict-match": 0.0,
+    "exact_match_stderr,strict-match": 0.0,
+    "exact_match,flexible-extract": 0.158,
+    "exact_match_stderr,flexible-extract": 0.011539894677559568
+  },
+  "ifeval": {
+    "name": "ifeval",
+    "alias": "ifeval",
+    "sample_len": 541,
+    "prompt_level_strict_acc,none": 0.3567467652495379,
+    "prompt_level_strict_acc_stderr,none": 0.020614562936479897,
+    "inst_level_strict_acc,none": 0.5107913669064749,
+    "inst_level_strict_acc_stderr,none": "N/A",
+    "prompt_level_loose_acc,none": 0.41404805914972276,
+    "prompt_level_loose_acc_stderr,none": 0.021196272552471317,
+    "inst_level_loose_acc,none": 0.5563549160671463,
+    "inst_level_loose_acc_stderr,none": "N/A"
+  },
+  "hellaswag": {
+    "name": "hellaswag",
+    "alias": "hellaswag",
+    "sample_len": 2000,
+    "acc,none": 0.4155,
+    "acc_stderr,none": 0.011022278362940898,
+    "acc_norm,none": 0.5385,
+    "acc_norm_stderr,none": 0.011149934327957222
+  }
+}

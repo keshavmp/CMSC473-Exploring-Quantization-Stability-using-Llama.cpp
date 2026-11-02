@@ -1,4 +1,3 @@
-
 """Compare KV-cache experiment runs in results/.
 
 Each experiment JSON becomes one row in the CSV. Quality is summarized
@@ -14,20 +13,25 @@ import argparse
 import json
 from pathlib import Path
 
+# "Agg" renders straight to image files, so this works on headless machines.
+# It has to be set before pyplot is imported.
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 
+# Works both as `python -m src.report_...` and as a plain script.
 try:
     from src.config import Config
 except ModuleNotFoundError:
     from config import Config
 
 
-# Preferred quality metric per task.
-# If unavailable, score_for() falls back to another numeric metric.
+# Preferred quality metric per task, in priority order. Metric key names
+# differ across tasks and lm-eval versions (e.g. "acc_norm,none" vs
+# "acc_norm"), so several candidates are listed. If none are present,
+# score_for() falls back to another numeric metric.
 PRIMARY_METRICS = {
     "arc_easy": (
         "acc_norm,none",
@@ -62,7 +66,11 @@ PRIMARY_METRICS = {
 
 
 def find_result_files(results_dir: Path) -> list[Path]:
-    """Find experiment JSON files, excluding per-question sample files."""
+    """Find experiment JSON files, excluding per-question sample files.
+
+    The harness writes a large "_samples.json" next to each summary; only the
+    summaries are useful here. Sorting keeps row order stable between runs.
+    """
     return sorted(
         path
         for path in results_dir.rglob("*.json")
@@ -71,12 +79,18 @@ def find_result_files(results_dir: Path) -> list[Path]:
 
 
 def score_for(task: str, task_results: dict) -> tuple[str | None, float | None]:
-    """Return the selected metric and its score, or (None, None)."""
+    """Return the selected metric and its score, or (None, None).
+
+    Each task reports several metrics, but the table needs a single
+    comparable number per task. The metric name is returned too, so the CSV
+    records which one was actually used.
+    """
     if not isinstance(task_results, dict):
         return None, None
 
     for metric in PRIMARY_METRICS.get(task, ()):
         value = task_results.get(metric)
+        # bool is a subclass of int, so exclude it explicitly.
         if isinstance(value, (int, float)) and not isinstance(value, bool):
             return metric, float(value)
 
@@ -91,7 +105,12 @@ def score_for(task: str, task_results: dict) -> tuple[str | None, float | None]:
 
 
 def load_result(path: Path) -> dict | None:
-    """Load one experiment result, skipping invalid or unrelated JSON files."""
+    """Load one experiment result, skipping invalid or unrelated JSON files.
+
+    A crashed run can leave truncated JSON, and the results folder may hold
+    files from other experiments. Filtering here keeps those out of the table
+    without stopping the whole report.
+    """
     try:
         result = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -99,6 +118,7 @@ def load_result(path: Path) -> dict | None:
         return None
 
     # Experiment files from the KV runner have a nested quality section.
+    # Other JSON files are ignored quietly.
     if not isinstance(result, dict) or not isinstance(result.get("quality"), dict):
         return None
 
@@ -106,8 +126,14 @@ def load_result(path: Path) -> dict | None:
 
 
 def build_table(files: list[Path]) -> pd.DataFrame:
-    """Build one row per run, with scores and performance/memory metrics."""
+    """Build one row per run, with scores and performance/memory metrics.
+
+    This flattens the nested experiment JSON into the rectangular table that
+    the CSV, console output, and plots all rely on.
+    """
     rows = []
+    # Every task seen across runs, in first-seen order. Runs may cover
+    # different tasks, so this is used to build the full column set.
     all_tasks = []
 
     for path in files:
@@ -116,6 +142,7 @@ def build_table(files: list[Path]) -> pd.DataFrame:
             continue
 
         quality = result["quality"]
+        # Default to {} so a run missing these sections still gets a row.
         performance = result.get("performance", {})
         memory = result.get("memory", {})
 
@@ -125,6 +152,7 @@ def build_table(files: list[Path]) -> pd.DataFrame:
 
         row = {
             "run": path.stem,
+            # File name only, so the table doesn't depend on local paths.
             "model": Path(result.get("model", "")).name,
             "weight_quant": result.get("weight_quant"),
             "k_type": result.get("k_type"),
@@ -166,6 +194,7 @@ def build_table(files: list[Path]) -> pd.DataFrame:
         return pd.DataFrame()
 
     # Quality columns are arranged by task; all other columns are retained.
+    # Task columns that first appear in later runs are appended at the end.
     columns = list(rows[0].keys())
     for task in all_tasks:
         for suffix in ("quality", "metric"):
@@ -173,14 +202,21 @@ def build_table(files: list[Path]) -> pd.DataFrame:
             if any(column in row for row in rows) and column not in columns:
                 columns.append(column)
 
+    # reindex leaves NaN where a run didn't cover a task.
     return pd.DataFrame(rows).reindex(columns=columns)
 
 
 def save_csv(table: pd.DataFrame, path: Path) -> None:
+    """Write the table as CSV: no index, missing values left blank."""
     table.to_csv(path, index=False, na_rep="")
 
+
 def plot_context(table: pd.DataFrame) -> str:
-    """Describe the backend and sample count for plot titles."""
+    """Describe the backend and sample count for plot titles.
+
+    Results depend on both, so they go in every title. "Mixed ..." flags
+    charts that combine runs that aren't strictly comparable.
+    """
     backends = table["backend"].dropna().unique()
     samples = table["sample_limit"].dropna().unique()
 
@@ -196,17 +232,22 @@ def plot_context(table: pd.DataFrame) -> str:
     return f"{backend_label} | {sample_label}"
 
 
-
 def save_task_quality_plot(
     table: pd.DataFrame,
     task: str,
     path: Path,
 ) -> None:
-    """Plot quality scores for one task across experiment runs."""
+    """Plot quality scores for one task across experiment runs.
+
+    This is the main chart for the KV-cache question: how much quality is
+    lost as the cache precision drops. It is one chart per task, since scores
+    from different benchmarks can't be compared directly.
+    """
     column = f"{task}_quality"
     if column not in table.columns:
         return
 
+    # Drop runs with no score so there are no empty bars.
     plot_data = table[["run", column]].dropna()
     if plot_data.empty:
         print(f"Skipping quality plot for {task}: no values available.")
@@ -216,16 +257,19 @@ def save_task_quality_plot(
         x="run",
         y=column,
         kind="bar",
+        # Widen with the number of runs so labels stay readable.
         figsize=(max(8, len(plot_data) * 0.7), 5),
         legend=False,
     )
     ax.set_ylabel("Quality score (0–1)")
     ax.set_xlabel("Run")
     ax.set_title(f"Quality: {task} ({plot_context(table)})")
+    # Fixed 0-1 axis so small differences aren't visually exaggerated.
     ax.set_ylim(0, 1)
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
     plt.savefig(path, dpi=150)
+    # Close the figure; this runs in a loop and would otherwise pile up.
     plt.close(ax.figure)
 
 
@@ -236,7 +280,11 @@ def save_metric_plot(
     title: str,
     path: Path,
 ) -> None:
-    """Create a bar chart for a numeric metric, skipping missing values."""
+    """Create a bar chart for a numeric metric, skipping missing values.
+
+    Shared by the throughput and memory charts, which differ only in column
+    and labels, so they stay visually consistent.
+    """
     if metric not in table.columns:
         return
 
@@ -262,10 +310,15 @@ def save_metric_plot(
 
 
 def sort_runs_by_cache_type(table: pd.DataFrame) -> pd.DataFrame:
-    """Order F16 runs before Q8 runs, and Q8 before Q4 runs."""
+    """Order F16 runs before Q8 runs, and Q8 before Q4 runs.
+
+    Sorting from high to low precision makes the bar charts read as a
+    progression instead of alphabetical run names. Returns a copy.
+    """
     order = {"f16": 0, "q8_0": 1, "q4_0": 2}
 
     sorted_table = table.copy()
+    # Unrecognized cache types get 99 so they sort last.
     sorted_table["_k_order"] = (
         sorted_table["k_type"].map(order).fillna(99)
     )
@@ -282,6 +335,7 @@ def sort_runs_by_cache_type(table: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    """Load the results, print a summary, then write the CSV and charts."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "names",
@@ -300,12 +354,14 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    # Fall back to the configured results directory if none is given.
     cfg = Config()
     results_dir = args.results_dir or Path(cfg.results_dir)
     output_dir = args.output_dir or results_dir
 
     files = find_result_files(results_dir)
 
+    # Optionally narrow to specific runs, failing early on unknown names.
     if args.names:
         by_name = {path.stem: path for path in files}
         missing = [name for name in args.names if name not in by_name]
@@ -319,7 +375,8 @@ def main() -> None:
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Print the main results table.
+    # Print the main results table. The console view is a trimmed version of
+    # the CSV: identity columns, every task's quality, throughput, and memory.
     display_columns = [
         column for column in table.columns
         if column.endswith("_quality")
@@ -340,7 +397,6 @@ def main() -> None:
     csv_file = output_dir / "kv_cache_workload_summary.csv"
     save_csv(table, csv_file)
 
-    
     # Generate separate plots for each task.
     quality_columns = [
         column for column in table.columns
@@ -358,6 +414,7 @@ def main() -> None:
         if task_table.empty:
             continue
 
+        # One folder per task keeps the charts organized.
         task_dir = plots_dir / task
         task_dir.mkdir(parents=True, exist_ok=True)
 
@@ -385,7 +442,6 @@ def main() -> None:
 
     print(f"Saved: {csv_file}")
     print(f"Task-specific charts saved in: {plots_dir}")
-
 
     print(f"Saved: {csv_file}")
     print(f"Task-specific charts saved in: {plots_dir}")

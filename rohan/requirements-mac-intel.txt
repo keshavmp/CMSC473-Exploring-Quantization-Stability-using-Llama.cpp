@@ -1,0 +1,19 @@
+# Repository requirements adapted for an Intel (x86_64) Mac.
+# torch 2.2.2 is the last release with macOS x86_64 wheels.
+# llama_cpp_python is omitted: evaluation talks to the Homebrew llama-server.
+lm_eval==0.4.13
+transformers==5.17.0
+torch==2.2.2
+datasets==5.0.1
+evaluate==0.4.6
+accelerate==1.15.0
+requests==2.34.2
+tqdm==4.70.1
+numpy
+huggingface_hub
+langdetect
+immutabledict
+pytest
+matplotlib
+pandas
+psutil

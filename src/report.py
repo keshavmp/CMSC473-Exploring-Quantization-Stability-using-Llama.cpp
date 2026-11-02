@@ -5,6 +5,8 @@ becomes one column, so new models and new tasks are picked up automatically.
 
     python src/report.py                     # compare every run
     python src/report.py chat-q4 uniform-q4  # only these runs, in this order
+    python src/report.py --experiment pure-sweep
+    python src/report.py --experiment pilot --experiment pure-sweep
 """
 
 import argparse
@@ -25,9 +27,9 @@ except ModuleNotFoundError:  # running directly: python src/report.py
 # Preferred metric per task; tasks not listed use the first numeric,
 # non-stderr metric found in their results.
 PRIMARY_METRICS = {
-    "gsm8k": "exact_match,strict-match",
+    "gsm8k": "exact_match,flexible-extract",
     "ifeval": "prompt_level_strict_acc,none",
-    "mmlu_college_computer_science": "acc,none",
+    "hellaswag": "acc,none",
 }
 
 
@@ -65,7 +67,12 @@ def model_size_mib(path: Path) -> float | None:
     size = settings.get("model_size_bytes")
     if size is None:
         root = path.parent.parent.parent if nested else path.parent.parent
+        results_root = next((parent for parent in path.parents if parent.name == "results"), None)
+        if results_root is not None:
+            root = results_root.parent
         model = Path(settings.get("model_file") or root / "models" / f"{run_name(path)}.gguf")
+        if not model.is_absolute():
+            model = root / model
         if not model.is_file():
             return None
         size = model.stat().st_size
@@ -214,57 +221,97 @@ def build_stability_table(files: list[Path], baseline: Path | None) -> pd.DataFr
     return pd.DataFrame(records, columns=columns)
 
 
+def select_baseline(files: list[Path], name: str | None, source_name: str) -> Path | None:
+    """Resolve a reference within this experiment, before filtering report rows."""
+    by_name = {run_name(path): path for path in files}
+    if name is not None:
+        if name not in by_name:
+            raise ValueError(f"no baseline results for: {name}")
+        return by_name[name]
+    for candidate in ("BF16-pure-sweep", source_name):
+        if candidate in by_name:
+            return by_name[candidate]
+    limited = [path for path in files if run_name(path).startswith("BF16-pure-sweep-limit")]
+    return limited[0] if len(limited) == 1 else None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "names",
         nargs="*",
-        help="run names to include (default: every results/<name>/metrics.json)",
+        help="run names to include from the selected experiments (default: every run)",
     )
-    parser.add_argument("--baseline", default=Config().source_model.stem,
-                        help="reference run for question-level correctness comparisons")
+    parser.add_argument("--experiment", action="append", default=[], metavar="NAME",
+                        help="experiment to report; repeat to compare experiments")
+    parser.add_argument("--output-dir", type=Path,
+                        help="report destination (required when comparing multiple experiments)")
+    parser.add_argument("--baseline",
+                        help="reference run in each experiment (default: detect BF16)")
     args = parser.parse_args()
 
     cfg = Config()
-    files = find_result_files(cfg.results_dir)
-    baseline = next((path for path in files if run_name(path) == args.baseline), None)
-    if args.names:
-        by_name = {run_name(path): path for path in files}
-        missing = [name for name in args.names if name not in by_name]
-        if missing:
-            parser.error(f"no results for: {', '.join(missing)}")
-        files = [by_name[name] for name in args.names]
+    experiments = list(dict.fromkeys(args.experiment)) or [None]
+    multiple = len(experiments) > 1
+    if multiple and args.output_dir is None:
+        parser.error("--output-dir is required when comparing multiple experiments")
+    try:
+        scopes = [cfg.with_overrides(experiment=name) for name in experiments]
+    except ValueError as error:
+        parser.error(str(error))
 
-    if not files:
-        parser.error(f"no result files in {cfg.results_dir}")
-
-    table = build_table(files)
+    tables, stabilities = [], []
+    for scope in scopes:
+        files = find_result_files(scope.results_dir)
+        if not files:
+            parser.error(f"no result files in {scope.results_dir}")
+        try:
+            baseline = select_baseline(files, args.baseline, cfg.source_model.stem)
+        except ValueError as error:
+            parser.error(f"{scope.results_dir}: {error}")
+        if args.names:
+            by_name = {run_name(path): path for path in files}
+            missing = [name for name in args.names if name not in by_name]
+            if missing:
+                parser.error(f"{scope.results_dir}: no results for: {', '.join(missing)}")
+            files = [by_name[name] for name in args.names]
+        table = build_table(files)
+        stability = build_stability_table(files, baseline)
+        if multiple:
+            table.index = [f"{scope.experiment}/{name}" for name in table.index]
+            stability["run"] = scope.experiment + "/" + stability["run"]
+        tables.append(table)
+        stabilities.append(stability)
+        reference = run_name(baseline) if baseline is not None else "BF16 (not found)"
+        print(f"Baseline in {scope.results_dir}: {reference}")
+    table = pd.concat(tables)
+    stability = pd.concat(stabilities, ignore_index=True)
+    output_dir = args.output_dir if args.output_dir is not None else scopes[0].results_dir
 
     print("\n" + table.to_string(na_rep="-") + "\n")
 
-    cfg.results_dir.mkdir(parents=True, exist_ok=True)
-    csv_file = cfg.results_dir / "summary.csv"
-    plot_file = cfg.results_dir / "summary.png"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    csv_file = output_dir / "summary.csv"
+    plot_file = output_dir / "summary.png"
     save_csv(table, csv_file)
     save_plot(table, plot_file)
 
-    kl_plot = cfg.results_dir / "kl_summary.png"
+    kl_plot = output_dir / "kl_summary.png"
     if any(col.startswith("kl_") for col in table):
         save_kl_plot(table, kl_plot)
         print(f"Saved: {kl_plot}")
 
     if "size_mib" in table:
-        size_plot = cfg.results_dir / "size_quality.png"
+        size_plot = output_dir / "size_quality.png"
         save_size_plot(table, size_plot)
         print(f"Saved: {size_plot}")
 
-    stability = build_stability_table(files, baseline)
-    stability_file = cfg.results_dir / "stability.csv"
+    stability_file = output_dir / "stability.csv"
     stability.to_csv(stability_file, index=False)
     if stability.empty:
-        print(f"No matching samples for baseline {args.baseline}; rerun it with sample logging.")
+        print("No matching baseline samples; stability.csv contains headers only.")
     else:
-        print(f"\nCorrectness changes versus {args.baseline}:\n{stability.to_string(index=False)}\n")
+        print(f"\nCorrectness changes versus each experiment's baseline:\n{stability.to_string(index=False)}\n")
     print(f"Saved: {stability_file}")
     print(f"Saved: {csv_file}")
     print(f"Saved: {plot_file}")
