@@ -12,3 +12,4 @@ langdetect
 immutabledict
 pytest
 matplotlib
+pandas
