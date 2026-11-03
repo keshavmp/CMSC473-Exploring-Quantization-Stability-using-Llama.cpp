@@ -1,0 +1,6 @@
+run,calibration,precision,imatrix,model,size_mib,status,log
+uniform_q4,none,Q4_K_M,,models/imatrix_quants/Llama-3.2-1B-Instruct-uniform_q4.gguf,770.28,skipped_existing,results/imatrix_quantization/uniform_q4.log
+chat_q4_imatrix,chat,Q4_K_M,models/imatrix/chat.imatrix.gguf,models/imatrix_quants/Llama-3.2-1B-Instruct-chat_q4_imatrix.gguf,770.28,skipped_existing,results/imatrix_quantization/chat_q4_imatrix.log
+math_q4_imatrix,math,Q4_K_M,models/imatrix/math.imatrix.gguf,models/imatrix_quants/Llama-3.2-1B-Instruct-math_q4_imatrix.gguf,770.28,skipped_existing,results/imatrix_quantization/math_q4_imatrix.log
+code_q4_imatrix,code,Q4_K_M,models/imatrix/code.imatrix.gguf,models/imatrix_quants/Llama-3.2-1B-Instruct-code_q4_imatrix.gguf,770.28,skipped_existing,results/imatrix_quantization/code_q4_imatrix.log
+chat_mixed_q4_q6,chat,Q4_K_M,models/imatrix/chat.imatrix.gguf,models/imatrix_quants/Llama-3.2-1B-Instruct-chat_mixed_q4_q6.gguf,795.03,completed,results/imatrix_quantization/chat_mixed_q4_q6.log
