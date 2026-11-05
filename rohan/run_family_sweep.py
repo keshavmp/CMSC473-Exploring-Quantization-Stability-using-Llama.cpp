@@ -10,7 +10,7 @@ import argparse
 import shutil
 from pathlib import Path
 
-from src.config import Config
+from src.config import LLAMA_BUILD_DIR, Config
 from src.evaluate import resolve_tasks
 from src.experiment import run_experiments
 from src.kl import evaluate_kl, prepare_texts
@@ -22,9 +22,12 @@ ROHAN_DIR = Path(__file__).resolve().parent
 
 
 def tool(name: str) -> Path:
-    """Homebrew llama.cpp binaries; Config's macOS defaults point to a source build."""
+    """The ../llama.cpp source build, else PATH (Config's macOS defaults add .exe)."""
+    built = LLAMA_BUILD_DIR / name
+    if built.is_file():
+        return built
     found = shutil.which(name)
-    return Path(found) if found else Path("/usr/local/bin") / name
+    return Path(found) if found else built
 
 
 # One entry per model family. The source GGUF is downloaded from Hugging Face;
@@ -32,18 +35,21 @@ def tool(name: str) -> Path:
 FAMILIES = {
     "qwen": {
         "experiment": "Qwen_Pure_Sweep",
+        "model": "Qwen2.5-1.5B-Instruct",
         "hf_repo": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
         "hf_filename": "qwen2.5-1.5b-instruct-fp16.gguf",
         "source_type": "F16",  # no BF16 GGUF is published for Qwen2.5-1.5B
     },
     "gemma": {
         "experiment": "Gemma_Pure_Sweep",
+        "model": "gemma-3-1b-it",
         "hf_repo": "unsloth/gemma-3-1b-it-GGUF",
         "hf_filename": "gemma-3-1b-it-BF16.gguf",
         "source_type": "BF16",
     },
     "llama": {
         "experiment": "Llama_Pure_Sweep",
+        "model": "Llama-3.2-1B-Instruct",
         "hf_repo": "unsloth/Llama-3.2-1B-Instruct-GGUF",
         "hf_filename": "Llama-3.2-1B-Instruct-BF16.gguf",
         "source_type": "BF16",
@@ -87,7 +93,7 @@ def family_configs(family: str) -> list[Config]:
     for label, recipe in PURE_QUANT_TYPES.items():
         configs.append(base.with_overrides(
             name=f"pure-{label}-sweep",
-            model_file=models / f"pure-{label}.gguf",
+            model_file=models / f"{spec['model']}-pure-{recipe}.gguf",
             quantization_type=recipe,
             pure_quantization=True,
         ))
@@ -97,7 +103,7 @@ def family_configs(family: str) -> list[Config]:
 def check_tools():
     for path in (BASE.llama_server, BASE.quantize_tool, BASE.llama_perplexity):
         if not path.is_file():
-            raise SystemExit(f"Missing llama.cpp tool: {path}. Run: brew install llama.cpp")
+            raise SystemExit(f"Missing llama.cpp tool: {path}. See 'Setup' in rohan/README.md")
 
 
 def check_models(families: list[str], download: bool = False):

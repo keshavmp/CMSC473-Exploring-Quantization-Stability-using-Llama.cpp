@@ -1,0 +1,41 @@
+{
+  "name": "BF16-pure-sweep",
+  "experiment": "Qwen_Pure_Sweep",
+  "project_root": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan",
+  "llama_server": "/Users/rohant/Documents/llama.cpp/build/bin/llama-server",
+  "llama_imatrix": "/Users/rohant/Documents/llama.cpp/build/bin/llama-imatrix.exe",
+  "quantize_tool": "/Users/rohant/Documents/llama.cpp/build/bin/llama-quantize",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "context_size": 2048,
+  "gpu_layers": "0",
+  "server_start_timeout": 300,
+  "request_workers": 4,
+  "request_timeout": 900,
+  "server_log_verbosity": 3,
+  "model_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/qwen/qwen2.5-1.5b-instruct-fp16.gguf",
+  "source_model": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/qwen/qwen2.5-1.5b-instruct-fp16.gguf",
+  "hf_repo": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+  "hf_filename": "qwen2.5-1.5b-instruct-fp16.gguf",
+  "tasks": [
+    "gsm8k",
+    "ifeval",
+    "hellaswag"
+  ],
+  "num_examples": null,
+  "task_sample_caps": {
+    "gsm8k": 100,
+    "ifeval": 50,
+    "hellaswag": 200
+  },
+  "quantization_type": "F16",
+  "pure_quantization": false,
+  "num_fewshot": 0,
+  "batch_size": 1,
+  "kl_enabled": true,
+  "llama_perplexity": "/Users/rohant/Documents/llama.cpp/build/bin/llama-perplexity",
+  "kl_text_dir": null,
+  "kl_context_size": 512,
+  "kl_chunks": 2,
+  "model_size_bytes": 3560416288
+}

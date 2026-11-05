@@ -29,8 +29,21 @@ These match `run_evaluation.py` except for the sample caps and the device:
 
 ## Setup (once)
 
+On this Intel Mac, `brew install llama.cpp` compiles LLVM, Rust and Node from
+source, which takes hours. Build llama.cpp itself instead, next to this repo
+(`../llama.cpp/build/bin`, where `src/config.py` looks on macOS):
+
 ```bash
-brew install llama.cpp
+git clone --depth 1 https://github.com/ggml-org/llama.cpp.git ../llama.cpp
+cmake -S ../llama.cpp -B ../llama.cpp/build -DGGML_METAL=OFF -DLLAMA_CURL=OFF \
+  -DLLAMA_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build ../llama.cpp/build -j 8 \
+  --target llama-server llama-quantize llama-perplexity llama-bench
+```
+
+Then set up Python:
+
+```bash
 /usr/local/bin/python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -r rohan/requirements-mac-intel.txt
@@ -84,6 +97,13 @@ python -m rohan.report_families
   `results/family_comparison.png`, one panel per task plus mean KL. The
   original GPU Llama sweep appears as a gray dashed reference line. Its sample
   sizes and hardware differ, so compare its trend rather than exact numbers.
+
+For the full write-up (figures, re-scored GSM8K, tensor-type check, comparison
+with `results/Pure_Sweep/` and `results/task21_kv_workloads/`):
+
+```bash
+python -m rohan.analyze_findings   # writes rohan/results/findings/
+```
 
 To add a family (e.g. Mistral), add an entry to `FAMILIES` in
 `run_family_sweep.py` with its Hugging Face repo and source filename.

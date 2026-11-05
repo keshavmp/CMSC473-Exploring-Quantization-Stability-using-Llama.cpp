@@ -1,0 +1,41 @@
+{
+  "name": "pure-q5-sweep-limit3",
+  "experiment": "Gemma_Pure_Sweep-limit3",
+  "project_root": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan",
+  "llama_server": "/Users/rohant/Documents/llama.cpp/build/bin/llama-server",
+  "llama_imatrix": "/Users/rohant/Documents/llama.cpp/build/bin/llama-imatrix.exe",
+  "quantize_tool": "/Users/rohant/Documents/llama.cpp/build/bin/llama-quantize",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "context_size": 2048,
+  "gpu_layers": "0",
+  "server_start_timeout": 300,
+  "request_workers": 4,
+  "request_timeout": 900,
+  "server_log_verbosity": 3,
+  "model_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/gemma/gemma-3-1b-it-pure-Q5_K_M.gguf",
+  "source_model": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/gemma/gemma-3-1b-it-BF16.gguf",
+  "hf_repo": null,
+  "hf_filename": null,
+  "tasks": [
+    "gsm8k",
+    "ifeval",
+    "hellaswag"
+  ],
+  "num_examples": null,
+  "task_sample_caps": {
+    "gsm8k": 3,
+    "ifeval": 3,
+    "hellaswag": 3
+  },
+  "quantization_type": "Q5_K_M",
+  "pure_quantization": true,
+  "num_fewshot": 0,
+  "batch_size": 1,
+  "kl_enabled": false,
+  "llama_perplexity": "/Users/rohant/Documents/llama.cpp/build/bin/llama-perplexity",
+  "kl_text_dir": null,
+  "kl_context_size": 512,
+  "kl_chunks": 2,
+  "model_size_bytes": 742027552
+}
