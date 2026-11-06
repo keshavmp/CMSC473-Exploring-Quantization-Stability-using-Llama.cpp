@@ -1,0 +1,34 @@
+{
+  "baseline": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\models\\qwen\\qwen2.5-1.5b-instruct-fp16.gguf",
+  "direction": "BF16 || evaluated model",
+  "units": "nats",
+  "domains": {
+    "chat": {
+      "mean": -9e-06,
+      "median": -6e-06,
+      "p95": 0.0,
+      "uncertainty": 0.0,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\data\\kl\\chat.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\results\\Qwen_Pure_Sweep_full_gpu\\_kl_reference\\022b59a43ca954cb\\reference.kld"
+    },
+    "code": {
+      "mean": -7e-06,
+      "median": -5e-06,
+      "p95": 0.0,
+      "uncertainty": 0.0,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\data\\kl\\code.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\results\\Qwen_Pure_Sweep_full_gpu\\_kl_reference\\7dfdf2e3db6fc6f2\\reference.kld"
+    },
+    "math": {
+      "mean": -3e-06,
+      "median": -0.0,
+      "p95": 0.0,
+      "uncertainty": 0.0,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\data\\kl\\math.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\results\\Qwen_Pure_Sweep_full_gpu\\_kl_reference\\bcefbbba3579b6b2\\reference.kld"
+    }
+  }
+}

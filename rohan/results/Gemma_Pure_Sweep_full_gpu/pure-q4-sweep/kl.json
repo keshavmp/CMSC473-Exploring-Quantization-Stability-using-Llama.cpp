@@ -1,0 +1,34 @@
+{
+  "baseline": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\models\\gemma\\gemma-3-1b-it-BF16.gguf",
+  "direction": "BF16 || evaluated model",
+  "units": "nats",
+  "domains": {
+    "chat": {
+      "mean": 0.107317,
+      "median": 0.024137,
+      "p95": 0.333008,
+      "uncertainty": 0.017198,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\data\\kl\\chat.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\results\\Gemma_Pure_Sweep_full_gpu\\_kl_reference\\ab4665c8f5b135af\\reference.kld"
+    },
+    "code": {
+      "mean": 0.093608,
+      "median": 0.006523,
+      "p95": 0.414698,
+      "uncertainty": 0.012046,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\data\\kl\\code.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\results\\Gemma_Pure_Sweep_full_gpu\\_kl_reference\\a89a92659270da31\\reference.kld"
+    },
+    "math": {
+      "mean": 0.083551,
+      "median": 0.000551,
+      "p95": 0.396902,
+      "uncertainty": 0.011497,
+      "tokens": 510,
+      "text_file": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\data\\kl\\math.txt",
+      "reference": "C:\\Users\\Owner\\Desktop\\Capstone in ML\\rohan-full-gpu\\rohan\\results\\Gemma_Pure_Sweep_full_gpu\\_kl_reference\\ebad0c9bf07a565a\\reference.kld"
+    }
+  }
+}
