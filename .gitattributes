@@ -1,0 +1,3 @@
+# Preserve the bytes used by the recovery publication's SHA256 checks.
+results/published/imatrix_recovery/*.csv text eol=lf
+src/report_imatrix_recovery.py text eol=lf
