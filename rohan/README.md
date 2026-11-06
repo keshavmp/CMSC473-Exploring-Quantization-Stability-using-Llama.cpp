@@ -98,5 +98,12 @@ python -m rohan.report_families
   original GPU Llama sweep appears as a gray dashed reference line. Its sample
   sizes and hardware differ, so compare its trend rather than exact numbers.
 
+For the full write-up (figures, re-scored GSM8K, tensor-type check, comparison
+with `results/Pure_Sweep/` and `results/task21_kv_workloads/`):
+
+```bash
+python -m rohan.analyze_findings   # writes rohan/results/findings/
+```
+
 To add a family (e.g. Mistral), add an entry to `FAMILIES` in
 `run_family_sweep.py` with its Hugging Face repo and source filename.
