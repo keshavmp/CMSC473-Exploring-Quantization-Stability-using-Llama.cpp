@@ -13,3 +13,4 @@ immutabledict
 pytest
 matplotlib
 pandas
+scipy

@@ -1,0 +1,222 @@
+{
+  "experiment": "Imatrix_Recovery_Sweep_full_kl4",
+  "n_models": 24,
+  "source_sha256": "f5d05e90d179fa27c01a049be1574a0201bdc09ba0b345eb85e1dbf3b87610f3",
+  "recipes": {
+    "q2": "Q2_K",
+    "q3": "Q3_K_M",
+    "q4": "Q4_K_M",
+    "q5": "Q5_K_M",
+    "q6": "Q6_K",
+    "q8": "Q8_0"
+  },
+  "task_counts": {
+    "gsm8k": 1000,
+    "ifeval": 541,
+    "hellaswag": 2000
+  },
+  "calibration_coverage": {
+    "chat": {
+      "matrix_sha256": "7248e7ef4f24a82ddcb16784819a697cb78c23ee3198cb6fae3a19c2aaf21b40",
+      "calibration_sha256": "63747dd8585f5186c0c62d33802895ae94b79fa5d7bc26335606aced13567d2a",
+      "chunks": 699,
+      "chunk_size": 512
+    },
+    "math": {
+      "matrix_sha256": "65735af792e941e5e5771178fb066a376235bf522f6ccf2490cfabd9d260c76f",
+      "calibration_sha256": "17a6fade7117623fac95c1f5b558ef8b67f8ae7df4eed708a03145d427b1cc18",
+      "chunks": 97,
+      "chunk_size": 512
+    },
+    "code": {
+      "matrix_sha256": "cb577a9bfa1fc5367f6d58ce388e266f59f34ba63020e27eaf0a8591002ec48b",
+      "calibration_sha256": "bdc3c94fc8d0385a4644fd4785bd6fd7c55d31c4edc39831b51cc3f541f9b0b1",
+      "chunks": 49,
+      "chunk_size": 512
+    }
+  },
+  "kl_tokens_per_domain": 1020,
+  "historical_bf16_scores_pct": {
+    "gsm8k_pct": 20.200000000000003,
+    "ifeval_pct": 42.883548983364136,
+    "hellaswag_acc_norm_pct": 56.15
+  },
+  "q8_negative_control": {
+    "payload_sha256": {
+      "control": "75ec96203c24dc8d1f317e5cb0a5c61b35dd3b70bca92c620aa9676d18e05b70",
+      "code": "75ec96203c24dc8d1f317e5cb0a5c61b35dd3b70bca92c620aa9676d18e05b70",
+      "math": "75ec96203c24dc8d1f317e5cb0a5c61b35dd3b70bca92c620aa9676d18e05b70",
+      "chat": "75ec96203c24dc8d1f317e5cb0a5c61b35dd3b70bca92c620aa9676d18e05b70"
+    },
+    "all_identical": true,
+    "definition": "SHA256 over sorted tensor name, stored type, dimensions and raw tensor bytes; excludes GGUF metadata"
+  },
+  "input_hashes": {
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\sweep_plan.json": "7aaa735b4600cabec1f63748d5531c412befef46afbd766b5c34ebfb0452cd39",
+    "results\\Pure_Sweep\\BF16-pure-sweep\\metrics.json": "c3b499a882610e6095488a16b60f450048fc2ef22b64e36c435a1c99405f896b",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\quantization_manifest_q2.json": "dbd3de196951ca79f6ef3f14afba6176b8feae4ff309ff8d25fb7790335de71a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-control\\metrics.json": "3f74c265334927e41dc4df458b58ab04b1b3493f4f37e8446a652c4f27353a19",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-control\\metadata.json": "91025ff89c431f0502ea8b0d37cc80690b0152de7fa8d9e20e59408e0ee9cc0c",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-control\\samples.json": "aa756f13753d36b36bc5d32a0fef0187d0bfe39b34307d28a86ea2cc1aa85a79",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-control\\kl.json": "71499e9a687e661b2091eb43c3feba45aeccf9d8613bce714184d33b7001abf1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-code\\metrics.json": "ca9ec2d8ba077a0d3816e045cea4c02e344823ff16a4d5d1bac9cd036e14b456",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-code\\metadata.json": "520e5e9a72639f5e5640c4090318552e482ee4e7ba944b9b5f66a86ae413f48b",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-code\\samples.json": "0009b8401503dc526576185ec9845d5da268927cec369e022a22a323954757b1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-code\\kl.json": "d0212b8dd2fae40a9a42ec3b9630435c1672bd95f2cee633e88340d1c290c646",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-math\\metrics.json": "8e1a5618ebd88e68cd4c46d760c825347b18ce35123632dc5dd2fe02b469da86",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-math\\metadata.json": "50534d0d9cfc82474f0c3ccdf2850bd65767b52f505deb8440980d2f9e329951",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-math\\samples.json": "8aac64e2d04e94d3d9020d9d349c2a166334f647dc9613ee238c15ac2228b9a1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-math\\kl.json": "f3068a934b254491b7e0e71f622cd12700371f230fc6b2721ea91bd8c371eaba",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-chat\\metrics.json": "4792b899543a5d2d07959c83231d8dd863e030abe9eb8feb8775b6e47978da36",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-chat\\metadata.json": "26009a0e99278d5303f2cb9c7d0257976e1f2260b2603c3d5e10743fdef9e868",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-chat\\samples.json": "ee9eecfaef3febb4f339fb00839db674cdd2b7bd01f3352d952e75e39fce6f9d",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q2-chat\\kl.json": "f94a7bbc5908875f22e020e9e61c0fe8f72af5bea8c64d5be4730caf04db0e49",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\local_errors\\q2\\local_errors.csv": "fc7155b58991d54d2b3af886bafa40881606e49f7939b72ffe446609f097d423",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\quantization_manifest_q3.json": "a0704160f54565cebb318a614a9ef26e69eab85ac85777050b71fa6c21fe387b",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-control\\metrics.json": "d8d1f538121b4c9c03bec0f282e710072919b7af9ab1367e20a176f4ddc39ed5",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-control\\metadata.json": "30658bfa036d6be52a1014d3a2b2954e5c6616393fe90fe82c38ec732921073e",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-control\\samples.json": "a22b2470423e88c31be1d11982d12bd9a17440443a6b132ae88de79e548e4e88",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-control\\kl.json": "aaa8f83fd56f23062f17d17128c22d92568b73c29f48a4425bb6b417c6fcb86a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-code\\metrics.json": "969b266e1b06b4bbbd05bb02b55c2a047af63a871fb9cccc1394d5b2da33113a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-code\\metadata.json": "d61f2d327146e1e32eba82095cda471fd896f3de1c221d67599da4aeb53bee8b",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-code\\samples.json": "64f373e310f38629402e5bbe6896e1492749061ed0261bac707ea86c548f949d",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-code\\kl.json": "938c9fd8ccbcb350b5855bbd03b2ee5e25396f4619d03cb9e2f2ee39adc9fd8a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-math\\metrics.json": "504d91c01d79b16827335d4a2a220ddca00469b39d05ec59a56fee7c5c23daef",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-math\\metadata.json": "7ee78ab7c60d8db2b68e1997430c9cd1e2dc8accbd83965e420af06ef245caf3",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-math\\samples.json": "4c3fd39b72ea42e22d6b4a69176ed06b5a4816f7887bd0a43caf0c8530843738",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-math\\kl.json": "7d95c3b36cb413c7b0cb0f6179c282ee99a0be0cd250dae22e8c3d0e8b6c0b3c",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-chat\\metrics.json": "df8971f072bb54005111a37f6c47800ce2ab9248b0f4512476a5dd90a5c3df17",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-chat\\metadata.json": "4bfbfc08d2583a528060a61ef4a769d621c11635d47de2812f075bcc47112817",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-chat\\samples.json": "f7ad0a86b153a52e4c3ea288b88c8e7d7c0fd6e9e581c1bdaec152086b89a7a4",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q3-chat\\kl.json": "077665805bce2f646f0fb43d05961dacf2afaf0a0007b22d9a2849e5abce7499",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\local_errors\\q3\\local_errors.csv": "a054c7dfea871d433e45a765412ffab59d1ffcf85cf2e1c02ff4641f6280d338",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\quantization_manifest_q4.json": "b0910bd2c107eb34d1d6acfd0fec1d06af289685958ce4e36042523f99b0e39a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-control\\metrics.json": "ad7d1ee7354cf0627ed4c816241a4c7793b41833e4a01bba1e30d428c66f1b83",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-control\\metadata.json": "5d046e426a6dd839bfd9f17ce50a520abba0237e25959ac4652f090b285168c5",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-control\\samples.json": "5be58f7790cb43649cf84265a85215b8a2065ae8fffbb1c63b0dff68415ce59a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-control\\kl.json": "a611093d1387ad18882a6a609db61e1749bd7c9910e60f9bf2a3fbf0c7b29ae1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-code\\metrics.json": "27953869205fc82f56a760875f0ebc05c1c1ee8cd0e9d1d3e4225d61329ea7f9",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-code\\metadata.json": "6dba13145f81f9b794c11932134f6b29247153fbeb56d5ed030b362e30956a1c",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-code\\samples.json": "7b70fc4b9e98d3fd0d372a23eede5bb0eb26defabb2b2ebc1d91a97d57e4730d",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-code\\kl.json": "1d7334ef7e6093f279e4b23a5f48376ae17672733241193664a54f1adbe51a88",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-math\\metrics.json": "9f15be296f8a406b495cf3a3842af771f9d208c0d8ae12d12f4b5dcaadf472ef",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-math\\metadata.json": "30aacb9ef4b777dd9a2dc3ffb5d899b72c58ad96b4b87ed5c358c6f5b146b984",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-math\\samples.json": "dba41e7269e8b82488cec79ac6250fdd2d5f9f5330f790f0783a4f3ffdd0c815",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-math\\kl.json": "dbae26a64df3cc3013aac75f76724c4d4cfd7ef12e5e34f6fac619ce0bca46da",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-chat\\metrics.json": "4cbbf8dbc4374782cc57aec14387bf3e34add47cdbb9bb435c4e335abe8bcebc",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-chat\\metadata.json": "57be270ebe1d561a8d27ca2c6ac1f22ab5996f2178908e24a6b2d3797c7114e2",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-chat\\samples.json": "7d964c87eb5fb9c79134b57d554d51be1545213703f216b219e309d97c8317f1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q4-chat\\kl.json": "38d439643aa24eee72fec373ece5afd857fc06338d3e982d8db2e77d80e28503",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\local_errors\\q4\\local_errors.csv": "f51ac3eb6bc3200ce6e3ce7f0b8ec2cf64c22ac2126924ef2c7e5d18e72736c1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\quantization_manifest_q5.json": "dff129b8639580555ea5ff776799c565dd094996ec9b9e0f9f96adc375b07201",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-control\\metrics.json": "cd2d30ce37e40696f56664bca857d79f7f64bb1713e393650cb285f6c02d96fd",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-control\\metadata.json": "c50b860bc67a5952fe57a676fa9a09c15d7ffa46463bf5a01547a89f155a3380",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-control\\samples.json": "af413e6fc2482df07081b193bf5150cc4fe1fb5a9b7bbf7d1bf559c9842e45df",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-control\\kl.json": "d0617f0d9183c2cd9c3687591ddd9538891083349e9b25cb20eefcee800a805e",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-code\\metrics.json": "a51175f445f318d83783fde2729a8383f1983854a682546c42743ad7a7fb9222",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-code\\metadata.json": "76169f4580522bf55c7e1ff82acdc3d5d3ada4bc60b777a5386495f12b78b3ab",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-code\\samples.json": "03c748fdf411ca4c9fcf2cc33061820157e746e1491e0699f0e2e08dc044e0f8",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-code\\kl.json": "87f52b20485a741b7598acadd6d9a5549336dfd5259eb69e43ab901a2c2b3d48",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-math\\metrics.json": "ae2466c11d34eb48ecc62569825da833480bdae9bde4056879d2a8399be3b0ba",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-math\\metadata.json": "0f10e4aeca8f47570e16ff2df2813a23fb10fcf114abf4723871946a36478698",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-math\\samples.json": "c67db89cb3786e2eec3150f4ab8ea124f410c77880dbf1d5300f92e434bdb265",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-math\\kl.json": "93ff7833de2605d971244dd123bcdc0ac1a1a66525a83f4cadb23ec7fe364b6a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-chat\\metrics.json": "e7e7ac39b9df4d6c7e8771f04a80d4b1080b93a0a6beb3486bc42053aafb1cd5",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-chat\\metadata.json": "2586a92597dcd3ad58e8a33b6b2c43f7ec5c905217ff5eb291acb40578dd89fe",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-chat\\samples.json": "6d0133977f2b063395e98ca26abd29e855c7538d95d87bf12f5ccbc3c1d75e1e",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q5-chat\\kl.json": "084e3f5c8004c50496782a1a79c01b3479cd4439a91b6322560a85d7cc55d21f",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\local_errors\\q5\\local_errors.csv": "53dd5f7153602986c2975d72a4e5be4e552bdc689728446dd048cf58074170a6",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\quantization_manifest_q6.json": "24062083b720ce3ecd54c20be76e13aa1074c607e2e9ce862e308934f0d38a48",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-control\\metrics.json": "0804cb3efbc110b456b8e0718d710a992c1e81962687f98f915dd00472805037",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-control\\metadata.json": "bb89802e448f3c083082e88aafce86924a0b7d4446adb9fd78618d7c23f35d6f",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-control\\samples.json": "bea9d226c82b1ac69477e7debc40b179928ebc4a02bc3b6172f717c0698ca003",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-control\\kl.json": "e0e1b941cebaa2e65d7495f6adff370c41c8193d6e88ba8d0005d9bc841d42ab",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-code\\metrics.json": "56f6cb8739d6bb5fe367d038d9913fe0e7842c03f559f9823c80d6f3946d82fa",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-code\\metadata.json": "da189f6ba8fc783eb107ab0d5e609576f6847cc68de0bf7eff0d16b50eb7c6ec",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-code\\samples.json": "1d1db50fd2dcf8181e26863f76f5e1b7ec3ceb12f3b487674408acaa7668f2ab",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-code\\kl.json": "d179f9b2f0753ecc15191d74b43c1ec8d2eff748bc53de35e21151d845a7df16",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-math\\metrics.json": "ae8766b3010e8f855074476350fe31f0d9a8fc046900624c835f1f817e4f4965",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-math\\metadata.json": "fb856d6cde79ae97c174ed9ca6bfac0d1c6324665c4b1d127da8cb20f12cba51",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-math\\samples.json": "9537e4f1a736b16f0196756423315079a3c4d28cba62aa2e3bf08adbfc861e3f",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-math\\kl.json": "47bb65a33552071ac7352cae5a42153bdaf355a01dcefd5184b51552b1861557",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-chat\\metrics.json": "e5319142cbd1faba506106a533530dffabf56e59d2271d14c50defdc4ab8c3f5",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-chat\\metadata.json": "1fc553d0364c644d7997dce6e2560afe684af8df1ca8e6beeafc64a26f758d4a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-chat\\samples.json": "61c9a67f459d5717ed5ba8e26c14e4ec82e776f38c1ca2ccef385c2daa0c360c",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q6-chat\\kl.json": "0d80027d7924555ec049f2260408aa8b73088eae3c7c597835ab558314e8c627",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\local_errors\\q6\\local_errors.csv": "c102a163fb685f2ed7ed01930ac706e2ea8268476337d2cc58266eb6db96da50",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\quantization_manifest_q8.json": "175ee18a7cf85d8719ea37f98ed46393374d3bf1c8640ff3124c45f8ffd52966",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-control\\metrics.json": "46be0e4b34be472e6e4b017384e2b2cc823cc23d626bd545a41a391a41944178",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-control\\metadata.json": "aa95692ee0c55457de97de25df974433c30b9dc038bed198d7182d20aa5269a3",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-control\\samples.json": "6faa389e4f79ca9f748ad8ef4e000b91630a9d26a7869cd695f31b41540cf5a1",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-control\\kl.json": "f5b14c4617c52a5a2535af73e7fc9f40106665ef77ecade2c94a6f5b229c53c0",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-code\\metrics.json": "d5f0f01f56270fb58debc7a69b134ed362dd4fa4c2fc3073c5e287245914c5de",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-code\\metadata.json": "3eca185f727355e25803a90de9ae0e5d8b9ad0121f9d3764c263671a064a4e28",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-code\\samples.json": "039b98c4ad03e428d01e34238df1a6d1370941f4babe1825e7e2ae04c19db71e",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-code\\kl.json": "f5b14c4617c52a5a2535af73e7fc9f40106665ef77ecade2c94a6f5b229c53c0",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-math\\metrics.json": "68df29005f807fe895e12421e81c38382078a9b297304e66e8b5c6fc791d381c",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-math\\metadata.json": "fc9b0a71abf2148738f35c28ec064e640a41de18feec893e4fb4e084a7c7b238",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-math\\samples.json": "ff66130970095ad3baa44a8145c2714f60f7dd768ba0424c29fd46f833677af0",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-math\\kl.json": "f5b14c4617c52a5a2535af73e7fc9f40106665ef77ecade2c94a6f5b229c53c0",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-chat\\metrics.json": "a957c684f178f135c847bc33b8c1cb7aed1b842338cf5536b56a4757db1932ef",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-chat\\metadata.json": "9e9d2d2b84dc1875ce5e3ce56b08d7035a1f289564fe59527c963578fd3b7d91",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-chat\\samples.json": "446dd6f855353a70fdf733315d5bca78f388a3f02c166ad5d95ffb00572cf62a",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\mixed-q8-chat\\kl.json": "f5b14c4617c52a5a2535af73e7fc9f40106665ef77ecade2c94a6f5b229c53c0",
+    "results\\Imatrix_Recovery_Sweep_full_kl4\\local_errors\\q8\\local_errors.csv": "8f1d5e0a09f467be86b5f45973d9b9b15f7fbfe3b2dd83bc3843458d5314434c"
+  },
+  "statistics": {
+    "bootstrap": "10000 paired question resamples, compressed to multinomial wins/losses/ties; seed 473; pointwise 95% intervals",
+    "paired_test": "Two-sided exact McNemar/binomial discordance test; Holm adjustment over all 54 task/precision/calibration comparisons",
+    "limits": "Conditional on saved outputs and question-resampling assumptions; does not estimate model execution variability or calibration-repeat variability."
+  },
+  "tables": {
+    "model_metrics": {
+      "rows": 24,
+      "sha256": "fe246e88f642945b996b68ee97ce0cb9066f9a5855baeae82248309e20db6dce"
+    },
+    "benchmark_gains": {
+      "rows": 54,
+      "sha256": "8c555e99f16f0472ab7cf1befc4010b14f32cfa01be55432d6bdd6e5eb847c5e"
+    },
+    "kl_by_domain": {
+      "rows": 72,
+      "sha256": "330867f958196877b21ab0f0bd199ece1e5696722d717c5fb88a0e64a36a2cb0"
+    },
+    "local_errors_by_domain": {
+      "rows": 72,
+      "sha256": "d6265f71a8490fec20fc7e91575e9d8121afa06caf8da4b41188b41a8052145a"
+    },
+    "block_local_recovery": {
+      "rows": 384,
+      "sha256": "d4acf754ac2c49a69a1d0749010101e0eaca14437dcf7210818643a5c79a071f"
+    },
+    "tensor_type_local_recovery": {
+      "rows": 168,
+      "sha256": "1e517e9381c6d14c5a4b2df4f55fa2e2ece0775350adcab62d394cb09d2edf4f"
+    },
+    "calibration_task_transfer": {
+      "rows": 54,
+      "sha256": "6a635e7c3f496096130f99a35bfc50654207e1c1c900aa3ba398c377181d1e37"
+    },
+    "calibration_domain_transfer": {
+      "rows": 54,
+      "sha256": "c3986763c8ad4d4e853659c55c4ce124696380a29f98e48e0548279b9b87f269"
+    }
+  },
+  "figures": {
+    "01_benchmark_scores.png": "d07f6c7ca8a60d8b7a3dcf96cbefa75a0e4b9b2e574eda8490b3fde374d2402a",
+    "02_benchmark_gains.png": "7bb227b30f5e86ba494dc4a3375e585ecc17985e090b5d2ea7224e8b4bb9f592",
+    "03_kl_recovery_by_dataset.png": "b084ad846d1ce428d4e6872494e7c27e0dfae98c57f44aacbfed246793e5a286",
+    "04_local_vs_output_recovery.png": "217e91e691f5c9cbdba1b5bc0c2e0a562b16a12c4387a952aa427296e98e5d4b",
+    "05_block_recovery.png": "c5ef0a1a867fe8ad76dad68390251e74c0934b0b82b2fa906d999423b416592d",
+    "06_tensor_type_recovery.png": "a41e60c088e91dabbfc2321375575034a2e06574a5be442c2c44203baa457bf3",
+    "07_calibration_to_task_improvement.png": "0deca4ef0ec8a85eedc2f7c6aed1dbe8419a1ff88c64c6733fb442938f89849f",
+    "08_own_vs_other_domain_recovery.png": "e9b8ba6e6b3034a42b3c124281bfb33f756fa4c73199e645633d57123fcecfca"
+  },
+  "report_script_sha256": "851d1eee81fb6018ec28a5738d00a994be0743b90815944906e44dff626eff58",
+  "heatmap_colors": {
+    "positive_improvement": "red",
+    "zero": "white",
+    "negative_worsening": "blue"
+  },
+  "render_script_sha256": "851d1eee81fb6018ec28a5738d00a994be0743b90815944906e44dff626eff58"
+}

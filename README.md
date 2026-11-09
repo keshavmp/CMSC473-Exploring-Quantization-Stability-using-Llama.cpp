@@ -3,6 +3,13 @@
 Read the [quantization findings](docs/findings.md) for the precision/dataset story,
 all ten selected PNG figures, and [compact supporting results](results/published/README.md).
 
+The next experiment is a [mixed-Q4 imatrix comparison](docs/imatrix_comparison.md),
+with a separate four-model smoke test using five examples per benchmark by default.
+To measure recovery across Q2/Q3/Q4/Q5/Q6/Q8 with the full evaluation protocol,
+use the [full imatrix sweep](docs/imatrix_full_sweep.md).
+The completed sweep's [recovery findings](docs/imatrix_recovery_findings.md) include
+eight summary PNGs, matched-control gains, paired analysis, and compact supporting data.
+
 Compare how different quantizations of the same Llama checkpoint hold up on
 three tasks - GSM8K, IFEval, and HellaSwag - when served
 with llama.cpp.
