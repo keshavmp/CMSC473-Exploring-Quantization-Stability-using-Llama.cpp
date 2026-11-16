@@ -1,10 +1,12 @@
 IMATRIX RECOVERY: TOP GRAPHS
 
 01_benchmark_scores.png
-Raw scores for controls and calibrated models across precision, with historical BF16 for context.
+Scores normalized to each benchmark's historical BF16 score = 100%; values above 100% are retained.
 
 02_benchmark_gains.png
-Main task-quality figure: matched-control percentage-point gains and paired 95% bootstrap intervals.
+Main task-quality figure: relative gain = 100 * (calibrated score - control score) / control score.
+Paired 95% difference intervals are scaled by the fixed observed same-precision control score.
+These intervals do not resample denominator uncertainty. Zero means no change.
 Stars mark exact paired comparisons passing Holm correction across all 54 comparisons.
 
 03_kl_recovery_by_dataset.png
@@ -22,7 +24,7 @@ Where local error is recovered, by all 16 blocks and precision, with separate im
 Where local error is recovered, by the seven projection types pooled across 16 layers.
 
 07_calibration_to_task_improvement.png
-Each precision: calibration imatrix rows vs benchmark columns, showing gains in percentage points.
+Each precision: calibration imatrix rows vs benchmark columns, showing relative gains (%) vs matched controls.
 Math/GSM8K is domain-related. No direct code/chat benchmark was evaluated.
 
 08_own_vs_other_domain_recovery.png
@@ -31,7 +33,9 @@ Outlined diagonal cells are own-domain matches; other cells show transfer to ano
 
 ALL RECOVERY HEATMAPS: red = improvement, white = no change, blue = worsening.
 
-All are PNG, preserving the previous top-graphs style. Exact plotted values are in
+KL/local recovery already use 100 * (1 - calibrated error / matched control error).
+No ratios use the BF16-minus-control score gap; gains can exceed 100% and are not clipped.
+All are PNG, preserving the previous top-graphs style. Raw values used for plotting are in
 results/published/imatrix_recovery/. A detailed narrative is docs/imatrix_recovery_findings.md.
 Rebuild with: python -m src.report_imatrix_recovery --render-only
 

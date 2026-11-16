@@ -10,6 +10,11 @@ use the [full imatrix sweep](docs/imatrix_full_sweep.md).
 The completed sweep's [recovery findings](docs/imatrix_recovery_findings.md) include
 eight summary PNGs, matched-control gains, paired analysis, and compact supporting data.
 
+The [standalone recovery comparisons](results/imatrix%20recovery/README.txt) cover
+Llama, Qwen and Gemma across precision, transformer block and projection type,
+normalized to each model's matching no-imatrix control. Rebuild with
+`python -m src.compare_imatrix_recovery`.
+
 Compare how different quantizations of the same Llama checkpoint hold up on
 three tasks - GSM8K, IFEval, and HellaSwag - when served
 with llama.cpp.

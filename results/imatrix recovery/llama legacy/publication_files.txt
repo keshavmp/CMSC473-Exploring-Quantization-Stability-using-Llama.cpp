@@ -1,0 +1,32 @@
+README.md
+requirements.txt
+run_imatrix_comparison.py
+run_imatrix_sweep.py
+src/imatrix_comparison.py
+src/imatrix_sweep.py
+src/report_imatrix_recovery.py
+tests/test_imatrix_comparison.py
+tests/test_imatrix_sweep.py
+tests/test_report_imatrix_recovery.py
+docs/imatrix_comparison.md
+docs/imatrix_full_sweep.md
+docs/imatrix_recovery_findings.md
+results/imatrix recovery/llama legacy/01_benchmark_scores.png
+results/imatrix recovery/llama legacy/02_benchmark_gains.png
+results/imatrix recovery/llama legacy/03_kl_recovery_by_dataset.png
+results/imatrix recovery/llama legacy/04_local_vs_output_recovery.png
+results/imatrix recovery/llama legacy/05_block_recovery.png
+results/imatrix recovery/llama legacy/06_tensor_type_recovery.png
+results/imatrix recovery/llama legacy/README.txt
+results/published/imatrix_recovery/benchmark_gains.csv
+results/published/imatrix_recovery/block_local_recovery.csv
+results/published/imatrix_recovery/experiment_manifest.json
+results/published/imatrix_recovery/kl_by_domain.csv
+results/published/imatrix_recovery/local_errors_by_domain.csv
+results/published/imatrix_recovery/model_metrics.csv
+results/published/imatrix_recovery/README.md
+results/published/imatrix_recovery/tensor_type_local_recovery.csv
+results/imatrix recovery/llama legacy/07_calibration_to_task_improvement.png
+results/imatrix recovery/llama legacy/08_own_vs_other_domain_recovery.png
+results/published/imatrix_recovery/calibration_domain_transfer.csv
+results/published/imatrix_recovery/calibration_task_transfer.csv

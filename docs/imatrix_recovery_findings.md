@@ -20,9 +20,9 @@ held-out text hashes match across the 24 runs.
 
 ## 1. Benchmark recovery is task dependent
 
-![Benchmark scores](../results/important%20plots/imatrix%20recovery/01_benchmark_scores.png)
+![Benchmark scores](../results/imatrix%20recovery/llama%20legacy/01_benchmark_scores.png)
 
-![Gains over matched controls](../results/important%20plots/imatrix%20recovery/02_benchmark_gains.png)
+![Gains over matched controls](../results/imatrix%20recovery/llama%20legacy/02_benchmark_gains.png)
 
 | Result | No-imatrix score | Calibrated score | Gain |
 |---|---:|---:|---:|
@@ -48,7 +48,7 @@ The paired tests above compare each model only with its matched no-imatrix contr
 
 ## 2. Output recovery is strongest at Q2-Q4
 
-![Output KL recovery](../results/important%20plots/imatrix%20recovery/03_kl_recovery_by_dataset.png)
+![Output KL recovery](../results/imatrix%20recovery/llama%20legacy/03_kl_recovery_by_dataset.png)
 
 | Precision | Mean held-out KL reduction across calibration variants |
 |---|---|
@@ -67,7 +67,7 @@ The short fixed text evaluation does not establish the population-wide domain or
 
 ## Calibration transfer: its related task and other tasks
 
-![Calibration to task improvement](../results/important%20plots/imatrix%20recovery/07_calibration_to_task_improvement.png)
+![Calibration to task improvement](../results/imatrix%20recovery/llama%20legacy/07_calibration_to_task_improvement.png)
 
 Each panel is one precision. Rows are code/math/chat calibration imatrices; columns
 are GSM8K, IFEval and HellaSwag. Cells show percentage-point gains against the matched
@@ -86,7 +86,7 @@ Math calibration has a related-domain benchmark in GSM8K. We did not evaluate a 
 benchmark, so code's own-task accuracy recovery is unavailable. IFEval measures instruction
 following and HellaSwag commonsense completion; neither is a direct chat benchmark.
 
-![Own-domain and cross-domain recovery](../results/important%20plots/imatrix%20recovery/08_own_vs_other_domain_recovery.png)
+![Own-domain and cross-domain recovery](../results/imatrix%20recovery/llama%20legacy/08_own_vs_other_domain_recovery.png)
 
 For held-out code/math/chat KL, all three calibration domains have a direct counterpart.
 Outlined diagonal cells show own-domain recovery; other cells show cross-domain transfer.
@@ -96,7 +96,7 @@ not benchmark gains. Domain-matched calibration does not always give the largest
 
 ## 3. Better local reconstruction does not guarantee better output behavior
 
-![Local versus output recovery](../results/important%20plots/imatrix%20recovery/04_local_vs_output_recovery.png)
+![Local versus output recovery](../results/imatrix%20recovery/llama%20legacy/04_local_vs_output_recovery.png)
 
 Local weighted reconstruction improves by roughly 33% at Q2, 18% at Q3 and 15-16% at
 Q4-Q6. Yet all Q6 variants have worse mean held-out KL than their control.
@@ -106,9 +106,9 @@ to optimizing final output KL or benchmark accuracy.
 
 ## 4. Where is local computation recovered?
 
-![Block recovery](../results/important%20plots/imatrix%20recovery/05_block_recovery.png)
+![Block recovery](../results/imatrix%20recovery/llama%20legacy/05_block_recovery.png)
 
-![Tensor-type recovery](../results/important%20plots/imatrix%20recovery/06_tensor_type_recovery.png)
+![Tensor-type recovery](../results/imatrix%20recovery/llama%20legacy/06_tensor_type_recovery.png)
 
 The heatmaps show error reduction relative to each same-recipe control, retaining every
 block and pooling projections by type across all 16 blocks. Domains are averaged equally

@@ -373,7 +373,7 @@ def make_figures(tables, plan, out):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path, default=ROOT / 'results/Imatrix_Recovery_Sweep_full_kl4')
-    parser.add_argument('--output', type=Path, default=ROOT / 'results/important plots/imatrix recovery')
+    parser.add_argument('--output', type=Path, default=ROOT / 'results/imatrix recovery/llama legacy')
     parser.add_argument('--publish-data', type=Path, default=ROOT / 'results/published/imatrix_recovery')
     parser.add_argument('--gguf-python', type=Path, default=Path(r'C:\llama.cpp\gguf-py'))
     parser.add_argument('--render-only', action='store_true', help='Rebuild plots from verified compact tables without original models or raw samples')
