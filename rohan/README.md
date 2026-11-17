@@ -107,3 +107,66 @@ python -m rohan.analyze_findings   # writes rohan/results/findings/
 
 To add a family (e.g. Mistral), add an entry to `FAMILIES` in
 `run_family_sweep.py` with its Hugging Face repo and source filename.
+
+# Context length × weight quantization (Llama-3.2-1B)
+
+`run_long_context.py` asks whether weight-quantization damage grows with
+context length, and records time, speed and memory for every run.
+
+It differs from the teammates' `results/task15_long_context_results/` in what
+it varies:
+
+| | Task15 | This study |
+|---|---|---|
+| Weights | Fixed at mixed Q2_K | Varied: BF16, pure Q2–Q8 |
+| KV cache | Varied | Fixed at f16 |
+| Hardware | Apple-silicon GPU | This Intel CPU |
+
+| Experiment | What it measures |
+|---|---|
+| E1 `kl-*` | KL from BF16 with 4K, 8K and 16K windows over the same 32K tokens of essays. Each window scores its second half, so larger windows measure later positions. 32K is skipped: `llama-perplexity` keeps n_ctx × vocab float logits, about 17 GB at 32K, more than this 16 GB Mac has |
+| E2 `ruler-*` (`niah_multikey_2`, `ruler_vt`) | Retrieval among many distractor keys, and multi-hop variable tracking, at 4K, 8K and 16K |
+| E2b `ruler-*-niah_single_1-*` | Simple retrieval for every quant level. Also runs task15's exact mixed Q2_K model, so its f16-cache results can be checked on this CPU |
+| E3 `gsm8k-*-padNk` | The pure sweep's GSM8K questions behind N tokens of essay padding: 100 at 4K, the first 50 at 16K. Padding 0 is `Llama_Pure_Sweep` |
+| E4 | `niah_multikey_2` at 32K for BF16 and Q4 |
+
+Every run's `stats.json` records:
+
+- **Accuracy**
+- **Time:** wall time, load time, seconds per question, mean time to first
+  token
+- **Speed:** prompt and generation tok/s, prompt-cache hit rate
+- **Memory:** baseline and peak memory, KV-cache size, model file size
+
+All values come from llama-server's per-request `timings`, and from
+psutil memory sampling every 0.1 s.
+
+```bash
+python -m rohan.run_long_context --prepare                 # tokenizer, essays, GSM8K, KL text
+python -m rohan.run_long_context --part pilot              # small timing and sanity run
+python -m rohan.run_long_context --part night1 --list      # runs and done/todo status
+nohup caffeinate -i python -m rohan.run_long_context --part night1 --resume \
+  > rohan/results/long-context-night1.log 2>&1 &
+```
+
+Estimates come from the pilot. Seconds per question:
+
+- BF16: about 48 at 4K and 285 at 16K
+- Q4: about 30 at 4K and 200 at 16K
+
+| Part | Runs | Estimate |
+|---|---|---|
+| `night1` | E2 for BF16 and Q4 | ~8.5 h |
+| `night2` | E2 for Q2 (4K only), Q6 and Q3 | ~8 h |
+| `night3` | E3 | ~6.5 h |
+| `night4` | E1, E2b at 4K, E2b at 16K for Q2 and mixed Q2_K | ~6.5–7 h |
+| `night5` | E2b at 16K for BF16 and Q4, then E4 | ~7 h |
+
+After each night, `python -m rohan.analyze_long_context` refreshes the tables
+and figures in `results/Llama_Long_Context/findings/`. The interim write-up is
+`LONG_CONTEXT_FINDINGS.md` in the same folder.
+
+Runs are ordered by length, so an interrupted night leaves the short lengths
+complete. `--resume` skips any run that has a `stats.json`. Pilot runs go to
+`results/Llama_Long_Context-pilot/`, and everything else to
+`results/Llama_Long_Context/`.

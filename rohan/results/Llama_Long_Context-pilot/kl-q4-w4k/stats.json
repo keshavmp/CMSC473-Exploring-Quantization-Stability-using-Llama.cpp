@@ -1,0 +1,16 @@
+{
+  "peak_rss_mb": 5378.37109375,
+  "kl_window": 4096,
+  "kl_chunks": 8,
+  "scored_tokens": 16376,
+  "processed_tokens": 32768,
+  "processed_tokens_per_second": 49.909285801248345,
+  "run": "kl-q4-w4k",
+  "kind": "kl",
+  "level": "Q4",
+  "task": "",
+  "length": 4096,
+  "server_context": 4608,
+  "model_file_mib": 670.632568359375,
+  "wall_seconds": 656.5512385430047
+}

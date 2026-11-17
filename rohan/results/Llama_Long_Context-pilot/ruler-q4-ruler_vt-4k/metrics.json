@@ -1,0 +1,10 @@
+{
+  "ruler_vt": {
+    "name": "ruler_vt",
+    "alias": "ruler_vt",
+    "sample_len": 3,
+    "4096,none": 0.5333333333333333,
+    "4096_stderr,none": "N/A"
+  },
+  "accuracy": 0.5333333333333333
+}

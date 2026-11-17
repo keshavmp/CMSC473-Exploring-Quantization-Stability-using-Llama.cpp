@@ -1,0 +1,11 @@
+task,level,4K,8K,16K
+niah_multikey_2,BF16,100 ± 0,70 ± 11,70 ± 11
+niah_multikey_2,Q6,100 ± 0,70 ± 11,70 ± 11
+niah_multikey_2,Q4,95 ± 5,60 ± 11,55 ± 11
+niah_multikey_2,Q3,75 ± 10,75 ± 10,40 ± 11
+niah_multikey_2,Q2,0 ± 0,,
+ruler_vt,BF16,82 ± 3,78 ± 5,64 ± 4
+ruler_vt,Q6,81 ± 3,78 ± 4,66 ± 5
+ruler_vt,Q4,69 ± 3,74 ± 4,65 ± 4
+ruler_vt,Q3,34 ± 6,36 ± 5,
+ruler_vt,Q2,0 ± 0,,
