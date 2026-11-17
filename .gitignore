@@ -18,6 +18,7 @@ __pycache__/
 
 # Generated experiment artifacts (large / regenerable)
 data/
+!results/imatrix recovery/data/
 results/**/*.log
 results/*-server.log
 results/llama-server.log

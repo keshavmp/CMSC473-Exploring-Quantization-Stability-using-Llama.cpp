@@ -15,6 +15,10 @@ Llama, Qwen and Gemma across precision, transformer block and projection type,
 normalized to each model's matching no-imatrix control. Rebuild with
 `python -m src.compare_imatrix_recovery`.
 
+The [imatrix recovery tables](results/imatrix_recovery_tables/README.md) contain
+absolute error removed and percent recovered for all three models at each
+precision, transformer block, projection type, and individual tensor.
+
 Compare how different quantizations of the same Llama checkpoint hold up on
 three tasks - GSM8K, IFEval, and HellaSwag - when served
 with llama.cpp.

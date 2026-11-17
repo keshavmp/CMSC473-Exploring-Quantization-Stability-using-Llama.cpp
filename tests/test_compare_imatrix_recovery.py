@@ -24,6 +24,8 @@ def test_pool_uses_matched_control_sums_instead_of_mean_tensor_percentages():
     result = pool_local(frame, ['layer']).set_index('model')
     assert result.loc['Llama', 'recovery_pct'] == pytest.approx(100*(1-110/101))
     assert result.loc['Qwen', 'recovery_pct'] == 50
+    assert result.loc['Llama', 'error_recovered'] == -9
+    assert result.loc['Qwen', 'error_recovered'] == 5
 
 
 def test_pool_separates_calibrations_and_precisions():

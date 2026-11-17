@@ -31,7 +31,7 @@ Overview plots pool code/math/chat calibrations and the three measurement domain
 with equal coefficients: sum calibrated errors and matched control errors FIRST,
 then take the ratio. This weights tensors by their control error, so tiny-error
 tensors cannot dominate through large percentages. It is not the arithmetic mean
-of tensor recovery percentages. Per-calibration/domain details remain in data/.
+of tensor recovery percentages. Details are in ../imatrix_recovery_tables/.
 
 Benchmark gain (%) = 100 * (calibrated_score - control_score) / control_score;
 the overview averages these gains across the three calibrations. A gain of 10%
@@ -56,8 +56,11 @@ benchmark/output differences at Q8 can reflect execution variation.
 
 DETAILS AND REPRODUCIBILITY
 by model/: all native blocks and precisions, split by calibration, for each model.
-data/: raw local tensor rows, pooled values, per-domain KL, benchmark gains and
+../imatrix_recovery_tables/: local tensor rows, pooled values, KL, benchmark gains and
 manifest.json with input/output SHA256 hashes, model sources and protocol records.
+Start with ../imatrix_recovery_tables/README.md for keys, joins and error units.
+Local CSVs include error_recovered (control minus calibrated error) and
+recovery_pct at precision, block and projection-type levels for all three models.
 The generator checks saved aggregate hashes, sample counts/document IDs, tensor
 layouts, local CSV hashes and matching model/control provenance. It does not
 rerun inference or redo the legacy report's per-question audit/payload inspection.

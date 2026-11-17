@@ -505,6 +505,7 @@
   },
   "normalization": {
     "local_and_kl": "100 * (1 - sum(calibrated error) / sum(matched no-imatrix control error))",
+    "error_recovered": "control_error - weighted_error (local), or control_error - error (KL); pooled rows use sums, not means.",
     "pooling": "Equal representation of three domains and three calibrations; sum errors before ratio. Within a domain, tensors are weighted by control error.",
     "benchmark": "100 * (calibrated score - control score) / control score, then arithmetic mean across calibrations; not percent of source-score gap recovered.",
     "benchmark_grouped_bars_06_to_09": "Calibrated score (%) minus matched control score (%), in percentage points; all models/calibrations share one y-axis scale. Plain bars with no intervals or significance markers.",
@@ -522,11 +523,11 @@
   "tables": {
     "local_tensor_detail": {
       "rows": 26460,
-      "sha256": "4d46d0fbaee8fc45b631c0e3f307062b59235b1b48944fbb25cfb4b2eefd965b"
+      "sha256": "20105fcef2c14788b6c23b3fc684aca693934b263e9a0b42ff4c0a3c1d90351a"
     },
     "output_by_domain": {
       "rows": 162,
-      "sha256": "e2b0da404c3925f8980effc588dab962368b99250521dc1d81c93aa711ce9cb7"
+      "sha256": "f7bee83129bb4b7d25282fcf72d6194801a02b83db2b2b455daaae96f9a78fc7"
     },
     "benchmark_by_task": {
       "rows": 162,
@@ -534,31 +535,31 @@
     },
     "precision_recovery": {
       "rows": 18,
-      "sha256": "2d37ad1acd859cf13e8bb813dd1bd773e47149c16da64da705aa7cfff6acab07"
+      "sha256": "55929954de49d2bc80edd4d92c56a60a694f934233757b83b157b412518a39a2"
     },
     "precision_by_calibration": {
       "rows": 54,
-      "sha256": "89e62ee0539869f1f23c42694fa62662b9b1b956307c9a370c18b473093d9aec"
+      "sha256": "2df7ca16b68f4daca3e257adf2cc8a8180667dcdeeafb59b150566036513b5d2"
     },
     "block_recovery": {
       "rows": 420,
-      "sha256": "0905cc10a04695e00561c4083dc29ce15ef58ca09434b77006995f1daea7003b"
+      "sha256": "c78d30c3d6f74dc5162b9d75e71e96eb2c5fa31096424a66c67b1613b5197059"
     },
     "block_by_calibration": {
       "rows": 1260,
-      "sha256": "e6e64a185a954b0e91b1f4cb5f483ef20ff965f6f719e8ddb1a579311fb4a5c6"
+      "sha256": "0bf445c2b6a7ff70e1f99759f7a2d0f912d78d7665e5c743304ea05ef58c0235"
     },
     "layer_type_recovery": {
       "rows": 126,
-      "sha256": "536b58610e448e31b7a9040f8a63159554844b10ccc1b4d07d1d1c6202a4e82f"
+      "sha256": "b338df5d21acc48db5931bda14209cf057f808f713c5ec26ec02b939680fa8d3"
     },
     "layer_type_by_calibration": {
       "rows": 378,
-      "sha256": "b425ba595641eaaff9f19bab4b1f002378f6f45f7ed4d1aa1ad2442e853261de"
+      "sha256": "c80f558f2d0e874edc3c0fb0ce5d6124397a85b6142f7530087d12e8e8012c02"
     },
     "output_recovery": {
       "rows": 18,
-      "sha256": "15b8a08aa0d9e8d4dc64f467aeb263082a8efc7e7c527759de05546aeb80f309"
+      "sha256": "386336fc4c8ded22a29d931067602fc8a9e971a63eabb34e74c949c2b1420e7e"
     }
   },
   "figures": {
@@ -575,5 +576,5 @@
     "by model\\llama_block_recovery.png": "99bd702f210237259a23cadb4a0ae01ad179c20a9b9fa780d984958f8b32e501",
     "by model\\qwen_block_recovery.png": "7cdbcc6eb308d3ec79846cd0e43c3bfabf69aa3fecbfbec8f25e9fdb0c39cab8"
   },
-  "script_sha256": "02b8c1a29047b68742786c3ada0b4570c2e4fca2eb1a6e1c62d9fc14a3d197f7"
+  "script_sha256": "7f0bedab55c48a14c6ae89fef3a7d2509760a2b9981d6698386083d22f71118e"
 }

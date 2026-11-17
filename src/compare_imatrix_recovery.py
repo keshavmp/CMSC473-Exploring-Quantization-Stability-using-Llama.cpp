@@ -38,6 +38,7 @@ def pool_local(frame, units):
     """
     keys = ['model', 'precision'] + units
     result = frame.groupby(keys, as_index=False)[['weighted_error', 'control_error']].sum()
+    result['error_recovered'] = result.control_error - result.weighted_error
     result['recovery_pct'] = recovery(result.weighted_error, result.control_error)
     return result
 
@@ -137,7 +138,10 @@ def load_sweeps(results):
     if any(info['recipes'] != models['Llama']['recipes'] for info in models.values()):
         raise ValueError('Quantization recipes differ between model sweeps')
     local = pd.concat(local_frames, ignore_index=True)
+    local['error_recovered'] = local.control_error - local.weighted_error
+    local['recovery_pct'] = recovery(local.weighted_error, local.control_error)
     output = pd.DataFrame(output_rows)
+    output['error_recovered'] = output.control_error - output.error
     output['recovery_pct'] = recovery(output.error, output.control_error)
     tables = {'local_tensor_detail': local, 'output_by_domain': output,
               'benchmark_by_task': pd.DataFrame(benchmark_rows)}
@@ -145,6 +149,7 @@ def load_sweeps(results):
         tables[name + '_recovery'] = pool_local(local, units)
         tables[name + '_by_calibration'] = pool_local(local, ['variant'] + units)
     pooled = output.groupby(['model', 'precision'], as_index=False)[['error', 'control_error']].sum()
+    pooled['error_recovered'] = pooled.control_error - pooled.error
     pooled['recovery_pct'] = recovery(pooled.error, pooled.control_error)
     tables['output_recovery'] = pooled
     return tables, {'models': models, 'input_hashes': sources,
@@ -304,16 +309,21 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--results', type=Path, default=ROOT / 'results')
     parser.add_argument('--output', type=Path, default=ROOT / 'results/imatrix recovery')
+    parser.add_argument('--table-output', type=Path, default=ROOT / 'results/imatrix_recovery_tables',
+                        help='Destination for the compact recovery CSVs and manifest')
+    parser.add_argument('--tables-only', action='store_true', help='Export verified CSVs without redrawing figures')
     args = parser.parse_args()
     tables, manifest = load_sweeps(args.results.resolve())
     args.output.mkdir(parents=True, exist_ok=True)
-    data = args.output / 'data'
-    data.mkdir(exist_ok=True)
+    data = args.table_output
+    data.mkdir(parents=True, exist_ok=True)
     for name, frame in tables.items():
         frame.to_csv(data / (name + '.csv'), index=False, lineterminator='\n')
-    make_figures(tables, args.output)
+    if not args.tables_only:
+        make_figures(tables, args.output)
     manifest['normalization'] = {
         'local_and_kl': '100 * (1 - sum(calibrated error) / sum(matched no-imatrix control error))',
+        'error_recovered': 'control_error - weighted_error (local), or control_error - error (KL); pooled rows use sums, not means.',
         'pooling': 'Equal representation of three domains and three calibrations; sum errors before ratio. Within a domain, tensors are weighted by control error.',
         'benchmark': '100 * (calibrated score - control score) / control score, then arithmetic mean across calibrations; not percent of source-score gap recovered.',
         'benchmark_grouped_bars_06_to_09': 'Calibrated score (%) minus matched control score (%), in percentage points; all models/calibrations share one y-axis scale. Plain bars with no intervals or significance markers.',
