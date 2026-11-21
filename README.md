@@ -241,6 +241,38 @@ an estimate across tokens, not a confidence interval across independent runs.
 KL failure marks the configuration as failed while keeping any completed task
 metrics. Rerun the configuration after correcting the tool, corpus, or model.
 
+## Block and tensor sensitivity
+
+Looks at which parts of Llama 3.2 1B are most sensitive to quantization. For each precision combination (background -> target), two separate sweeps lower one part of the model to the target precision, keep everything else at the background precision, and score the result with the domain KL tool above (BF16 || variant on the chat, math, and code text).
+
+block sweep, 16 variants: one whole block (blk.N, its seven weight matrices), N = 0 to 15
+tensor sweep, 7 variants: one tensor type (attn_q, attn_k, attn_v, attn_output, ffn_gate, ffn_up, ffn_down) in every block
+
+Combinations: BF16 -> Q2, Q4, Q6 | Q8 -> Q2, Q4, Q6 | Q6 -> Q2, Q4 | Q4 -> Q2 | Q3 -> Q2 (10 combinations, 230 variants). Types follow the pure sweep (Q2_K, Q3_K_M, Q4_K_M, Q6_K, Q8_0, applied with --pure). The embedding table is never varied; it stays at the background precision. A variant's sensitivity is the KL it adds over the pure background model: KL(variant) - KL(pure background).
+
+python -m src.sensitivity --backgrounds bf16 --levels q4_k --sweep block --blocks 3   # one variant, to time it
+python -m src.sensitivity --backgrounds q8_0 --sweep tensor                           # one background, tensor sweep
+python -m src.sensitivity                                                             # everything
+python -m src.report_blocks                                                           # tables, heatmaps, CSVs
+
+Needs pip install gguf and the llama.cpp paths in src/config.py. Run it with python -m; running python src/sensitivity.py makes src/gguf.py shadow the installed package. Runs that already have a kl.json are skipped, so an interrupted sweep resumes. Variant GGUF files are deleted after scoring unless --keep is given (BF16-background variants are 2.4 GB while they exist). KL uses KL_CHUNKS = 4 (about 1,020 scored tokens per domain), so values from the default two chunks are not directly comparable; pure_baselines.csv re-scores the BF16 source and every pure model with the same setting.
+
+Every variant is built from the BF16 checkpoint with llama-quantize --pure and --tensor-type overrides. llama-quantize ignores --tensor-type when asked for BF16, so a BF16 background uses the Q8_0 recipe and pins every weight outside the target back to BF16. After each build the script reads the new file and checks the type of every weight, embedding included; it stops if anything other than the intended weights changed.
+
+Results go to results/Block_Sensitivity_Differences/:
+
+<run>/kl.json - one scored model
+block_sensitivity.csv, tensor_sensitivity.csv, pure_baselines.csv - all results, merged across batches
+<sweep>_sensitivity_summary.csv - sensitivity, uncertainty, and a clear/not-clear flag per variant and domain
+<sweep>_sensitivity_normalized.csv - the heatmap values
+<sweep>_sensitivity_heatmap.png - one heatmap per sweep (--lines also draws per-combination line plots)
+
+Reading the heatmaps: each row is one combination, divided by its own mean sensitivity (negative values count as 0), so 1.0 is an average block or tensor type. Without this, Q2 targets (about 1000x the KL of Q6 targets) hide everything else. Cells average chat, math, and code, and the last row averages all combinations. Row labels give the raw peak KL in nats; hatched cells are within 2x uncertainty of zero in most domains. report_blocks also prints each combination's ranking, the most/least sensitive ratio, and the Spearman rank correlation between domains (1 = same ranking).
+
+Findings so far (first full sweep): block 1 is the most sensitive block in every combination and domain, about 10 to 11x an average block at Q2 targets and 6 to 7x at Q4 and Q6 targets. ffn_down is the most sensitive tensor type in every combination, about 4x an average tensor type at Q4 and Q6 targets and 5.5x at Q2 targets; attn_q and attn_k are the least sensitive.
+
+These sweeps measure quality loss directly, so they can be compared with the block-level imatrix statistics above to test whether activation statistics predict sensitivity. Limits: one model, about 1,020 scored tokens per domain per run, and three text domains. Uncertainties are combined as independent. Q8 and Q3 backgrounds are noisier, with many small effects inside 2x uncertainty; the BF16 background is the cleanest. Each result changes one part at a time.
+
 ## Tests
 
 ```bash
