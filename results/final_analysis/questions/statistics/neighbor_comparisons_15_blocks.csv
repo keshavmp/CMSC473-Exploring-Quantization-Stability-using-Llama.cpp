@@ -1,0 +1,100 @@
+precision,domain,feature,label,n_blocks,rank_agreement,rank_agreement_without_block1,top3_hits
+Q2,chat,local_increment_pct,Weighted error,15,0.4142857142857142,0.27912087912087913,1
+Q2,chat,input_energy,Activation energy,15,0.4107142857142856,0.27472527472527475,2
+Q2,chat,concentration,Energy concentration,15,0.25357142857142856,0.08131868131868132,2
+Q2,chat,kurtosis,Outlier strength,15,-0.0035714285714285704,-0.2351648351648352,1
+Q2,chat,abs_skew,Activation asymmetry,15,-0.04285714285714285,-0.2835164835164835,1
+Q2,chat,stddev,Activation spread,15,0.049999999999999996,0.2923076923076923,1
+Q2,chat,abs_mean,Mean activation size,15,-0.11071428571428568,-0.14725274725274726,0
+Q2,chat,gain,Neighbor energy gain,15,0.2678571428571428,0.0989010989010989,2
+Q2,chat,l2_distance,Neighbor activation distance,15,0.2571428571428571,0.09010989010989012,2
+Q2,chat,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.11428571428571425,-0.09010989010989012,1
+Q2,chat,abs_covariance,Absolute neighbor covariance,15,-0.049999999999999996,0.16923076923076924,0
+Q2,code,local_increment_pct,Weighted error,15,0.6214285714285712,0.5340659340659341,2
+Q2,code,input_energy,Activation energy,15,-0.07857142857142857,-0.3274725274725274,1
+Q2,code,concentration,Energy concentration,15,-0.25,-0.5384615384615385,1
+Q2,code,kurtosis,Outlier strength,15,0.4107142857142856,0.27472527472527475,2
+Q2,code,abs_skew,Activation asymmetry,15,0.2607142857142857,0.09010989010989012,1
+Q2,code,stddev,Activation spread,15,-0.46071428571428563,-0.3362637362637363,0
+Q2,code,abs_mean,Mean activation size,15,-0.024999999999999998,-0.002197802197802198,1
+Q2,code,gain,Neighbor energy gain,15,0.32171594615868493,0.16501660150520914,1
+Q2,code,l2_distance,Neighbor activation distance,15,0.06071428571428571,-0.1384615384615385,1
+Q2,code,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.5428571428571428,0.43736263736263736,1
+Q2,code,abs_covariance,Absolute neighbor covariance,15,-0.5249999999999999,-0.4153846153846154,0
+Q2,math,local_increment_pct,Weighted error,15,0.7964285714285713,0.7494505494505495,2
+Q2,math,input_energy,Activation energy,15,-0.2714285714285714,-0.5648351648351648,1
+Q2,math,concentration,Energy concentration,15,-0.4035714285714285,-0.7274725274725276,1
+Q2,math,kurtosis,Outlier strength,15,0.33571428571428563,0.1824175824175824,1
+Q2,math,abs_skew,Activation asymmetry,15,0.15357142857142855,-0.04175824175824176,1
+Q2,math,stddev,Activation spread,15,-0.6749999999999999,-0.6,0
+Q2,math,abs_mean,Mean activation size,15,-0.24285714285714283,-0.3274725274725274,0
+Q2,math,gain,Neighbor energy gain,15,0.2821428571428571,0.1164835164835165,1
+Q2,math,l2_distance,Neighbor activation distance,15,0.33928571428571425,0.23076923076923075,1
+Q2,math,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.6392857142857141,0.5560439560439561,1
+Q2,math,abs_covariance,Absolute neighbor covariance,15,-0.6857142857142856,-0.6131868131868132,0
+Q4,chat,local_increment_pct,Weighted error,15,0.37499999999999994,0.23076923076923075,1
+Q4,chat,input_energy,Activation energy,15,0.6499999999999999,0.5692307692307692,2
+Q4,chat,concentration,Energy concentration,15,0.4928571428571427,0.3758241758241759,2
+Q4,chat,kurtosis,Outlier strength,15,-0.18214285714285713,-0.45494505494505494,1
+Q4,chat,abs_skew,Activation asymmetry,15,-0.18214285714285713,-0.45494505494505494,1
+Q4,chat,stddev,Activation spread,15,0.2571428571428571,0.5472527472527472,1
+Q4,chat,abs_mean,Mean activation size,15,-0.28928571428571426,-0.3494505494505495,0
+Q4,chat,gain,Neighbor energy gain,15,0.21428571428571427,0.032967032967032975,2
+Q4,chat,l2_distance,Neighbor activation distance,15,0.2821428571428571,0.12087912087912088,2
+Q4,chat,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.035714285714285705,-0.18681318681318684,1
+Q4,chat,abs_covariance,Absolute neighbor covariance,15,0.04285714285714285,0.2835164835164835,0
+Q4,code,local_increment_pct,Weighted error,15,0.7220735680450484,0.6578661846674337,2
+Q4,code,input_energy,Activation energy,15,0.03753352705184659,-0.18481859368583423,1
+Q4,code,concentration,Energy concentration,15,-0.19839150013118906,-0.47524781233500235,1
+Q4,code,kurtosis,Outlier strength,15,0.2913316623548092,0.12761283849736174,1
+Q4,code,abs_skew,Activation asymmetry,15,0.1554960406433644,-0.0396039843612502,1
+Q4,code,stddev,Activation spread,15,-0.3556748515865462,-0.20682080721986212,0
+Q4,code,abs_mean,Mean activation size,15,-0.20375343256716716,-0.1958197004528482,0
+Q4,code,gain,Neighbor energy gain,15,0.21735241502683364,0.03634361233480177,1
+Q4,code,l2_distance,Neighbor activation distance,15,0.17873108119926945,0.006600664060208366,1
+Q4,code,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.4200180408182832,0.2860287759423625,1
+Q4,code,abs_covariance,Absolute neighbor covariance,15,-0.4307419056902393,-0.2992301040627792,0
+Q4,math,local_increment_pct,Weighted error,15,0.5249999999999999,0.4153846153846154,2
+Q4,math,input_energy,Activation energy,15,0.014285714285714282,-0.21318681318681318,2
+Q4,math,concentration,Energy concentration,15,-0.15,-0.4153846153846154,2
+Q4,math,kurtosis,Outlier strength,15,0.06071428571428571,-0.15604395604395604,1
+Q4,math,abs_skew,Activation asymmetry,15,-0.07857142857142857,-0.3274725274725274,1
+Q4,math,stddev,Activation spread,15,-0.3428571428571428,-0.1912087912087912,1
+Q4,math,abs_mean,Mean activation size,15,-0.4464285714285714,-0.5296703296703297,0
+Q4,math,gain,Neighbor energy gain,15,0.39999999999999997,0.26153846153846155,2
+Q4,math,l2_distance,Neighbor activation distance,15,0.5821428571428571,0.4901098901098901,2
+Q4,math,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.48571428571428565,0.367032967032967,1
+Q4,math,abs_covariance,Absolute neighbor covariance,15,-0.4892857142857142,-0.37142857142857144,0
+Q6,chat,local_increment_pct,Weighted error,15,0.3428571428571428,0.2,2
+Q6,chat,input_energy,Activation energy,15,0.33571428571428563,0.1824175824175824,2
+Q6,chat,concentration,Energy concentration,15,0.23928571428571427,0.06373626373626373,2
+Q6,chat,kurtosis,Outlier strength,15,0.05714285714285713,-0.16043956043956045,1
+Q6,chat,abs_skew,Activation asymmetry,15,-0.021428571428571425,-0.2571428571428571,1
+Q6,chat,stddev,Activation spread,15,-0.007142857142857141,0.221978021978022,1
+Q6,chat,abs_mean,Mean activation size,15,-0.18214285714285713,-0.23956043956043957,0
+Q6,chat,gain,Neighbor energy gain,15,0.2178571428571428,0.03736263736263736,2
+Q6,chat,l2_distance,Neighbor activation distance,15,0.1857142857142857,0.002197802197802198,2
+Q6,chat,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.11428571428571425,-0.09010989010989012,1
+Q6,chat,abs_covariance,Absolute neighbor covariance,15,-0.09999999999999999,0.1076923076923077,0
+Q6,code,local_increment_pct,Weighted error,15,0.1928571428571428,0.006593406593406593,2
+Q6,code,input_energy,Activation energy,15,0.46071428571428563,0.3362637362637363,2
+Q6,code,concentration,Energy concentration,15,0.5214285714285714,0.410989010989011,2
+Q6,code,kurtosis,Outlier strength,15,0.04285714285714285,-0.178021978021978,1
+Q6,code,abs_skew,Activation asymmetry,15,0.039285714285714285,-0.1824175824175824,1
+Q6,code,stddev,Activation spread,15,0.049999999999999996,0.2923076923076923,1
+Q6,code,abs_mean,Mean activation size,15,0.08928571428571427,0.0989010989010989,1
+Q6,code,gain,Neighbor energy gain,15,0.579088703085633,0.4818484763952107,3
+Q6,code,l2_distance,Neighbor activation distance,15,0.807142857142857,0.767032967032967,2
+Q6,code,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.2714285714285714,0.1032967032967033,1
+Q6,code,abs_covariance,Absolute neighbor covariance,15,-0.16428571428571426,0.02857142857142857,1
+Q6,math,local_increment_pct,Weighted error,15,0.48436123005002024,0.36523674466486294,2
+Q6,math,input_energy,Activation energy,15,-0.2752458650468749,-0.5698573305313223,1
+Q6,math,concentration,Energy concentration,15,-0.16979452713930596,-0.44004427068055774,1
+Q6,math,kurtosis,Outlier strength,15,0.4521896354341517,0.3256327603036127,2
+Q6,math,abs_skew,Activation asymmetry,15,0.3270778785946631,0.17161726556541748,2
+Q6,math,stddev,Activation spread,15,-0.6273460950094357,-0.541254452937086,0
+Q6,math,abs_mean,Mean activation size,15,-0.023235040555905025,-0.07260730466229204,1
+Q6,math,gain,Neighbor energy gain,15,0.4021449326983562,0.26402656240833466,1
+Q6,math,l2_distance,Neighbor activation distance,15,0.4110814867583197,0.3102312108297932,1
+Q6,math,neighbor_difference,Neighbor activation difference (1 - Pearson),15,0.7202862572330558,0.6556659633140309,2
+Q6,math,abs_covariance,Absolute neighbor covariance,15,-0.748883230224939,-0.6908695049684758,0

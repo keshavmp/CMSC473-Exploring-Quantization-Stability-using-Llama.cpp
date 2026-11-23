@@ -1,0 +1,12 @@
+feature,label,mean_rank_agreement,mean_rank_agreement_without_block1,top3_hits
+local_increment_pct,Weighted error,0.49714354899469004,0.38205417163521244,16
+neighbor_difference,Neighbor activation difference (1 - Pearson),0.37154174740252965,0.2264886706621878,10
+l2_distance,Neighbor activation distance,0.3448998091381448,0.20882991528081826,14
+gain,Neighbor energy gain,0.32249387267915164,0.16605422221070038,15
+kurtosis,Outlier strength,0.1627722076908369,-0.03046965874128367,11
+input_energy,Activation energy,0.14263513704817143,-0.05528145189714436,14
+abs_skew,Activation asymmetry,0.0679050386454951,-0.14723661954874329,10
+concentration,Energy concentration,0.03726504458899259,-0.1849714036073455,14
+abs_mean,Mean activation size,-0.15934792558510325,-0.19612558909093744,3
+stddev,Activation spread,-0.23462137501860114,-0.05796684819814687,5
+abs_covariance,Absolute neighbor covariance,-0.35011707859374996,-0.20012095778002956,1

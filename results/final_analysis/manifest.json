@@ -1,0 +1,7 @@
+{
+  "scope": "Llama only; block analysis Q2/Q4/Q6; outcomes Q2/Q3/Q4/Q5/Q6/Q8",
+  "current_results": "questions/",
+  "current_audit_manifest": "questions/manifest.json",
+  "current_audit_sha256": "c71e93b38987a3f383258abfdb893446d4a29c4e281d191b8a2c510a7e59cf9e",
+  "title": "Llama Quantization: Sensitivity Predictions and Imatrix Benefits"
+}

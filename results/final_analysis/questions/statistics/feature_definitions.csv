@@ -1,0 +1,8 @@
+feature,label,definition,direction
+local_increment_pct,Weighted error,"Existing precision-specific, reference-normalized Q-minus-Q8 local error",Higher predicts more sensitivity
+input_energy,Activation energy,Sum of seven tensor energies,Higher predicts more sensitivity
+concentration,Energy concentration,Mean of 100 minus normalized energy entropy; lower entropy ranks higher,Higher predicts more sensitivity
+kurtosis,Outlier strength,Mean tensor excess kurtosis of dimension-wise mean activations,Higher predicts more sensitivity
+abs_skew,Activation asymmetry,Mean absolute tensor skewness of dimension-wise mean activations,Higher predicts more sensitivity
+stddev,Activation spread,Mean tensor standard deviation of dimension-wise mean activations,Higher predicts more sensitivity
+abs_mean,Mean activation size,Mean absolute tensor mean; not mean absolute per-token activation,Higher predicts more sensitivity

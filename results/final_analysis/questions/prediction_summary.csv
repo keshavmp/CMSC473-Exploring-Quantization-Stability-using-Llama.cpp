@@ -1,0 +1,7 @@
+precision,predictor,hits,possible_hits,identified_pct
+Q2,input_energy,4,9,44.44444444444444
+Q2,local_increment_pct,3,9,33.333333333333336
+Q4,input_energy,5,9,55.55555555555556
+Q4,local_increment_pct,5,9,55.55555555555556
+Q6,input_energy,5,9,55.55555555555556
+Q6,local_increment_pct,5,9,55.55555555555556
