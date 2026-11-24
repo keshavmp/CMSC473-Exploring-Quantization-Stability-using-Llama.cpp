@@ -1,0 +1,8 @@
+# Install in the project's existing Python environment; avoid unnecessary version pins.
+numpy
+pandas
+matplotlib
+requests
+tqdm
+gguf
+lm-eval
