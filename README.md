@@ -1,5 +1,14 @@
 # Quantization Stability with llama.cpp
 
+Start with the [six selected graphs and analysis](docs/selected_graphs.md) for
+the completed Llama, Qwen, and Gemma results, with embedded figures and caveats.
+
+For the three research questions, start with the [simple comparison plots](results/research_questions/simple_comparisons/README.md):
+each figure measures one quantity across precisions, model families, tasks, or domains.
+[Paired statistics and supporting figures](results/research_questions/README.md) include
+all three families. The local controlled Q4 study is still unfinished and is
+excluded from the selected findings.
+
 Read the [quantization findings](docs/findings.md) for the precision/dataset story,
 all ten selected PNG figures, and [compact supporting results](results/published/README.md).
 
