@@ -15,31 +15,49 @@ def file_hash(path: Path) -> str:
         return hashlib.file_digest(file, "sha256").hexdigest()
 
 
+
 def resolve_tasks(config: Config):
-    """Resolve installed YAMLs and select the same leading IDs for every model."""
-    task_root = Path(lm_eval.__file__).parent / "tasks"
-    manager = TaskManager(
-        include_defaults=False,
-        include_path=[task_root / name for name in config.tasks],
-    )
+    """Resolve installed tasks and select the same leading IDs for every model."""
+    manager = TaskManager()
     tasks = manager.load(config.tasks)["tasks"]
+
     selection, details = {}, {}
+
     for name, task in tasks.items():
         available = len(task.eval_docs)
         cap = config.task_sample_caps.get(name, config.num_examples)
         count = available if cap is None else min(cap, available)
+
         selection[name] = list(range(count))
+
         resolved = task.dump_config()
-        split = resolved.get("test_split") or resolved.get("validation_split")
+        split = (
+            resolved.get("test_split")
+            or resolved.get("validation_split")
+        )
+
         details[name] = {
-            "split": split, "available": available, "requested_cap": cap,
-            "selected": count, "subset": count < available,
+            "split": split,
+            "available": available,
+            "requested_cap": cap,
+            "selected": count,
+            "subset": count < available,
             "configuration": resolved,
         }
-        print(f"{name}: {count}/{available} from {split} (requested cap: {cap})")
+
+        print(
+            f"{name}: {count}/{available} from {split} "
+            f"(requested cap: {cap})"
+        )
+
         if cap is not None and cap > available:
-            print(f"WARNING: {name} has only {available} available examples, fewer than {cap} requested.")
+            print(
+                f"WARNING: {name} has only {available} "
+                f"available examples, fewer than {cap} requested."
+            )
+
     return manager, tasks, selection, details
+
 
 
 def evaluate_model(config: Config, limit: int | None = None) -> Path:

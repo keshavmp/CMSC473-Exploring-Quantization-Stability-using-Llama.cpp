@@ -47,16 +47,18 @@ def start_server(config: Config) -> tuple[subprocess.Popen, object]:
     log = open(config.log_file, "w+", encoding="utf-8")
 
     command = [
-        str(config.llama_server),
-        "--model", str(model_file),
-        "--n-gpu-layers", config.gpu_layers,
-        "--ctx-size", str(config.context_size * config.request_workers),
-        "--parallel", str(config.request_workers),
-        "--cont-batching",
-        "--host", config.host,
-        "-lv", str(config.server_log_verbosity),
-        "--port", str(config.port),
-    ]
+    str(config.llama_server),
+    "--model", str(model_file),
+    "--n-gpu-layers", str(config.gpu_layers),
+    "--ctx-size", str(config.context_size * config.request_workers),
+    "--threads", "8",         # Use 8 CPU threads
+    "--threads-batch", "8",   # Use 8 threads for prompt processing
+    "--parallel", str(config.request_workers),
+    "--cont-batching",
+    "--host", config.host,
+    "-lv", str(config.server_log_verbosity),
+    "--port", str(config.port),
+]
 
     print("Starting llama.cpp")
     process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)

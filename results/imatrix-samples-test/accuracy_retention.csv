@@ -1,0 +1,2 @@
+model,size_mib,gsm8k_strict,gsm8k_flexible,gsm8k_n,ifeval_strict,ifeval_loose,ifeval_instruction_strict,ifeval_n,mmlu_generative,mmlu_college_computer_science_generative_n,evaluation_seconds,completed_requests,reported_completion_tokens,seconds_per_request,tokens_per_second,mean_primary_accuracy
+uniform-q4,770.277,0.0,100.0,1,0.0,0.0,33.33333333333333,1,0.0,1,295.595,3,1026,90.722,3.77,0.0

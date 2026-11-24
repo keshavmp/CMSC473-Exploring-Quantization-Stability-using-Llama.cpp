@@ -43,10 +43,10 @@ class Config:
     host: str = "127.0.0.1"
     port: int = 8080
     context_size: int = 2048
-    gpu_layers: str = "all"
-    server_start_timeout: int = 120    # seconds to wait for /health
-    request_workers: int = 4          # concurrent questions and server slots
-    request_timeout: float = 300      # read timeout, including queued generation
+    gpu_layers: str = 0
+    server_start_timeout: int = 1200    # seconds to wait for /health
+    request_workers: int = 1          # concurrent questions and server slots
+    request_timeout: float = 1200      # read timeout, including queued generation
     server_log_verbosity: int = 3      # info; omits debug prompt-cache dumps
 
     # --- Model ------------------------------------------------------------
@@ -63,7 +63,7 @@ class Config:
         default_factory=lambda: [
             "gsm8k",
             "ifeval",
-            "mmlu_college_computer_science",
+            "mmlu_college_computer_science_generative",
         ]
     )
     num_examples: int | None = 300   # None evaluates all available examples

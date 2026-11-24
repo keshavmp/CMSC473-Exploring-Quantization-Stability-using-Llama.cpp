@@ -1,0 +1,15 @@
+{
+  "tasks": [
+    "gsm8k",
+    "ifeval",
+    "mmlu_college_computer_science_generative"
+  ],
+  "limit_per_task": 20,
+  "max_new_tokens": 512,
+  "context_size": 2048,
+  "fewshot": 0,
+  "temperature": 0,
+  "model": "/Users/viharikapenmetsa/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/models/imatrix_quants/Llama-3.2-1B-Instruct-code_q4_imatrix.gguf",
+  "threads": 8,
+  "gpu_layers": 0
+}
