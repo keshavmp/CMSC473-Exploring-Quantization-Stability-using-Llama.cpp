@@ -163,8 +163,8 @@ Estimates come from the pilot. Seconds per question:
 | `night5` | E2b at 16K for BF16 and Q4, then E4 | ~7 h |
 
 After each night, `python -m rohan.analyze_long_context` refreshes the tables
-and figures in `results/Llama_Long_Context/findings/`. The interim write-up is
-`LONG_CONTEXT_FINDINGS.md` in the same folder.
+and figures in `results/Llama_Long_Context/findings/`. The write-up for all
+five nights is `LONG_CONTEXT_FINDINGS.md` in the same folder.
 
 Runs are ordered by length, so an interrupted night leaves the short lengths
 complete. `--resume` skips any run that has a `stats.json`. Pilot runs go to

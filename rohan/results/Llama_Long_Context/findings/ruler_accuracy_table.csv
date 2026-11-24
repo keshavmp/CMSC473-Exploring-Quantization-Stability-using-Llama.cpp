@@ -1,11 +1,19 @@
-task,level,4K,8K,16K
-niah_multikey_2,BF16,100 ± 0,70 ± 11,70 ± 11
-niah_multikey_2,Q6,100 ± 0,70 ± 11,70 ± 11
-niah_multikey_2,Q4,95 ± 5,60 ± 11,55 ± 11
-niah_multikey_2,Q3,75 ± 10,75 ± 10,40 ± 11
-niah_multikey_2,Q2,0 ± 0,,
-ruler_vt,BF16,82 ± 3,78 ± 5,64 ± 4
-ruler_vt,Q6,81 ± 3,78 ± 4,66 ± 5
-ruler_vt,Q4,69 ± 3,74 ± 4,65 ± 4
-ruler_vt,Q3,34 ± 6,36 ± 5,
-ruler_vt,Q2,0 ± 0,,
+task,level,4K,8K,16K,32K
+niah_multikey_2,BF16,100 ± 0,70 ± 11,70 ± 11,60 ± 16
+niah_multikey_2,Q6,100 ± 0,70 ± 11,70 ± 11,
+niah_multikey_2,Q4,95 ± 5,60 ± 11,55 ± 11,20 ± 13
+niah_multikey_2,Q3,75 ± 10,75 ± 10,40 ± 11,
+niah_multikey_2,Q2,0 ± 0,,,
+niah_single_1,BF16,100 ± 0,,100 ± 0,
+niah_single_1,Q8,100 ± 0,,,
+niah_single_1,Q6,100 ± 0,,,
+niah_single_1,Q5,100 ± 0,,,
+niah_single_1,Q4,100 ± 0,,100 ± 0,
+niah_single_1,Q3,95 ± 5,,,
+niah_single_1,Q2,0 ± 0,,0 ± 0,
+niah_single_1,Q2_K-mixed,100 ± 0,,95 ± 5,
+ruler_vt,BF16,82 ± 3,78 ± 5,64 ± 4,
+ruler_vt,Q6,81 ± 3,78 ± 4,66 ± 5,
+ruler_vt,Q4,69 ± 3,74 ± 4,65 ± 4,
+ruler_vt,Q3,34 ± 6,36 ± 5,15 ± 5,
+ruler_vt,Q2,0 ± 0,,,

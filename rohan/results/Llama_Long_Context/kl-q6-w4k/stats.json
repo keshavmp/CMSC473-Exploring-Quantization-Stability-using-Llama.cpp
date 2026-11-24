@@ -1,0 +1,19 @@
+{
+  "kl_mean": 0.005507,
+  "kv_cache_mib": 128.0,
+  "peak_rss_mb": 3974.83203125,
+  "kl_window": 4096,
+  "kl_chunks": 8,
+  "scored_tokens": 16376,
+  "processed_tokens": 32768,
+  "processed_tokens_per_second": 79.99835408093388,
+  "run": "kl-q6-w4k",
+  "kind": "kl",
+  "level": "Q6",
+  "task": "",
+  "length": 4096,
+  "server_context": 4608,
+  "model_file_mib": 974.464599609375,
+  "cache_ram_mib": 0,
+  "wall_seconds": 409.6084500040015
+}

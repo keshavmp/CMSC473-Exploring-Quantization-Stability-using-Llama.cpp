@@ -1,0 +1,16 @@
+{
+  "baseline": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/models/llama/Llama-3.2-1B-Instruct-BF16.gguf",
+  "direction": "BF16 || evaluated model",
+  "units": "nats",
+  "domains": {
+    "essays": {
+      "mean": 0.08315,
+      "median": 0.06605,
+      "p95": 0.206953,
+      "uncertainty": 0.000729,
+      "tokens": 16376,
+      "text_file": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/data/long_context/kl/essays.txt",
+      "reference": "/Users/rohant/Documents/CMSC473-Exploring-Quantization-Stability-using-Llama.cpp/rohan/results/Llama_Long_Context/_kl_reference/7afb60b3f7ee2b75/reference.kld"
+    }
+  }
+}

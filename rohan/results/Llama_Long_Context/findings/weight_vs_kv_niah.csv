@@ -1,0 +1,22 @@
+study,weights,kv_cache,length,accuracy,questions,seconds_per_question,peak_rss_mb
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,f16,4096,1.0,50.0,11.211061137497891,2682.015625
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,f16,8192,1.0,50.0,22.75522843915969,1641.0
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,f16,16384,0.98,50.0,60.92846294749994,1962.796875
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,q4_0,4096,0.98,50.0,11.599584869157988,397.015625
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,q4_0,8192,1.0,50.0,24.711786309180315,1007.5625
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,q4_0,16384,0.9,50.0,62.29479562249966,594.0625
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,q8_0,4096,1.0,50.0,10.898994640840684,1060.140625
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,q8_0,8192,1.0,50.0,22.106845504997764,1391.625
+"task15 (KV cache varied, weights mixed Q2_K, Apple GPU, 50 Q)",Q2_K-mixed,q8_0,16384,0.98,50.0,58.793247389181055,1650.03125
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",BF16,f16,4096,1.0,20.0,32.704572516349984,2722.89453125
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",BF16,f16,16384,1.0,20.0,216.87413762904998,3085.3515625
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q2,f16,4096,0.0,20.0,22.330252106499938,1051.23046875
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q2,f16,16384,0.0,20.0,172.09152773030002,1447.0078125
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q2_K-mixed,f16,4096,1.0,20.0,25.29499356644992,1110.3046875
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q2_K-mixed,f16,16384,0.95,20.0,188.7253999008999,1504.828125
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q3,f16,4096,0.95,20.0,36.41253482025004,872.359375
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q4,f16,4096,1.0,20.0,18.180591598799946,1600.55859375
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q4,f16,16384,1.0,20.0,155.64383421430003,1996.76171875
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q5,f16,4096,1.0,20.0,31.322930947299938,1175.7578125
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q6,f16,4096,1.0,20.0,31.361977425650004,1331.9453125
+"this study (weights varied, f16 KV cache, Intel CPU, 20 Q)",Q8,f16,4096,1.0,20.0,31.500601537399962,1619.5234375
