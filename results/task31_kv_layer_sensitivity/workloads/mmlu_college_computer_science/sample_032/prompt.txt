@@ -1,0 +1,6 @@
+Bob writes down a number between 1 and 1,000. Mary must identify that number by asking "yes/no" questions of Bob. Mary knows that Bob always tells the truth. If Mary uses an optimal strategy, then she will determine the answer at the end of exactly how many questions in the worst case?
+A. 1,000
+B. 999
+C. 500
+D. 10
+Answer:

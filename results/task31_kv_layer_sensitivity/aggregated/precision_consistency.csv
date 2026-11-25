@@ -1,0 +1,9 @@
+tensor,workload,spearman,top_k_overlap,top_k_overlap_percent,shared_layers
+K,arc_easy,0.9970588235294118,3,100.0,"3,4,11"
+K,mathqa,1.0,3,100.0,"3,4,11"
+K,mmlu_college_computer_science,1.0,3,100.0,"3,4,11"
+K,all_workloads,1.0,3,100.0,"3,4,11"
+V,arc_easy,0.9911764705882352,3,100.0,"0,5,13"
+V,mathqa,0.9970588235294118,3,100.0,"0,5,13"
+V,mmlu_college_computer_science,1.0,3,100.0,"0,1,5"
+V,all_workloads,1.0,3,100.0,"0,5,13"

@@ -1,0 +1,6 @@
+Which of the following statements about Ethernets is typically FALSE?
+A. Ethernets use circuit switching to send messages.
+B. Ethernets use buses with multiple masters.
+C. Ethernet protocols use a collision-detection method to ensure that messages are transmitted properly.
+D. Networks connected by Ethernets are limited in length to a few hundred meters.
+Answer:

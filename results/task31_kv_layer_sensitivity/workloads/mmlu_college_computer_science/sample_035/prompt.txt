@@ -1,0 +1,6 @@
+Which of the following statements about a remote procedure call is true?
+A. It is used to call procedures with addresses that are farther than 2^16 bytes away.
+B. It cannot return a value.
+C. It cannot pass parameters by reference.
+D. It cannot call procedures implemented in a different language.
+Answer:

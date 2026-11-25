@@ -1,0 +1,9 @@
+For a connected, undirected graph G = (V, E), which of the following must be true?
+I. Σ_{v∈V} degree(v) is even.
+II. |E| ≥ |V| − 1
+III. G has at least one vertex with degree 1.
+A. I only
+B. II only
+C. III only
+D. I and II
+Answer:

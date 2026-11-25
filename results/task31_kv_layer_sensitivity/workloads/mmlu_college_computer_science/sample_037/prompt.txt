@@ -1,0 +1,6 @@
+A particular parallel program computation requires 100 seconds when executed on a single processor. If 40 percent of this computation is "inherently sequential" (i.e., will not benefit from additional processors), then the theoretically best possible elapsed times for this program running with 2 and 4 processors, respectively, are
+A. 20 and 10 seconds
+B. 30 and 15 seconds
+C. 50 and 25 seconds
+D. 70 and 55 seconds
+Answer:

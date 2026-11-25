@@ -1,0 +1,2 @@
+Question: bookman purchased 55 copies of a new book released recently , 10 of which are hardback and sold for $ 20 each , and rest are paperback and sold for $ 10 each . if 14 copies were sold and the total value of the remaining books was 460 , how many paperback copies were sold ?
+Answer:

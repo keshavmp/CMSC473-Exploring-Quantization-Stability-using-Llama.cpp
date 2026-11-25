@@ -1,0 +1,2 @@
+Question: the maximum number of students among them 1345 pens and 775 pencils can be distributed in such a way that each student gets the same number of pens and same number of pencils is :
+Answer:

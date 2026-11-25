@@ -1,0 +1,6 @@
+An integer c is a common divisor of two integers x and y if and only if c is a divisor of x and c is a divisor of y. Which of the following sets of integers could possibly be the set of all common divisors of two integers?
+A. {-6,-2, -1, 1, 2, 6}
+B. {-6, -2, -1, 0, 1, 2, 6}
+C. {-6, -3, -2, -1, 1, 2, 3, 6}
+D. {-6, -3, -2, -1, 0, 1, 2, 3, 6}
+Answer:

@@ -1,0 +1,2 @@
+Question: if n is an integer and 101 n ^ 2 is less than or equal to 10000 , what is the greatest possible value of n ?
+Answer:

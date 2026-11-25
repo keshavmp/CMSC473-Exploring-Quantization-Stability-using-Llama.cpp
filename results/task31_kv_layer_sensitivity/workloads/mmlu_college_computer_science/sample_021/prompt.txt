@@ -1,0 +1,6 @@
+Of the following problems concerning a given undirected graph G, which is currently known to be solvable in polynomial time?
+A. Finding a longest simple cycle in G
+B. Finding a shortest cycle in G
+C. Finding ALL spanning trees of G
+D. Finding a largest clique in G
+Answer:

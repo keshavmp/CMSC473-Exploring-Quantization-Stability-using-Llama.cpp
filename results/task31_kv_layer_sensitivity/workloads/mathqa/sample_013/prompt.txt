@@ -1,0 +1,2 @@
+Question: there are 1000 buildings in a street . a sign - maker is contracted to number the houses from 1 to 1000 . how many zeroes will he need ?
+Answer:

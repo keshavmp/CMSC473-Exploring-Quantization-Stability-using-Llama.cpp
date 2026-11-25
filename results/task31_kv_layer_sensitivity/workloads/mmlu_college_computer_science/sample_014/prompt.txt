@@ -1,0 +1,9 @@
+Let A and B be two sets of words (strings) from Σ*, for some alphabet of symbols Σ. Suppose that B is a subset of A. Which of the following statements must always be true of A and B ?
+I. If A is finite, then B is finite.
+II. If A is regular, then B is regular.
+III. If A is context-free, then B is context-free.
+A. I only
+B. II only
+C. III only
+D. I and II only
+Answer:

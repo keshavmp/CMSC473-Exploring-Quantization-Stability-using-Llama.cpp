@@ -1,0 +1,6 @@
+Which of the following is NOT a property of bitmap graphics?
+A. Fast hardware exists to move blocks of pixels efficiently.
+B. Realistic lighting and shading can be done.
+C. All line segments can be displayed as straight.
+D. Polygons can be filled with solid colors and textures.
+Answer:

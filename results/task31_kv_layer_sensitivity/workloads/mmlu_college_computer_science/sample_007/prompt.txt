@@ -1,0 +1,9 @@
+Which of the following statements describe(s) properties of a purely segmented memory system?
+I. It divides memory into units of equal size.
+II. It permits implementation of virtual memory.
+III. It suffers from internal fragmentation.
+A. I only
+B. II only
+C. III only
+D. I and III
+Answer:

@@ -1,0 +1,10 @@
+Function signatures describe the types of the arguments to a function as well as the return value of the function. For instance, the addition function on reals has a signature of
+add : real x real -> real
+since it takes two real numbers and returns a real number. But, for a language that allows functions as return values, addition could be considered to have the signature
+add : real -> (real -> real)
+which means that add takes a single real (the first operand) and returns a new function that itself takes a single real (the second operand) and returns a real (the result). This process of reducing a function with multiple arguments to a function with fewer arguments is called currying. Which of the following is correct?
+A. Currying can be applied to any function to the point where it has exactly one input argument.
+B. Currying cannot be applied to functions of more than two arguments.
+C. Currying cannot be applied to functions that return functions as arguments.
+D. Currying cannot be applied w functions that haw arguments that are functions.
+Answer:

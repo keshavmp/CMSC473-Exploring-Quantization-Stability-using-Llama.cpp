@@ -1,0 +1,2 @@
+Question: what is the sum of all digits for the number 10 ^ 29 - 41 ?
+Answer:

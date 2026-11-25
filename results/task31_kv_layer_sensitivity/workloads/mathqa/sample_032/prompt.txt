@@ -1,0 +1,2 @@
+Question: calculate the ratio between x and y if 30 % of x equal to 50 % of y ?
+Answer:

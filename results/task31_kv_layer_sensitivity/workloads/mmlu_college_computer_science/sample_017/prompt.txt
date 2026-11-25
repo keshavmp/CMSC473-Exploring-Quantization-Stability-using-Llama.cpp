@@ -1,0 +1,6 @@
+The language {ww | w in (0 + 1)*} is
+A. not accepted by any Turing machine
+B. accepted by some Turing machine, but by no pushdown automaton
+C. accepted by some pushdown automaton, but not context-free
+D. context-free, but not regular
+Answer:

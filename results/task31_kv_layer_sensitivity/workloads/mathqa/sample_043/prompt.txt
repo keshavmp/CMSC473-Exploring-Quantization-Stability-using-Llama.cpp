@@ -1,0 +1,2 @@
+Question: in an it company , there are a total of 90 employees including 50 programmers . the number of male employees is 80 , including 35 male programmers . how many employees must be selected to guaranty that we have 3 programmers of the same sex ?
+Answer:

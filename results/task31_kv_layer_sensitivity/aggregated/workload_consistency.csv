@@ -1,0 +1,13 @@
+tensor,quantization,workload_a,workload_b,spearman,top_k_overlap,top_k_overlap_percent,shared_layers
+K,q4_0,arc_easy,mathqa,1.0,3,100.0,"3,4,11"
+K,q4_0,arc_easy,mmlu_college_computer_science,0.988235294117647,3,100.0,"3,4,11"
+K,q4_0,mathqa,mmlu_college_computer_science,0.988235294117647,3,100.0,"3,4,11"
+K,q8_0,arc_easy,mathqa,0.9970588235294118,3,100.0,"3,4,11"
+K,q8_0,arc_easy,mmlu_college_computer_science,0.9823529411764707,3,100.0,"3,4,11"
+K,q8_0,mathqa,mmlu_college_computer_science,0.988235294117647,3,100.0,"3,4,11"
+V,q4_0,arc_easy,mathqa,0.976470588235294,3,100.0,"0,5,13"
+V,q4_0,arc_easy,mmlu_college_computer_science,0.9705882352941176,2,66.66666666666667,"0,5"
+V,q4_0,mathqa,mmlu_college_computer_science,0.976470588235294,2,66.66666666666667,"0,5"
+V,q8_0,arc_easy,mathqa,0.9647058823529412,3,100.0,"0,5,13"
+V,q8_0,arc_easy,mmlu_college_computer_science,0.9647058823529412,2,66.66666666666667,"0,5"
+V,q8_0,mathqa,mmlu_college_computer_science,0.9823529411764707,2,66.66666666666667,"0,5"

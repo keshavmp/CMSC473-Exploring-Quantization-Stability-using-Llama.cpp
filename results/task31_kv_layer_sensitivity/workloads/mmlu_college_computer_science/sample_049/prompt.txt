@@ -1,0 +1,9 @@
+In which of the following representations of numbers by 8-bit words is the addition of the integers 109 and -42 within range?
+I. One's complement
+II. Two's complement
+III. Sign and magnitude
+A. I only
+B. II only
+C. I and II only
+D. I, II, and III
+Answer:

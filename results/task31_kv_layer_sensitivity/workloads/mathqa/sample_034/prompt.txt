@@ -1,0 +1,2 @@
+Question: a meeting has to be conducted with 6 managers . find the number of ways in which the managers may be selected from among 9 managers , if there are 2 managers who refuse to attend the meeting together .
+Answer:

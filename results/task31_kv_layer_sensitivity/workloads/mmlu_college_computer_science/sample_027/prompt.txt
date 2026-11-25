@@ -1,0 +1,6 @@
+Which of the following algorithms has running time Θ(n^2) in the worst case but Θ(n log n) on average?
+A. Bubblesort
+B. Mergesort
+C. Heapsort
+D. Quicksort
+Answer:

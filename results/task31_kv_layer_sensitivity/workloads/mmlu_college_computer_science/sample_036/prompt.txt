@@ -1,0 +1,6 @@
+Of the following sorting algorithms, which has a running time that is LEAST dependent on the initial ordering of the input?
+A. Insertion sort
+B. Quicksort
+C. Merge sort
+D. Selection sort
+Answer:

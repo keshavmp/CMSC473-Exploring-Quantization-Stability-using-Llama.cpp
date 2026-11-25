@@ -1,0 +1,6 @@
+Any set of Boolean operators that is sufficient to represent all Boolean expressions is said to be complete. Which of the following is NOT complete?
+A. {AND, NOT}
+B. {NOT, OR}
+C. {AND, OR}
+D. {NAND}
+Answer:

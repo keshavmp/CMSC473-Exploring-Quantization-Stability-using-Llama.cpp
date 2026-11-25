@@ -1,0 +1,9 @@
+Mergesort works by splitting a list of n numbers in half, sorting each half recursively, and merging the two halves. Which of the following data structures will allow mergesort to work in O(n log n) time?
+I. A singly linked list
+II. A doubly linked list
+III. An array
+A. None
+B. III only
+C. I and II only
+D. I, II, and III
+Answer:

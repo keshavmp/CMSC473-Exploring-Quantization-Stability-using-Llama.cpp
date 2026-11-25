@@ -1,0 +1,6 @@
+If p(x) is the minimal-degree interpolating polynomial for the real-valued function f(x) at the n + 1 distinct real numbers x0, .... xn what is the maximum possible degree of p(x)?
+A. n
+B. n + 1
+C. n + 2
+D. 2n
+Answer:

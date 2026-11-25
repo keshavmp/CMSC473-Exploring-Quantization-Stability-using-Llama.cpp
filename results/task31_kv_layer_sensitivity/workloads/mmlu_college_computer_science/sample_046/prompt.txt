@@ -1,0 +1,6 @@
+Which of the following decimal numbers has an exact representation in binary notation?
+A. 0.1
+B. 0.2
+C. 0.3
+D. 0.5
+Answer:

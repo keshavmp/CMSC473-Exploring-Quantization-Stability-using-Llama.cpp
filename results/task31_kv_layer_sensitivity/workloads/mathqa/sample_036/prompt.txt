@@ -1,0 +1,2 @@
+Question: what is the unit digit in the product ( 3 ^ 65 x 6 ^ 59 x 7 ^ 71 ) ?
+Answer:

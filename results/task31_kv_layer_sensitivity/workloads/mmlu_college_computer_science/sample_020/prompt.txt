@@ -1,0 +1,6 @@
+Which of the following comes closest to being a perfectly secure encryption scheme?
+A. The Caesar Cipher, a substitution cipher
+B. DES (Data Encryption Standard), a symmetric-key algorithm
+C. Enigma, a transposition cipher
+D. One-time pad
+Answer:

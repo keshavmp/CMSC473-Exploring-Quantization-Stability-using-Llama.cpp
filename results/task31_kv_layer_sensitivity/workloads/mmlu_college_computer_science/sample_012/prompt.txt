@@ -1,0 +1,6 @@
+An internal hash table has 5 buckets, numbered 0, 1, 2, 3, 4. Keys are integers, and the hash function h(i) = i mod 5 is used, with linear resolution of collisions (i.e., if bucket h(i) is filled, the buckets h(i) + 1, h(i) + 2, ... are tried successively with all bucket numbers computed modulo 5). If elements with keys 13, 8, 24, 10, and 3 are inserted, m that order, into an initially blank hash table, then the content of the bucket numbered 2 is
+A. 3
+B. 8
+C. 10
+D. 13
+Answer:

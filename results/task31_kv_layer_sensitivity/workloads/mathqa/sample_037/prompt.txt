@@ -1,0 +1,2 @@
+Question: a start walking from a place at a uniform speed of 6 kmph in a particular direction . after half an hour , b starts from the same place and walks in the same direction as a at a uniform speed and overtakes a after 1 hour 48 minutes . find the speed of b .
+Answer:

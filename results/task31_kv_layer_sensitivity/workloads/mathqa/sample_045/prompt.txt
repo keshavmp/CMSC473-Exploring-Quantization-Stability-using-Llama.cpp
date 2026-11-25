@@ -1,0 +1,2 @@
+Question: ( 3 x + 1 ) ( 2 x - 5 ) = ax ^ 2 + kx + n . what is the value of a - n + k ?
+Answer:

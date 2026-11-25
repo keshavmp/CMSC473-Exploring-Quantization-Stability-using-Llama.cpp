@@ -1,0 +1,9 @@
+Resolution theorem proving for showing that a formula of propositional logic is not satisfiable has which of the following properties?
+I. It is a sound proof system in the sense that there does not exist a proof of the unsatisfiability of a satisfiable formula of propositional logic.
+II. It is a complete proof system in the sense that there is a proof of unsatisfiability for every unsa tisfiable formula of propositional logic.
+III. It is a succinct proof system in the sense that whenever an unsatisfiable formula F of propositional logic has a resolution proof, F also has a proof whose length is polynomial in the length of F.
+A. I only
+B. III only
+C. I and II only
+D. I and III only
+Answer:

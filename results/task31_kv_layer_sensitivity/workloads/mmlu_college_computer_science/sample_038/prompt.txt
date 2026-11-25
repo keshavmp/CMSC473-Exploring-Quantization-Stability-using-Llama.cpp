@@ -1,0 +1,6 @@
+Consider the representation of six-bit numbers by two's complement, one's complement, or by sign and magnitude. In which representation is there overflow from the addition of the integers 011000 and 011000?
+A. Two's complement only
+B. Sign and magnitude and one's complement only
+C. Two's complement and one's complement only
+D. All three representations
+Answer:

@@ -1,0 +1,6 @@
+Of the following, which best approximates the ratio of the number of nonterminal nodes to the total number of nodes in a complete K-ary tree of depth N?
+A. 1/K
+B. K-1/K
+C. log_10 (1/N)
+D. N-1/m
+Answer:

@@ -1,0 +1,2 @@
+Question: the sum of all the integers s such that - 26 < s < 24 is
+Answer:

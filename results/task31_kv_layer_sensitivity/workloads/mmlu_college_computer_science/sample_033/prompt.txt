@@ -1,0 +1,9 @@
+Which of the following is (are) true about virtual memory systems that use pages?
+I. The virtual address space can be larger than the amount of physical memory.
+II. Programs must be resident in main memory throughout their execution.
+III. Pages correspond to semantic characteristics of the program.
+A. I only
+B. II only
+C. I and II
+D. I and III
+Answer:

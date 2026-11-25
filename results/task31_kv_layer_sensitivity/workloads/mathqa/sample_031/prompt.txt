@@ -1,0 +1,2 @@
+Question: two trains of equal length , running with the speeds of 60 and 16 kmph , take 50 seconds to cross each other while they are running in the same direction . what time will they take to cross each other if they are running in opposite directions ?
+Answer:

@@ -1,0 +1,2 @@
+Question: there are 28 stations between hyderabad and bangalore . how many second class tickets have to be printed , so that a passenger can travel from any station to any other station ?
+Answer:

@@ -1,0 +1,6 @@
+Which of the following sets of bit strings CANNOT be described with a regular expression?
+A. All bit strings whose number of zeros is a multiple of five
+B. All bit strings starting with a zero and ending with a one
+C. All bit strings with an even number of zeros
+D. All bit strings with more ones than zeros
+Answer:

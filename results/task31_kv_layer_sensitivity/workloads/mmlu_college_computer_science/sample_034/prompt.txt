@@ -1,0 +1,6 @@
+Which of the following is usually NOT represented in a subroutine's activation record frame for a stack-based programming language?
+A. Values of local variables
+B. A heap area
+C. The return address
+D. Stack pointer for the calling activation record
+Answer:

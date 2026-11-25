@@ -1,0 +1,6 @@
+Many cryptographic protocols base their security on assumptions about the computational difficulty of integer factorization. Integer factorization serves this purpose because we believe that
+A. integer multiplication is a function whose inverse, factorization, remains difficult for a large class of inputs
+B. P = NP
+C. even if P = NP, integer factorization is still likely not to be polynomial-time computable
+D. testing primality is computationally intractable
+Answer:

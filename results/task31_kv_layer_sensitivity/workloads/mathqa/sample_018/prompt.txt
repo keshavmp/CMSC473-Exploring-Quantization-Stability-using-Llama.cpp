@@ -1,0 +1,2 @@
+Question: a train running at the speed of 120 km / hr crosses a pole in 18 seconds . what is the length of the train ?
+Answer:

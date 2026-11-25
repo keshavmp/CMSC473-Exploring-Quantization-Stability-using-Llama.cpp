@@ -1,0 +1,2 @@
+Question: an art gallery has only paintings and sculptures . currently , 1 / 3 of the pieces of art are displayed , and 1 / 6 of the pieces on display are sculptures . if 1 / 3 of the pieces not on display are paintings , and 1000 sculptures are not on display , how many pieces of art does the gallery have ?
+Answer:

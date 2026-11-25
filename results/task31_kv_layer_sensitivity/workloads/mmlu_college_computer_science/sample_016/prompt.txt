@@ -1,0 +1,6 @@
+Which of the following is NOT a reasonable justification for choosing to busy-wait on an asynchronous event?
+A. The wait is expected to be short.
+B. A busy-wait loop is easier to code than an interrupt handler.
+C. There is no other work for the processor to do.
+D. The program executes on a time-sharing system.
+Answer:

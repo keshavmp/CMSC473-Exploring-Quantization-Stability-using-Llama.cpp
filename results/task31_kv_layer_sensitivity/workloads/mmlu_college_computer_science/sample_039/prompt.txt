@@ -1,0 +1,6 @@
+Of the following, which best characterizes computers that use memory-mapped I/O?
+A. The computer provides special instructions for manipulating I/O ports.
+B. I/O ports are placed at addresses on the bus and are accessed just like other memory locations.
+C. To perform an I/O operation, it is sufficient to place the data in an address register and call the channel to perform the operation.
+D. Ports are referenced only by memory-mapped instructions of the computer and are located at hardwired memory locations.
+Answer:

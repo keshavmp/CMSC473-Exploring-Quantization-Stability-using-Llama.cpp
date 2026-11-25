@@ -1,0 +1,6 @@
+Which of the following is the name of the data structure in a compiler that is responsible for managing information about variables and their attributes?
+A. Abstract Syntax Tree (AST)
+B. Attribute Grammar
+C. Symbol Table
+D. Semantic Stack
+Answer:

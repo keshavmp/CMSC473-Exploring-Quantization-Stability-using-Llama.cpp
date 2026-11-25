@@ -1,0 +1,6 @@
+Consider a computer system in which processes can request and release one or more resources. Once a process has been granted a resource, the process has exclusive use of that resource until it is released. If a process requests a resource that is already in use, the process enters a queue for that resource, waiting until the resource is available. Which of the following will NOT deal effectively with the problem of deadlock?
+A. Giving priorities to processes and ordering the wait queues by priority
+B. Having a process request all its required resources when it first begins, and restarting if it cannot obtain them all
+C. Numbering the resources and requiring that processes request resources in order of increasing number
+D. Having processes time out and restart after a random interval of waiting
+Answer:

@@ -1,0 +1,10 @@
+For all strings x, the function x^M is defined recursively as follows.
+e^M= e, and
+if w is a string and a is a string with length 1, then
+(aw)^M = aw^Ma.
+Let a be a string with length 1, and let x and y be arbitrary strings. Which of the following is true?
+A. a^M = a
+B. (ax)^M = (xa)^M
+C. (xy)^M = y^Mx^M
+D. None of the above
+Answer:

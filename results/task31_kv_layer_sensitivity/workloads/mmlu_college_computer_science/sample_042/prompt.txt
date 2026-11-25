@@ -1,0 +1,9 @@
+Which of the following conditions can be expressed by a Boolean formula in the Boolean variables p_1, p_2, p_3, p_4 and the connectives ∧,∨ (without ¬)?
+I. At least three of p_1, p_2, p_3, p_4 are true.
+II. Exactly three of p_1, p_2, p_3, p_4 are true.
+III. An even number of p_1, p_2, p_3, p_4 are true.
+A. I only
+B. II only
+C. III only
+D. I and III
+Answer:

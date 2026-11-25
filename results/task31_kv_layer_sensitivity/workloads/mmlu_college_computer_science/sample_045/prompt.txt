@@ -1,0 +1,9 @@
+In multiprogrammed systems it is advantageous if some programs such as editors and compilers can be shared by several users. Which of the following must be true of multiprogrammed systems in order that a single copy of a program can be shared by several users?
+I. The program is a macro.
+II. The program is recursive.
+III. The program is reentrant.
+A. I only
+B. II only
+C. III only
+D. II and III only
+Answer:

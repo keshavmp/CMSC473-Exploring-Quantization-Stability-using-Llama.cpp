@@ -1,0 +1,2 @@
+Question: three walls have wallpaper covering a combined area of 300 square meters . by overlapping the wallpaper to cover a wall with an area of 180 square meters , the area that is covered by exactly two layers of wallpaper is 34 square meters . what is the area that is covered with three layers of wallpaper ?
+Answer:

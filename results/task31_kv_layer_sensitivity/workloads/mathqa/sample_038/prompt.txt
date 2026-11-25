@@ -1,0 +1,2 @@
+Question: oak street begins at pine street and runs directly east for 2 kilometers until it ends when it meets maple street . oak street is intersected every 400 meters by a perpendicular street , and each of those streets other than pine street and maple street is given a number beginning at 1 st street ( one block east of pine street ) and continuing consecutively ( 2 nd street , 3 rd street , etc . . . ) until the highest - numbered street one block west of maple street . what is the highest - numbered street that intersects oak street ?
+Answer:

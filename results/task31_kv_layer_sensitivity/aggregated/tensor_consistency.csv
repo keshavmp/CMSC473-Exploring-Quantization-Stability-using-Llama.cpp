@@ -1,0 +1,9 @@
+quantization,workload,spearman,top_k_overlap,top_k_overlap_percent,shared_layers
+q4_0,arc_easy,0.055882352941176466,0,0.0,
+q4_0,mathqa,-0.0029411764705882353,0,0.0,
+q4_0,mmlu_college_computer_science,0.044117647058823525,0,0.0,
+q4_0,all_workloads,0.0411764705882353,0,0.0,
+q8_0,arc_easy,0.07647058823529412,0,0.0,
+q8_0,mathqa,0.008823529411764706,0,0.0,
+q8_0,mmlu_college_computer_science,0.044117647058823525,0,0.0,
+q8_0,all_workloads,0.0411764705882353,0,0.0,

@@ -1,0 +1,2 @@
+Question: a constructor estimates that 10 people can paint mr khans house in 4 days . if he uses 5 people instead of 10 , how long will they take to complete the job ?
+Answer:

@@ -1,0 +1,2 @@
+Question: each week a restaurant serving mexican food uses the same volume of chili paste , which comes in either 35 - ounce cans or 25 - ounce cans of chili paste . if the restaurant must order 20 more of the smaller cans than the larger cans to fulfill its weekly needs , then how manysmallercans are required to fulfill its weekly needs ?
+Answer:

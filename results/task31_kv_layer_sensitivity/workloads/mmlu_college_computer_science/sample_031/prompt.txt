@@ -1,0 +1,10 @@
+In a height-balanced binary search tree, the heights of the left and right descendents of any node differ by at most 1. Which of the following are true of such a tree?
+I. Worst-case search time is logarithmic in the number of nodes.
+II. Average-case search time is logarithmic in the number of nodes.
+III. Best-case search time is proportional to the height of the tree.
+IV. The height of the tree is logarithmic in the number of nodes.
+A. I and III only
+B. II and III only
+C. II and IV only
+D. I, II, and IV
+Answer:

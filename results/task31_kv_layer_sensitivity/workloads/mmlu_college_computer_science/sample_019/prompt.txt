@@ -1,0 +1,9 @@
+Let P be a procedure that for some inputs calls itself (i.e., is recursive). If P is guaranteed to terminate, which of the following statements must be true?
+I. P has a local variable.
+II. P has an execution path where it does not call itself.
+III. P either refers to a global variable or has at least one parameter.
+A. I only
+B. II only
+C. I and II only
+D. II and III only
+Answer:

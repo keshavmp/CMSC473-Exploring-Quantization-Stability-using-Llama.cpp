@@ -1,0 +1,2 @@
+Question: running at the same constant rate , 6 identical machines can produce a total of 360 bottles per minute . at this rate , how many bottles could 10 such machines produce in 4 minutes ?
+Answer:

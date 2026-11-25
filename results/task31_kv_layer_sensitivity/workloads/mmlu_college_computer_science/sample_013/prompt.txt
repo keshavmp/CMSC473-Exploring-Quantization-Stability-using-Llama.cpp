@@ -1,0 +1,6 @@
+TCP protocol is responsible (among other things) for
+A. Routing packets through the network
+B. Reliable delivery of packets between directly connected machines
+C. Reliable delivery of large (multi-packet) messages between machines that are not necessarily directly connected
+D. Dealing with differences among operating system architectures
+Answer:

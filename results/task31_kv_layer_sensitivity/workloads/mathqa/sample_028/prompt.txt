@@ -1,0 +1,2 @@
+Question: a factory that employs 1000 assembly line workers pays each of these workers $ 5 per hour for the first 40 hours worked during a week and 1 ½ times that rate for hours worked in excess of 40 . what was the total payroll for the assembly - line workers for a week in which 30 percent of them worked 15 hours , 50 percent worked 40 hours , and the rest worked 50 hours ?
+Answer:

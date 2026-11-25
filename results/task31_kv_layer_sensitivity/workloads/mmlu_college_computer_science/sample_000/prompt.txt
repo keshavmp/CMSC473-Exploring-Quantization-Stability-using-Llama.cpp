@@ -1,0 +1,6 @@
+The access matrix approach to protection has the difficulty that
+A. the matrix, if stored directly, is large and can be clumsy to manage
+B. it is not capable of expressing complex protection requirements
+C. deciding whether a process has access to a resource is undecidable
+D. there is no way to express who has rights to change the access matrix itself
+Answer:

@@ -1,0 +1,6 @@
+Two alternatives for interconnecting a set of processors with bidirectional links are (1) the fully interconnected network, in which each processor is directly connected to every other processor, and (2) the ring network, in which each processor is connected to two other processors. The worst-case path length for a network is the maximum, over all pairs of nodes in the network, of the minimum length paths (measured in number of links) between the nodes. For each type of interconnection of n processors, a figure of merit can be formed as the product of the number of links required for the network times the worst-case path length connecting any two processors. The ratio of this figure of merit for the fully interconnected network compared to that of the ring network, for even n > 2, is
+A. 1/(n^2)
+B. 1/(n(n-1))
+C. 1/n
+D. (n-1)/n
+Answer:

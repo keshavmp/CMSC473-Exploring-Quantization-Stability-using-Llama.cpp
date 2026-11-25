@@ -1,0 +1,2 @@
+Question: how many cuboids of length 5 m , width 3 m and height 2 m can be farmed from a cuboid of 18 m length , 15 m width and 2 m height .
+Answer:

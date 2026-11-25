@@ -1,0 +1,2 @@
+Question: 50 percent of the members of a study group are women , and 30 percent of those women are lawyers . if one member of the study group is to be selected at random , what is the probability that the member selected is a woman lawyer ?
+Answer:

@@ -1,0 +1,11 @@
+Array A contains 256 elements of 4 bytes each. Its first element is stored at physical address 4,096.
+Array B contains 512 elements of 4 bytes each. Its first element is stored at physical address 8,192.
+Assume that only arrays A and B can be cached in an initially empty, physically addressed, physically tagged, direct-mapped, 2K-byte cache with an 8-byte block size. The following loop is then executed.
+for (i = 0; i < 256; i++)
+        A[i] = A[i] + B[2*i];
+During the execution of the loop, how many bytes will be written to memory if the cache has a write-back policy?
+A. 0
+B. 256
+C. 1024
+D. 2000
+Answer:

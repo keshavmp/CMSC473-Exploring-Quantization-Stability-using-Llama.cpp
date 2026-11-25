@@ -1,0 +1,2 @@
+Question: $ 350 is divided among a , b , and c so that a receives half as much as b , and b receives half as much as c . how much money is c ' s share ?
+Answer:

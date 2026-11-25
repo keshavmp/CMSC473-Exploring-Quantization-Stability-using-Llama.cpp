@@ -1,0 +1,6 @@
+Suppose sharing of tiles in a multilevel directory structure is achieved with directory entries that are links pointing to a node containing information about a shared file. Information in this node includes (1) the owner of the file, (2) a count of the number of links to the tile, and (3) the disk block numbers of the file. What is a primary drawback to this approach to sharing?
+A. If the owner modifies the file, another user who does not share will see the changes.
+B. If the owner renames the file, other users will not be able to access it.
+C. If the owner is allowed to delete a file, dangling links may result.
+D. If any user who shares the file appends to it, others who share it will not be able to access the new disk blocks.
+Answer:
